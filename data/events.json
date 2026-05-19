@@ -1,0 +1,1081 @@
+[
+  {
+    "id": "evt-001",
+    "date": "1990-12-19",
+    "title_zh": "上海证券交易所正式开业",
+    "title_en": "Shanghai Stock Exchange Officially Opens",
+    "category": "milestone",
+    "description_zh": "1990年12月19日，上海证券交易所正式开业，标志着中国现代资本市场的诞生。首批挂牌交易的仅有8只股票（史称'老八股'），包括延中实业、真空电子、飞乐音响等。上交所采用先进的电脑自动撮合交易系统，实现了证券交易的无纸化。开业首日，上证综合指数以100点为基准正式发布。同日，深圳证券交易所已于12月1日试营业。上交所的成立是中国经济体制改革的标志性事件，开启了资本市场服务实体经济的新篇章。此后三十余年，中国股市从'老八股'起步，逐步成长为全球第二大股票市场。",
+    "market_data": {
+      "sh_close": 100.0,
+      "change_pct": null
+    },
+    "tags": ["exchange-foundation", "milestone"]
+  },
+  {
+    "id": "evt-002",
+    "date": "1991-07-03",
+    "title_zh": "深圳证券交易所正式开业",
+    "title_en": "Shenzhen Stock Exchange Officially Opens",
+    "category": "milestone",
+    "description_zh": "1991年7月3日，深圳证券交易所正式获批开业。此前深交所已于1990年12月1日开始试营业，首批挂牌5只股票（史称'老五股'）。深交所的正式开业形成了沪深两大交易所并存的市场格局，为中国资本市场的发展注入了新的活力。深交所地处改革开放前沿深圳特区，在全国统一的市场架构下与上交所形成差异化发展。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["exchange-foundation", "milestone", "shenzhen"]
+  },
+  {
+    "id": "evt-003",
+    "date": "1991-07-15",
+    "title_zh": "上证综合指数首次发布",
+    "title_en": "Shanghai Composite Index First Published",
+    "category": "milestone",
+    "description_zh": "1991年7月15日，上证综合指数正式对外发布，基期为1990年12月19日，基点为100点。上证综指涵盖上海证券交易所所有上市股票，以总股本为权重，成为中国资本市场最核心的晴雨表。此后三十余年，上证综指经历了多次牛熊转换，2007年10月触及历史最高6124点，目前仍在3000-3500点区间震荡。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["index", "milestone"]
+  },
+  {
+    "id": "evt-004",
+    "date": "1992-02-21",
+    "title_zh": "第一只B股挂牌交易",
+    "title_en": "First B-Share Listed on Shanghai Exchange",
+    "category": "milestone",
+    "description_zh": "1992年2月21日，上海真空电子器件股份有限公司B股（简称'真空B股'）在上海证券交易所挂牌上市，成为中国第一只面向境外投资者发行的B股。B股以人民币标明面值、以外币认购和交易，是中国资本市场对外开放的重要尝试。真空B股的发行成功吸引了大量境外投资者参与中国市场。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["internationalization", "ipo", "milestone"]
+  },
+  {
+    "id": "evt-005",
+    "date": "1992-05-21",
+    "title_zh": "上海全面放开股价——上证指数单日暴涨105%",
+    "title_en": "Shanghai Abolishes Price Limits — Index Surges 105% in One Day",
+    "category": "reform",
+    "description_zh": "1992年5月21日，上海证券交易所全面放开股价管制，取消此前每天1%的涨跌停限制，实行自由竞价交易。当日上证综指从前一交易日的616.99点暴涨至收盘1266.49点，单日涨幅高达105.27%，创下中国证券市场历史上单日最大涨幅纪录，至今未被打破。5个交易日后（5月25日），上证指数进一步冲高至1429点，累计涨幅达131%。此次'521'改革是中国股市从计划经济模式走向市场化的重要一步，但也暴露了市场过度投机的风险。此后仅半年时间，上证指数从1429点暴跌至386点，最大跌幅达72%，股民首次切身体验'政策市'的威力。",
+    "market_data": {
+      "sh_close": 1266.49,
+      "change_pct": 105.27
+    },
+    "tags": ["reform", "price-liberalization", "market-surge", "volatility"]
+  },
+  {
+    "id": "evt-006",
+    "date": "1992-08-10",
+    "title_zh": "深圳'8·10'新股认购风波",
+    "title_en": "Shenzhen 8-10 IPO Subscription Riot",
+    "category": "scandal",
+    "description_zh": "1992年8月，深圳市政府决定发行5亿股A股，发售500万张新股认购抽签表。消息一出，全国各地约120万投资者涌入深圳（当时深圳常住人口仅60万），各网点排起长龙。8月9日开始发售，短短两个多小时许多网点即宣布售罄——与500万张的供应量明显不符。投资者发现大量抽签表被内部人员截留私分和'走后门'倒卖。8月10日，愤怒的群众涌向深圳市政府示威游行，打出'反对贪污，要求公正'的横幅，武警动用催泪弹和水炮驱散。当晚深圳市政府紧急决定增发50万张认购表，人群才逐渐散去。事后清查发现内部截留抽签表105,399张，涉及金融系统干部4180人。该事件直接促使中央下决心建立统一证券监管机构。仅两个月后（1992年10月12日），国务院证券委员会和中国证券监督管理委员会（证监会）正式成立。这是中国证券史上最具里程碑意义的危机事件之一。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["scandal", "ipo", "regulation", "social-unrest"]
+  },
+  {
+    "id": "evt-007",
+    "date": "1992-10-12",
+    "title_zh": "中国证监会正式成立",
+    "title_en": "China Securities Regulatory Commission (CSRC) Established",
+    "category": "regulation",
+    "description_zh": "1992年10月12日，国务院证券委员会和中国证券监督管理委员会（CSRC）同时成立，由时任国务院副总理朱镕基兼任证券委主任，刘鸿儒出任证监会首任主席。证监会的成立标志着中国证券市场有了全国统一的监管机构，结束了此前由地方政府和交易所各自为政的监管格局。深圳'8·10'事件是催生证监会的重要直接原因。朱镕基评价称'股票事件是一次技术失控事件，当然其中包括很多人为因素'。刘鸿儒则指出'股票市场这东西，技术问题没解决好，会带来政治问题和社会问题'。证监会的成立是中国资本市场从无序走向规范的关键一步。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["regulation", "milestone", "institutional-building"]
+  },
+  {
+    "id": "evt-008",
+    "date": "1993-02-16",
+    "title_zh": "上证指数冲至1558点——A股首个牛熊转折点",
+    "title_en": "Shanghai Composite Hits 1558 — First Major Bull Market Peak",
+    "category": "bull",
+    "description_zh": "1993年2月16日，上证综合指数在邓小平南巡讲话的政策春风吹拂下，从1992年11月17日的386点起步，短短3个月内暴涨303%，触及1558.95点的高峰。这是中国股市首个重要的牛市顶点。大量新股民涌入，全民炒股热潮空前。然而此后因宏观经济过热、通胀飙升，政府强力收紧银根，A股由牛转熊，开启了长达18个月的暴跌之旅，最终于1994年7月29日跌至325点，跌幅高达79%。",
+    "market_data": {
+      "sh_close": 1558.95,
+      "change_pct": null
+    },
+    "tags": ["bull", "peak", "southern-tour"]
+  },
+  {
+    "id": "evt-009",
+    "date": "1993-08-20",
+    "title_zh": "中国第一只上市基金——淄博基金挂牌",
+    "title_en": "First Listed Investment Fund — Zibo Fund Debuts",
+    "category": "milestone",
+    "description_zh": "1993年8月20日，中国第一只上市投资基金——淄博基金在上海证券交易所挂牌交易，标志着中国基金业的诞生。虽然此后证券投资基金经历了曲折的发展历程，但淄博基金的上市为中国机构投资者的发展奠定了基础。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["fund", "milestone", "institutional-investor"]
+  },
+  {
+    "id": "evt-010",
+    "date": "1994-07-29",
+    "title_zh": "上证指数暴跌至325点——最惨烈的熊市底部",
+    "title_en": "Shanghai Composite Crashes to 325 — Deepest Bear Market Trough",
+    "category": "bear",
+    "description_zh": "1994年7月29日，上证综合指数从1993年2月的1558.95点一路暴跌至325.89点，累计跌幅高达79.09%，创下中国股市历史上最极端的回撤之一。市场极度萧条，马钢股份最低仅1.21元，出现'一斤咸菜贵过马钢股价'的奇闻。证券营业部门可罗雀，股市面临生死考验。次日（7月30日），证监会紧急出台著名的'三大救市政策'：年内暂停新股发行和上市、严格控制上市公司配股规模、扩大入市资金范围（包括发展共同基金、试办中外合资基金管理公司、向券商融资等）。8月1日开盘暴涨33.2%，33个交易日内冲至1052.94点，较325点最低位上涨223%。325点此后成为十年大底，再未跌破。",
+    "market_data": {
+      "sh_close": 333.92,
+      "change_pct": null
+    },
+    "tags": ["bear", "trough", "rescue-policy", "volatility"]
+  },
+  {
+    "id": "evt-011",
+    "date": "1994-07-30",
+    "title_zh": "证监会出台'三大救市政策'",
+    "title_en": "CSRC Announces 'Three Major Rescue Policies'",
+    "category": "regulation",
+    "description_zh": "1994年7月30日，面对市场极度低迷（前一日上证指数最低跌至325点），证监会宣布三大救市政策：一、年内暂停新股发行和上市；二、严格控制上市公司配股规模；三、采取措施扩大入市资金范围。这是中国资本市场历史上第一次政府大规模干预救市行动。政策出台后市场立即出现井喷行情，8月1日上证指数大涨33.2%，至9月13日涨至1052点，涨幅超200%。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["regulation", "rescue", "policy-intervention"]
+  },
+  {
+    "id": "evt-012",
+    "date": "1995-01-01",
+    "title_zh": "A股实行T+1交易制度",
+    "title_en": "A-Share T+1 Settlement Introduced",
+    "category": "regulation",
+    "description_zh": "1995年1月1日起，沪深交易所将股票交易从T+0（当日回转交易）改为T+1交收制度。此举旨在抑制过度投机和短线炒作。在此之前，A股市场上大量投机者利用T+0制度进行日内回转交易，加剧了市场波动。T+1制度的实施是中国资本市场交易规则完善的重要举措，至今仍在主板实行。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["regulation", "trading-rule", "speculation"]
+  },
+  {
+    "id": "evt-013",
+    "date": "1995-02-23",
+    "title_zh": "'327'国债期货事件爆发",
+    "title_en": "3-27 Treasury Bond Futures Scandal Erupts",
+    "category": "scandal",
+    "description_zh": "1995年2月23日，上海证券交易所国债期货市场爆发了震惊中外的'327'事件。万国证券在收盘前8分钟违规砸盘，做空'327'国债期货合约，涉及金额逾1400亿元，远超其资本金的数十倍。事件导致上交所宣布当日最后8分钟交易无效，万国证券总裁管金生入狱，万国证券最终与申银证券合并。5月18日，国务院决定暂停全国国债期货交易。这一事件是中国金融史上最著名的市场操纵恶性事件之一，促使监管层深刻反思期货市场的风控制度。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["scandal", "futures", "market-manipulation", "bond"]
+  },
+  {
+    "id": "evt-014",
+    "date": "1996-12-16",
+    "title_zh": "10%涨跌停板制度实施 + 人民日报社论引发暴跌",
+    "title_en": "10% Daily Price Limit Introduced; People's Daily Editorial Triggers Crash",
+    "category": "regulation",
+    "description_zh": "1996年股市持续疯涨，上证指数从4月1日的566点涨至12月9日的1250点，涨幅120%。管理层从10月起连发'十二道金牌'均未能降温。1996年12月13日，沪深交易所宣布自12月16日起实行10%涨跌停板制度。12月16日，《人民日报》刊登特约评论员文章《正确认识当前股票市场》，以党中央机关报社论形式罕见地对股市进行定性，称'最近一个时期的暴涨是不正常和非理性的'。当日上证指数暴跌9.91%（收于1000.02点），深成指暴跌10.08%，两市几乎全线跌停。次日继续暴跌，沪指再跌9.44%。一周累计跌幅达20.25%。这是中国股市历史上第一次'大盘接近跌停'的极端行情。10%涨跌停板制度此后延续至今。",
+    "market_data": {
+      "sh_close": 1000.02,
+      "change_pct": -9.91
+    },
+    "tags": ["regulation", "crash", "price-limit", "policy-intervention"]
+  },
+  {
+    "id": "evt-015",
+    "date": "1997-02-19",
+    "title_zh": "邓小平逝世——股市开盘大跌后企稳",
+    "title_en": "Deng Xiaoping Passes Away — Market Panic Followed by Recovery",
+    "category": "milestone",
+    "description_zh": "1997年2月19日晚，中国改革开放总设计师邓小平在北京逝世，享年93岁。次日A股开盘全线跌停，但收盘时多数股票收复失地，市场情绪迅速企稳。投资者对改革开放路线的延续保持了信心。邓小平曾于1992年发表著名的'南巡讲话'，直接催生了中国股市的第一轮大发展。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["milestone", "political-event"]
+  },
+  {
+    "id": "evt-016",
+    "date": "1997-07-02",
+    "title_zh": "亚洲金融危机爆发",
+    "title_en": "Asian Financial Crisis Erupts",
+    "category": "bear",
+    "description_zh": "1997年7月2日，泰国宣布放弃固定汇率制，泰铢当日贬值约20%，亚洲金融危机由此引爆。危机迅速蔓延至印尼、韩国、马来西亚等东南亚国家。香港恒生指数10月连续暴跌，28日单日大跌1621.8点。中国坚持人民币不贬值，实施积极的财政政策，成功抵御了危机冲击。A股市场在1997年至1999年期间因宏观经济疲弱和出口承压持续低迷，上证综指在1000-1500点区间反复震荡，直至1999年5月'519'行情才迎来突破。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["bear", "external-shock", "financial-crisis"]
+  },
+  {
+    "id": "evt-017",
+    "date": "1998-04-28",
+    "title_zh": "A股首家ST（特别处理）股票诞生",
+    "title_en": "First ST (Special Treatment) Stock Designated",
+    "category": "regulation",
+    "description_zh": "1998年4月28日，辽物资A（辽房天）因财务状况异常被交易所实施特别处理（ST），成为中国A股市场首家ST股票。ST制度的推出建立了退市风险警示机制，此后演化为*ST、ST、PT等多层次的退市风险警示体系，对保护投资者权益、促进优胜劣汰发挥了重要作用。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["regulation", "delisting", "st-system"]
+  },
+  {
+    "id": "evt-018",
+    "date": "1999-05-19",
+    "title_zh": "'519'行情启动——科技网络股大牛市",
+    "title_en": "5-19 Bull Market Ignites — Tech and Internet Stock Boom",
+    "category": "bull",
+    "description_zh": "1999年5月19日，在国务院批准改革股票发行体制、鼓励资本市场发展等政策利好刺激下，上证综指从1047点启动了一轮波澜壮阔的科技网络股牛市。当日上涨超4%，此后不到两个月（至6月30日）飙升至1756.18点，涨幅达65.69%。人民日报于6月15日发表社论《坚定信心、规范发展》，进一步为行情推波助澜。1999年底经过回调后再度上攻，至2001年6月14日盘中触及2245.44点的历史新高，整个行情从起点至终点累计涨幅约111.58%。519行情以互联网和科技股为核心驱动，诞生了亿安科技（首只百元股）等一批明星股，是中国股市第一次真正意义上的'主题投资'大牛市。",
+    "market_data": {
+      "sh_close": 1059.87,
+      "change_pct": 4.64
+    },
+    "tags": ["bull", "tech-bubble", "policy-driven"]
+  },
+  {
+    "id": "evt-019",
+    "date": "1999-07-01",
+    "title_zh": "《证券法》正式实施",
+    "title_en": "Securities Law Officially Takes Effect",
+    "category": "regulation",
+    "description_zh": "1999年7月1日，《中华人民共和国证券法》正式实施，这是中国第一部全面规范证券发行和交易的基本法律。《证券法》确立了证券市场的法律框架，对证券发行、交易、上市公司收购、证券交易所、证券公司、证券登记结算机构等作出了系统规定。《证券法》的实施标志着中国资本市场从'政策市'向'法治市'迈出了重要一步。在《证券法》实施当日，上证指数大幅下挫逾7.6%，519行情的第一阶段随之结束。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["regulation", "legislation", "legal-framework"]
+  },
+  {
+    "id": "evt-020",
+    "date": "2000-02-15",
+    "title_zh": "亿安科技成为首只百元股",
+    "title_en": "Yi'an Technology Becomes First 100-Yuan Stock",
+    "category": "bull",
+    "description_zh": "2000年2月15日，亿安科技（现神州高铁前身）股价突破100元大关，成为A股历史上第一只百元股，标志着科技网络股泡沫达到巅峰。然而亿安科技后来被揭露存在严重的股价操纵行为，2001年证监会对其庄家处以4.49亿元的巨额罚款。亿安科技的百元神话破灭后，股价一落千丈，成为中国股市过度投机和操纵的典型反面教材。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["bull", "milestone", "market-manipulation", "tech-bubble"]
+  },
+  {
+    "id": "evt-021",
+    "date": "2001-06-14",
+    "title_zh": "上证指数触及2245点——国有股减持引发牛市终结",
+    "title_en": "Shanghai Composite Peaks at 2245 — State Share Reduction Ends Bull Market",
+    "category": "bear",
+    "description_zh": "2001年6月14日，上证综合指数盘中触及2245.44点的历史新高（当时），519行情至此画上句号。6月12日，国务院正式发布《减持国有股筹集社会保障资金管理暂行办法》，宣布通过国有股减持筹集社保基金。这一政策打破了市场对国有股流通的恐惧，引发大规模抛售。此后A股进入了长达近5年的漫漫熊市：2002年1月29日跌至1339点，2003年11月13日跌至1307点，最终于2005年6月6日跌破千点大关至998点。从2245高点到998点的累计跌幅达55.54%，是A股历时最长的熊市之一。直到2005年股权分置改革才彻底解决了困扰中国资本市场多年的制度顽疾。",
+    "market_data": {
+      "sh_close": 2245.44,
+      "change_pct": null
+    },
+    "tags": ["bear", "peak", "state-share-reduction", "policy-risk"]
+  },
+  {
+    "id": "evt-022",
+    "date": "2001-10-22",
+    "title_zh": "国有股减持被紧急叫停",
+    "title_en": "State Share Reduction Halted After Market Turmoil",
+    "category": "regulation",
+    "description_zh": "2001年10月22日，面对市场持续大幅下跌的压力，国务院宣布暂停执行国有股减持方案。消息公布后，次日（10月23日）上证指数几乎全线涨停，大涨9.86%，创下单日涨幅纪录。但暂停并未根本解决问题，市场此后仍在国有股全流通的不确定预期中反复探底。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["regulation", "policy-reversal", "state-share"]
+  },
+  {
+    "id": "evt-023",
+    "date": "2002-11-05",
+    "title_zh": "QFII制度正式启动",
+    "title_en": "QFII (Qualified Foreign Institutional Investor) Program Launched",
+    "category": "reform",
+    "description_zh": "2002年11月5日，中国证监会和中国人民银行联合发布《合格境外机构投资者境内证券投资管理暂行办法》，正式推出QFII制度，允许合格境外机构投资者投资中国A股市场。这是中国资本市场对外开放的重要里程碑，为境外长期资金进入A股开辟了通道。首只获批的QFII基金于2003年7月入市。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["internationalization", "reform", "qeii", "opening-up"]
+  },
+  {
+    "id": "evt-024",
+    "date": "2004-01-31",
+    "title_zh": "第一个'国九条'发布",
+    "title_en": "First 'State Council Nine Opinions' Issued",
+    "category": "reform",
+    "description_zh": "2004年1月31日，国务院发布《关于推进资本市场改革开放和稳定发展的若干意见》（俗称'国九条'），首次将发展资本市场提升到国家战略高度。文件明确提出要'大力发展资本市场'，包括完善证券发行上市制度、鼓励合规资金入市、拓宽证券公司融资渠道、完善资本市场税收政策等九大方面。'国九条'被视为资本市场改革的总纲领，为2005年股权分置改革等一系列重大改革奠定了政策基础。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["reform", "policy", "guo-jiu-tiao", "capital-market"]
+  },
+  {
+    "id": "evt-025",
+    "date": "2004-05-28",
+    "title_zh": "深圳中小板正式启动",
+    "title_en": "Shenzhen SME Board Officially Launched",
+    "category": "milestone",
+    "description_zh": "2004年5月28日，深圳证券交易所中小企业板正式启动。首批8只新股于2004年6月25日正式挂牌交易，新和成成为中小板第一只股票。中小板的设立为中小企业开辟了直接融资渠道，是构建多层次资本市场的重要一步。2009年中小板被纳入创业板改革，2021年深交所主板与中小板正式合并。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["milestone", "sme-board", "shenzhen", "multi-level-market"]
+  },
+  {
+    "id": "evt-026",
+    "date": "2005-01-24",
+    "title_zh": "印花税降至千分之一",
+    "title_en": "Stamp Duty Cut to 0.1%",
+    "category": "regulation",
+    "description_zh": "2005年1月24日，证券交易印花税从0.2%下调至0.1%。这是政府积极运用税收工具提振市场信心的重要举措，为随后启动的股权分置改革营造了良好的市场氛围。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["regulation", "tax-reduction"]
+  },
+  {
+    "id": "evt-027",
+    "date": "2005-04-29",
+    "title_zh": "股权分置改革正式启动",
+    "title_en": "Split-Share Structure Reform Officially Launched",
+    "category": "reform",
+    "description_zh": "2005年4月29日，中国证监会发布《关于上市公司股权分置改革试点有关问题的通知》，正式启动股权分置改革试点工作。这是中国资本市场历史上最重大、最深远的制度变革。此前，上市公司的股份分为流通股和非流通股（国有股、法人股），导致同股不同权、大股东与中小股东利益不一致等根本性问题。三一重工、清华同方、紫江企业、金牛能源成为首批四家试点公司。证监会主席尚福林表态'开弓没有回头箭'。改革启动后市场一度加速下跌，上证指数5月9日大跌2.44%，向千点逼近。但到2007年底，98%的上市公司完成股改，困扰中国股市多年的制度顽疾基本解决，为随后的史诗级大牛市奠定了制度基础。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["reform", "share-structure", "defining-moment", "institutional-change"]
+  },
+  {
+    "id": "evt-028",
+    "date": "2005-06-06",
+    "title_zh": "上证指数跌至998点——A股历史性大底",
+    "title_en": "Shanghai Composite Hits 998 — Historic Bear Market Bottom",
+    "category": "bear",
+    "description_zh": "2005年6月6日上午，上证指数盘中击穿千点大关，最低探至998.23点，创下1997年2月以来的新低。自2001年6月14日2245点的历史高点以来，A股经历了长达近4年的暴跌，累计跌幅达55.54%。市场极度恐慌，多数股票跌至净资产以下。6月3日，证监会明确暂停IPO和再融资以稳定市场。千点关口成为中国股市制度性变革的历史转折点。从998点出发，在股权分置改革的推动下，A股开启了为期29个月的史诗级大牛市，于2007年10月16日冲至6124点的历史最高位，涨幅达513.6%。",
+    "market_data": {
+      "sh_close": 1034.38,
+      "change_pct": null
+    },
+    "tags": ["bear", "trough", "historic-bottom", "turning-point"]
+  },
+  {
+    "id": "evt-029",
+    "date": "2005-06-08",
+    "title_zh": "千点保卫战——上证指数单日暴涨8.21%",
+    "title_en": "1000-Point Defense — Shanghai Composite Surges 8.21% in One Day",
+    "category": "bull",
+    "description_zh": "2005年6月8日，上证指数在探底998点两天后出现井喷行情，单日暴涨8.21%，创一年多来最大单日涨幅。此次暴涨确立了千点大底的有效性，此后随着股改进程的推进，市场信心逐渐恢复。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": 8.21
+    },
+    "tags": ["bull", "rebound", "turning-point"]
+  },
+  {
+    "id": "evt-030",
+    "date": "2006-05-18",
+    "title_zh": "IPO新老划断——新股发行重启",
+    "title_en": "IPO Reform — New Issues Resume After Year-Long Suspension",
+    "category": "reform",
+    "description_zh": "2006年5月18日，证监会发布《首次公开发行股票并上市管理办法》，实施IPO'新老划断'规则，标志着暂停一年多的IPO正式重启。新规则下首只新股中工国际于6月19日上市。在股权分置改革基本完成的背景下，IPO重启释放了市场正常的融资功能，为随后的大牛市提供了充足的股票供给。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["ipo", "reform", "regulation"]
+  },
+  {
+    "id": "evt-031",
+    "date": "2007-05-30",
+    "title_zh": "'530'暴跌——印花税半夜上调引发的崩盘",
+    "title_en": "5-30 Crash — Stamp Duty Hike Triggers Market Panic",
+    "category": "crash",
+    "description_zh": "2007年5月30日凌晨，财政部突然宣布将证券交易印花税从0.1%上调至0.3%，被市场称为'半夜鸡叫'。当日上证指数暴跌281.81点，跌幅6.5%，深成指暴跌6.16%，两市近900只个股跌停。一天之内A股流通市值蒸发超1.2万亿元。此后5个交易日内，沪指从4300点暴跌至3400点，最大跌幅达21.49%。然而'530'并未终结大牛市，政策冲击反而促成了市场风格的大切换——资金从题材股、小盘股转向蓝筹股，'价值投资'理念开始深入人心，最终推动上证指数在5个月后冲上了6124点的历史顶峰。",
+    "market_data": {
+      "sh_close": 4053.09,
+      "change_pct": -6.5
+    },
+    "tags": ["crash", "stamp-tax", "policy-risk", "whipsaw"]
+  },
+  {
+    "id": "evt-032",
+    "date": "2007-08-20",
+    "title_zh": "'港股直通车'计划宣布",
+    "title_en": "'Through-Train' Plan Announced — Mainland Investors to Buy HK Stocks",
+    "category": "milestone",
+    "description_zh": "2007年8月20日，国家外汇管理局宣布'港股直通车'计划，允许内地个人投资者通过试点城市直接投资香港股市。此举被视为资本账户开放的破冰之举，市场狂热情绪再度升温，恒生指数随后在两个月内从约21500点飙升至31958点的历史新高。但该计划最终因各方对风险的担忧而被无限期推迟。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["internationalization", "capital-account", "hk-stocks"]
+  },
+  {
+    "id": "evt-033",
+    "date": "2007-10-16",
+    "title_zh": "上证指数触及6124点——A股历史最高峰",
+    "title_en": "Shanghai Composite Hits 6124 — All-Time High",
+    "category": "bull",
+    "description_zh": "2007年10月16日上午10时03分，上证综合指数盘中触及6124.04点，创下中国股市历史最高纪录，至今未被超越。从2005年6月6日的998.23点起涨，历时29个月，涨幅高达513.6%，超越了世界上大多数主要市场的同期表现。当日开盘6056点，盘中最高6124.04点，收盘6092点（上涨约1%）。然而狂欢终结于顶峰。此后A股掉头向下，一年后于2008年10月28日跌至1664点，跌幅超过72%。中国石油（11月5日上市首日开盘48.6元）成为6124点世代最刻骨铭心的'站岗'记忆——如今股价仍在个位数徘徊。6124点是整整一代中国股民的精神图腾，也是中国资本市场从狂热走向成熟的警示碑。",
+    "market_data": {
+      "sh_close": 6092.06,
+      "change_pct": null
+    },
+    "tags": ["bull", "peak", "all-time-high", "landmark"]
+  },
+  {
+    "id": "evt-034",
+    "date": "2008-04-24",
+    "title_zh": "印花税从千分之三降至千分之一",
+    "title_en": "Stamp Duty Cut from 0.3% Back to 0.1%",
+    "category": "regulation",
+    "description_zh": "2008年4月24日，在市场持续暴跌的背景下，财政部宣布将证券交易印花税从0.3%下调至0.1%。当日上证指数大涨9.29%，两市千余只股票涨停。这是政府在2008年多次救市措施中的重要一步，但市场的结构性下跌趋势并未因此逆转。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": 9.29
+    },
+    "tags": ["regulation", "tax-reduction", "rescue"]
+  },
+  {
+    "id": "evt-035",
+    "date": "2008-09-18",
+    "title_zh": "三大救市组合拳——印花税单边征收、汇金增持、央企回购",
+    "title_en": "Three Rescue Measures — Stamp Tax Reform, Huijin Buying, SOE Buybacks",
+    "category": "regulation",
+    "description_zh": "2008年9月18日晚间，管理层同时宣布三大救市措施：证券交易印花税改为单边征收（仅卖出方缴纳）、中央汇金公司增持工中建三大银行股、国资委支持央企回购上市公司股份。当日盘中上证指数一度暴跌逾6%至1802.33点的本轮熊市新低，收盘1895.84点（跌1.72%）。9月19日市场出现全线涨停——上证指数大涨9.45%报2075.06点，创A股历史上指数接近涨停的奇观。然此后市场依然下行，直至10月28日见底1664点。",
+    "market_data": {
+      "sh_close": 1895.84,
+      "change_pct": -1.72
+    },
+    "tags": ["regulation", "rescue", "combo-measures", "huijin"]
+  },
+  {
+    "id": "evt-036",
+    "date": "2008-10-28",
+    "title_zh": "全球金融危机底谷——上证指数暴跌至1664点",
+    "title_en": "Global Financial Crisis Trough — Shanghai Composite Hits 1664",
+    "category": "crash",
+    "description_zh": "2008年10月28日，在全球金融危机的恐慌情绪中，上证指数盘中最低探至1664.93点，较2007年10月16日的6124点历史高点暴跌72.83%，创下有史以来最大回撤。当日早盘大幅低开于1671.40点，午后在金融股（券商、银行）强势反弹带动下绝地反击，最终收报1771.82点，涨幅2.81%，收出标志性的金针探底形态。从2007年巅峰到2008年谷底，中国股市在短短1年内经历了过山车式的暴起暴落。然而1664点也成为此后数年的铁底，2008年11月中央推出4万亿经济刺激计划后，A股开启了强劲的V型反弹。",
+    "market_data": {
+      "sh_close": 1771.82,
+      "change_pct": 2.81
+    },
+    "tags": ["crash", "trough", "global-financial-crisis", "v-reversal"]
+  },
+  {
+    "id": "evt-037",
+    "date": "2008-11-09",
+    "title_zh": "中央政府宣布四万亿经济刺激计划",
+    "title_en": "China Announces 4 Trillion Yuan Stimulus Package",
+    "category": "regulation",
+    "description_zh": "2008年11月9日，国务院宣布高达4万亿元的经济刺激计划，覆盖基础设施建设、民生工程、灾后重建等多个领域。11月10日（周一），上证指数暴涨7.27%收报1874.80点。四万亿计划成为全球金融危机期间中国经济的'定海神针'，成功阻止了经济断崖式下滑，也推动A股展开了2009年的强力反弹行情。不过，大规模信贷扩张的副作用——企业高杠杆、产能过剩和影子银行膨胀——在此后数年逐渐显现。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["regulation", "fiscal-stimulus", "economic-rescue"]
+  },
+  {
+    "id": "evt-038",
+    "date": "2009-10-30",
+    "title_zh": "创业板正式开板",
+    "title_en": "ChiNext Board Officially Launched",
+    "category": "milestone",
+    "description_zh": "2009年10月30日，深圳证券交易所创业板（ChiNext）正式开板交易，首批28家创业板公司集体挂牌上市。当日创业板新股全线暴涨，首日平均涨幅达106%，盘中均触发临时停牌。安科生物、探路者等17只新股首日涨幅超100%，诞生两只百元股。主板方面，上证指数收报2995.85点（涨1.20%），未能守住3000点整数关口。创业板的推出标志着中国多层次资本市场建设迈出关键一步，为创新型、成长型企业提供了融资平台。12年后，创业板于2020年8月率先试点注册制改革。",
+    "market_data": {
+      "sh_close": 2995.85,
+      "change_pct": 1.2
+    },
+    "tags": ["milestone", "chinext", "multi-level-market", "shenzhen"]
+  },
+  {
+    "id": "evt-039",
+    "date": "2010-03-31",
+    "title_zh": "融资融券业务正式启动",
+    "title_en": "Margin Trading and Short Selling Officially Launched",
+    "category": "reform",
+    "description_zh": "2010年3月31日，中国A股市场融资融券（两融）业务正式启动，结束了A股长达20年的'单边做多'时代。首批90只标的股票入选两融名单。两融业务的推出为投资者提供了杠杆交易和做空工具，但也为2015年杠杆牛市的疯狂与崩盘埋下了伏笔。2014-2015年牛市期间，两融余额一度突破2.2万亿元。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["reform", "margin-trading", "innovation", "leverage"]
+  },
+  {
+    "id": "evt-040",
+    "date": "2010-04-16",
+    "title_zh": "沪深300股指期货正式上市",
+    "title_en": "CSI 300 Stock Index Futures Officially Listed",
+    "category": "milestone",
+    "description_zh": "2010年4月16日，沪深300股指期货在中国金融期货交易所正式挂牌交易，标志着中国金融衍生品市场正式启航。股指期货为投资者提供了风险对冲和多元化投资工具。当天市场以下跌回应，此后进入长达4个月的下跌通道。2015年股灾期间，股指期货因被指责为做空元凶而遭到史上最严格限制，直到2017年后才逐步松绑恢复。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["milestone", "derivatives", "futures", "risk-management"]
+  },
+  {
+    "id": "evt-041",
+    "date": "2013-06-25",
+    "title_zh": "'钱荒'暴跌——上证指数盘中跌至1849点",
+    "title_en": "Money Shortage Crash — Shanghai Composite Plunges to 1849",
+    "category": "crash",
+    "description_zh": "2013年6月，银行间市场爆发严重'钱荒'。隔夜Shibor在6月20日一度飙升至13.44%的极端水平。央行不仅未放水救市，反而表态要求金融机构强化流动性管理。6月25日，上证指数开盘跌破1949点'建国底'，午后出现资金踩踏式出逃，盘中最低探至1849.65点，一度跌近6%。跌停个股近200只。然午后受'国务院要求金融机构上报钱荒解决方案'消息提振，市场惊天V型逆转，最终收报1959.51点，仅微跌0.19%，收出标志性的金针探海K线。A股市值14个交易日累计蒸发约2.84万亿元。",
+    "market_data": {
+      "sh_close": 1959.51,
+      "change_pct": -0.19
+    },
+    "tags": ["crash", "liquidity-crisis", "money-shortage", "v-reversal"]
+  },
+  {
+    "id": "evt-042",
+    "date": "2013-08-16",
+    "title_zh": "光大证券'乌龙指'事件",
+    "title_en": "Everbright Securities 'Fat Finger' Incident",
+    "category": "scandal",
+    "description_zh": "2013年8月16日上午11时05分，光大证券自营业务套利系统出现重大故障，下单230亿元，成交72亿元，涉及150多只股票。中石油、中石化、工行等33只蓝筹股在1分钟内集体冲击涨停，上证指数瞬间从2074点飙升至2198.85点（涨幅超过5%）。午后光大证券紧急停牌，承认系统问题。收盘时市场纠错回落，上证指数收报2068.45点，反跌0.65%，拉出超长上影线。上交所确认所有交易有效不可撤销，投资者损失惨重。光大证券后被证监会罚款5.23亿元，相关负责人被市场禁入。这是中国资本市场史上最严重的程序化交易事故。",
+    "market_data": {
+      "sh_close": 2068.45,
+      "change_pct": -0.65
+    },
+    "tags": ["scandal", "fat-finger", "algo-trading", "market-error"]
+  },
+  {
+    "id": "evt-043",
+    "date": "2014-05-09",
+    "title_zh": "第二个'国九条'（新国九条）发布",
+    "title_en": "Second 'State Council Nine Opinions' (New Guo Jiu Tiao) Issued",
+    "category": "reform",
+    "description_zh": "2014年5月9日，国务院发布《关于进一步促进资本市场健康发展的若干意见》（新国九条），距第一个国九条正好十年。新国九条提出发展多层次股票市场、规范发展债券市场、培育私募市场、推进期货市场建设等九大举措，为2014-2015年大牛市提供了政策背书。文件明确提出到2020年基本形成结构合理、功能完善、规范透明、稳健高效、开放包容的多层次资本市场体系。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["reform", "policy", "guo-jiu-tiao", "capital-market"]
+  },
+  {
+    "id": "evt-044",
+    "date": "2014-11-17",
+    "title_zh": "沪港通正式启动",
+    "title_en": "Shanghai-Hong Kong Stock Connect Officially Launched",
+    "category": "milestone",
+    "description_zh": "2014年11月17日，上海与香港股票市场交易互联互通机制（沪港通）正式启动。沪股通首日130亿人民币额度提前用完，北向资金热情高涨。上证指数当日收报2474.01点，高开低走微跌0.19%。但沪港通的开启为A股引入了国际资本的活水，成为2014-2015年杠杆牛市的重要动力之一。沪港通的启动是中国资本市场双向开放具有里程碑意义的一步，标志着A股从此走上了国际化的高速公路。",
+    "market_data": {
+      "sh_close": 2474.01,
+      "change_pct": -0.19
+    },
+    "tags": ["milestone", "internationalization", "stock-connect", "opening-up"]
+  },
+  {
+    "id": "evt-045",
+    "date": "2014-11-21",
+    "title_zh": "央行意外降息——杠杆牛市正式起航",
+    "title_en": "PBoC Surprise Rate Cut Kicks Off Leveraged Bull Run",
+    "category": "bull",
+    "description_zh": "2014年11月21日，中国人民银行意外宣布自11月22日起下调贷款和存款基准利率，一年期贷款利率下调0.4个百分点至5.6%，存款利率下调0.25个百分点至2.75%。这是央行自2012年7月以来的首次降息，被市场解读为中国进入降息降准通道的开端。当日上证指数收报2486.79点，涨1.39%。此后一个月内暴涨超25%，至12月19日已突破3100点。降息点燃了杠杆牛市的导火索，大量资金通过配资、两融等渠道涌入A股，最终推动上证指数在2015年6月12日冲至5178点。",
+    "market_data": {
+      "sh_close": 2486.79,
+      "change_pct": 1.39
+    },
+    "tags": ["bull", "monetary-policy", "rate-cut", "leverage"]
+  },
+  {
+    "id": "evt-046",
+    "date": "2015-06-12",
+    "title_zh": "上证指数触及5178点——杠杆牛市巅峰",
+    "title_en": "Shanghai Composite Peaks at 5178 — Leveraged Bull Market Top",
+    "category": "bull",
+    "description_zh": "2015年6月12日，上证指数盘中最高触及5178.19点，收盘5166.35点（涨0.87%），成交额破万亿。从2014年7月的约2000点起涨，11个月内涨幅高达148.96%。本轮牛市的主要驱动力是史无前例的杠杆资金——两融余额突破2.2万亿元，场外配资规模更为庞大，全民杠杆炒股热潮空前。然而狂欢的顶点即是崩盘的起点。6月13日证监会开始清理场外配资，6月15日上证指数重挫2%，拉开了A股历史上最惨烈的股灾序幕。短短18个交易日跌去1800余点，跌幅达34.85%。5178点成为又一代股民'站岗'的顶峰，与6124点一样至今未被突破。",
+    "market_data": {
+      "sh_close": 5166.35,
+      "change_pct": 0.87
+    },
+    "tags": ["bull", "peak", "leverage", "margin-trading"]
+  },
+  {
+    "id": "evt-047",
+    "date": "2015-06-15",
+    "title_zh": "证监会清理场外配资——股灾开启",
+    "title_en": "CSRC Clamps Down on Off-Market Margin Financing — Crash Begins",
+    "category": "crash",
+    "description_zh": "2015年6月13日（周六），证监会发布通知要求各券商清理场外配资账户。6月15日（周一），上证指数重挫2%，深成指暴跌2.88%，拉开了2015年股灾的序幕。此后数周公募基金赎回压力骤增、两融标的被强制平仓，多米诺骨牌效应逐渐扩散为千股跌停的金融灾难。18个交易日内上证指数从5178点暴跌至3400点以下，市场陷入极度恐慌。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": -2.0
+    },
+    "tags": ["crash", "regulation", "margin-financing", "deleveraging"]
+  },
+  {
+    "id": "evt-048",
+    "date": "2015-07-06",
+    "title_zh": "'国家队'入场救市——证金公司大举买入",
+    "title_en": "National Team Intervenes — CSF Launches Massive Bailout",
+    "category": "regulation",
+    "description_zh": "2015年7月6日，在股灾持续蔓延之际，由央行、财政部、证监会等组成的'国家队'正式入场救市。证金公司获得央行流动性背书，大举买入蓝筹股。此前周末救市组合拳已密集出台：暂停IPO、21家券商以净资产15%出资1200亿元入市、25家公募基金承诺积极申购本公司基金等。7月6日开盘沪指高开7.82%至3975点，千股涨停，但随后持续回落，盘中一度翻绿。中国石油、工商银行等大蓝筹暴力护盘，上证指数最终收报3775.91点（涨2.41%），全天振幅达8.74%。创业板指反跌4.28%，仍有近千只中小市值股票跌停。国家队救市标志着中国式平准基金的雏形形成，此后的数月间国家队持续入市，上证指数于8月26日探至2850点后才真正见底。",
+    "market_data": {
+      "sh_close": 3775.91,
+      "change_pct": 2.41
+    },
+    "tags": ["crash", "rescue", "national-team", "bailout"]
+  },
+  {
+    "id": "evt-049",
+    "date": "2016-01-04",
+    "title_zh": "熔断机制首日即触发——A股提前收盘",
+    "title_en": "Circuit Breaker Triggers on First Trading Day — Market Halts Early",
+    "category": "crash",
+    "description_zh": "2016年1月1日起，A股实施熔断机制（沪深300指数日内涨跌幅触及5%暂停15分钟、触及7%全天停止交易）。然1月4日（新年首个交易日），沪深300在13时13分跌幅触及5%触发第一次熔断，13时33分恢复交易后跌幅迅速扩大至7%，触发第二次熔断，交易提前结束。上证指数收报3296.26点，暴跌6.86%，深成指暴跌8.16%，创业板暴跌8.21%，再现千股跌停。1月7日市场继续暴跌，开盘仅13分钟就触及二次熔断，上证指数暴跌7.04%报3125.00点，全天实际交易仅约15分钟，创A股史上最早收盘纪录。1月7日晚，证监会紧急宣布自1月8日起暂停实施熔断机制。熔断机制从实施到暂停仅存活4个交易日，期间A股市值蒸发约6.6万亿元。证监会此后承认熔断机制存在'磁吸效应'，起到了助跌作用。",
+    "market_data": {
+      "sh_close": 3296.26,
+      "change_pct": -6.86
+    },
+    "tags": ["crash", "circuit-breaker", "regulation-failure", "policy-error"]
+  },
+  {
+    "id": "evt-050",
+    "date": "2016-01-07",
+    "title_zh": "熔断再度触发——证监会连夜叫停",
+    "title_en": "Circuit Breaker Triggers Again — CSRC Suspends After 4 Days",
+    "category": "crash",
+    "description_zh": "2016年1月7日，A股开盘仅13分钟就触发二次熔断，全天交易停止。上证指数暴跌7.04%收报3125.00点，近1800只个股跌停。当晚，上交所、深交所、中金所联合宣布自1月8日起暂停实施指数熔断机制。熔断机制仅运行4个交易日即宣告夭折，成为中国资本市场历史上寿命最短的制度创新之一。",
+    "market_data": {
+      "sh_close": 3125.0,
+      "change_pct": -7.04
+    },
+    "tags": ["crash", "circuit-breaker", "regulation-failure"]
+  },
+  {
+    "id": "evt-051",
+    "date": "2016-12-05",
+    "title_zh": "深港通正式启动",
+    "title_en": "Shenzhen-Hong Kong Stock Connect Officially Launched",
+    "category": "milestone",
+    "description_zh": "2016年12月5日，深港通正式开通，标志着沪深港三地资本市场实现互联互通。深股通首批涵盖881只A股（其中约200只为创业板股票），为外资投资A股中小企业提供了通道。当日上证指数收报3204.71点，跌1.21%，叠加证监会主席刘士余痛批'野蛮人'和举牌概念股集体重挫的影响。但深港通的开通进一步完善了A股与香港股市的互联互通机制。",
+    "market_data": {
+      "sh_close": 3204.71,
+      "change_pct": -1.21
+    },
+    "tags": ["milestone", "internationalization", "stock-connect"]
+  },
+  {
+    "id": "evt-052",
+    "date": "2017-06-21",
+    "title_zh": "MSCI宣布将A股纳入新兴市场指数",
+    "title_en": "MSCI Announces A-Share Inclusion in Emerging Markets Index",
+    "category": "milestone",
+    "description_zh": "2017年6月21日，MSCI明晟宣布从2018年5月起将中国A股纳入MSCI新兴市场指数（初始纳入因子5%）。这是A股第四次闯关MSCI后终于成功，被认为是中国资本市场国际化的里程碑事件。MSCI预计将带动超过200亿美元的被动配置资金流入A股。此次纳入标志着国际主流投资机构对中国A股市场开放和改革成果的认可。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["milestone", "internationalization", "msci", "passive-investing"]
+  },
+  {
+    "id": "evt-053",
+    "date": "2018-06-01",
+    "title_zh": "A股正式纳入MSCI新兴市场指数",
+    "title_en": "A-Shares Officially Enter MSCI Emerging Markets Index",
+    "category": "milestone",
+    "description_zh": "2018年6月1日，A股正式纳入MSCI新兴市场指数，约234只大盘股被纳入，纳入因子2.5%。这是中国资本市场的历史性时刻。然而入摩首日市场表现平淡，上证指数收报3075.14点，跌0.66%，创业板跌近2%。此后数年A股在MSCI新兴市场指数中的权重逐步提升，纳入因子从2.5%逐步提高至20%。",
+    "market_data": {
+      "sh_close": 3075.14,
+      "change_pct": -0.66
+    },
+    "tags": ["milestone", "internationalization", "msci", "foreign-capital"]
+  },
+  {
+    "id": "evt-054",
+    "date": "2018-11-05",
+    "title_zh": "习近平宣布设立科创板并试点注册制",
+    "title_en": "Xi Jinping Announces STAR Market and Registration-Based IPO System",
+    "category": "reform",
+    "description_zh": "2018年11月5日，国家主席习近平在首届中国国际进口博览会开幕式上宣布，将在上海证券交易所设立科创板并试点注册制。此举被誉为中国资本市场兼具'增量改革'和'制度创新'双重意义的重大举措。当日上证指数收报2665.43点，跌0.41%，但创投概念股掀起涨停潮。科创板的设立开启了中国资本市场注册制改革的大幕，此后不足一年（2019年7月22日），科创板首批25家公司正式挂牌交易。",
+    "market_data": {
+      "sh_close": 2665.43,
+      "change_pct": -0.41
+    },
+    "tags": ["reform", "star-market", "registration-ipo", "policy-announcement"]
+  },
+  {
+    "id": "evt-055",
+    "date": "2019-07-22",
+    "title_zh": "科创板正式开板——注册制改革落地",
+    "title_en": "STAR Market Officially Opens — Registration-Based IPO Reform Implemented",
+    "category": "milestone",
+    "description_zh": "2019年7月22日，上海证券交易所科创板（STAR Market）首批25只新股正式挂牌交易。这是中国资本市场注册制发行改革的标志性事件。首日科创板的'688'军团表现火爆，25家企业上市首日平均涨幅达140%，安集科技单日收涨400.15%。但主板市场整体低迷，上证指数收报2886.97点，跌1.27%，失守2900点关口。两市呈现'冰火两重天'格局——科创板大涨而主板普跌。科创板设立了5套差异化上市标准，允许未盈利企业上市，是中国资本市场服务科技创新最重要的板块。首批企业涵盖新一代信息技术、高端装备、新材料、新能源、节能环保、生物医药等六大领域。",
+    "market_data": {
+      "sh_close": 2886.97,
+      "change_pct": -1.27
+    },
+    "tags": ["milestone", "star-market", "registration-ipo", "tech-board"]
+  },
+  {
+    "id": "evt-056",
+    "date": "2019-12-28",
+    "title_zh": "新《证券法》修订通过——注册制入法",
+    "title_en": "Revised Securities Law Passed — Registration IPO System Codified",
+    "category": "regulation",
+    "description_zh": "2019年12月28日，第十三届全国人大常委会第十五次会议审议通过了修订后的《中华人民共和国证券法》，自2020年3月1日起施行。这是证券法自1998年通过以来的第二次重大修订（首次修订于2005年）。新版证券法最重要的变化是将证券发行核准制改为注册制，并大幅提高了违法成本——欺诈发行的罚款上限从60万元提升至2000万元，并引入中国版证券代表人诉讼制度。新法为全面推行注册制奠定了基础。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["regulation", "securities-law", "registration-system", "legal-reform"]
+  },
+  {
+    "id": "evt-057",
+    "date": "2020-02-03",
+    "title_zh": "新冠疫情后首日开盘——上证指数暴跌7.72%",
+    "title_en": "Post-COVID Reopening Crash — Shanghai Composite Plunges 7.72%",
+    "category": "crash",
+    "description_zh": "2020年2月3日，受新冠疫情冲击，A股在春节假期延长后迎来鼠年首个交易日。上证指数开盘即暴跌8.73%，收盘跌幅收窄至7.72%，报2746.61点，创2015年8月以来最大单日跌幅。两市超3000只个股跌停，市场恐慌情绪达到极致。然而北向资金当日逆势净流入近200亿元，踏空资金逢低抄底。此后A股展开了惊人的连续反弹，至2月20日上证指数重回3000点，仅13个交易日强势收复失地，充分体现了A股市场在极端事件冲击后的韧性。",
+    "market_data": {
+      "sh_close": 2746.61,
+      "change_pct": -7.72
+    },
+    "tags": ["crash", "covid-19", "external-shock", "rebound"]
+  },
+  {
+    "id": "evt-058",
+    "date": "2020-03-01",
+    "title_zh": "新《证券法》正式施行",
+    "title_en": "New Securities Law Takes Effect",
+    "category": "regulation",
+    "description_zh": "2020年3月1日，修订后的《中华人民共和国证券法》正式施行。新法实施注册制发行制度，大幅提高违法成本，引入代表人诉讼制度，强化了信息披露要求和投资者保护机制。新证券法的实施是中国资本市场从核准制迈向注册制的法律保障。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["regulation", "securities-law", "investor-protection"]
+  },
+  {
+    "id": "evt-059",
+    "date": "2020-08-24",
+    "title_zh": "创业板注册制改革正式落地",
+    "title_en": "ChiNext Registration-Based IPO Reform Implemented",
+    "category": "reform",
+    "description_zh": "2020年8月24日，创业板注册制改革正式落地，首批18家注册制企业集体上市。同日，创业板存量股票交易实行20%涨跌幅限制，与科创板保持一致。这是注册制改革从科创板增量市场推广至存量主板的重要一步。首批18只新股首日平均上涨212%，市场参与热情高涨。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["reform", "registration-ipo", "chinext", "20pct-limit"]
+  },
+  {
+    "id": "evt-060",
+    "date": "2021-07-23",
+    "title_zh": "教育'双减'政策传闻引发中概及A股暴跌",
+    "title_en": "Education Crackdown Rumors Trigger Broad Market Selloff",
+    "category": "regulation",
+    "description_zh": "2021年7月23日（周五），《关于进一步减轻义务教育阶段学生作业负担和校外培训负担的意见》（'双减'政策）在市场中流传。港股新东方单日暴跌超40%，好未来、高途等跌幅超50%。A股上证指数收报3550.40点，跌0.68%。正式文件于7月24日公布，7月26日（周一）A股全面下挫。此次教育行业监管风暴被视为2021年中国全面收紧行业监管的标志性事件，此后互联网反垄断、房地产调控等政策持续冲击市场信心，中概股和A股均进入深度调整。",
+    "market_data": {
+      "sh_close": 3550.4,
+      "change_pct": -0.68
+    },
+    "tags": ["regulation", "education-crackdown", "sector-wipeout", "policy-risk"]
+  },
+  {
+    "id": "evt-061",
+    "date": "2021-09-03",
+    "title_zh": "习近平宣布设立北京证券交易所",
+    "title_en": "Beijing Stock Exchange Announced",
+    "category": "milestone",
+    "description_zh": "2021年9月2日晚，国家主席习近平在2021年服贸会全球服务贸易峰会上宣布设立北京证券交易所，打造服务创新型中小企业的主阵地。9月3日A股高开低走，上证指数收报3581.73点，跌0.43%，北交所概念股大涨。北交所于11月15日正式开市，首批81只股票（含10只新股和71只精选层平移股票）挂牌。北交所是中国大陆第三个全国性证券交易所，重点服务'专精特新'中小企业。",
+    "market_data": {
+      "sh_close": 3581.73,
+      "change_pct": -0.43
+    },
+    "tags": ["milestone", "beijing-exchange", "sme", "specialized-enterprises"]
+  },
+  {
+    "id": "evt-062",
+    "date": "2021-11-15",
+    "title_zh": "北京证券交易所正式开市",
+    "title_en": "Beijing Stock Exchange Officially Opens",
+    "category": "milestone",
+    "description_zh": "2021年11月15日，北京证券交易所正式开市交易，81只股票首日挂牌（10只新股全场暴涨，最高涨幅超500%，71只精选层平移股多数下跌）。北交所定位服务'专精特新'创新型中小企业，与沪深交易所错位发展。上证指数当日收报3533.30点，微跌0.16%。北交所的成立进一步完善了中国多层次资本市场体系。",
+    "market_data": {
+      "sh_close": 3533.3,
+      "change_pct": -0.16
+    },
+    "tags": ["milestone", "beijing-exchange", "multi-level-market"]
+  },
+  {
+    "id": "evt-063",
+    "date": "2021-02-18",
+    "title_zh": "上证指数触及3731点——后疫情牛市顶部",
+    "title_en": "Shanghai Composite Peaks at 3731 — Post-COVID Bull Market Top",
+    "category": "bull",
+    "description_zh": "2021年2月18日，春节后首个交易日，上证指数高开触及3731.69点的阶段高点，为2015年股灾以来的最高水平。此轮上涨受全球央行宽松政策、中国疫情率先受控、出口强劲增长等多重因素推动。但此后'核心资产'（白酒、医药、新能源等抱团股）估值泡沫破裂，叠加教育'双减'、互联网反垄断、房地产调控等一系列行业整顿政策，A股开启了长达三年多的震荡下行周期。",
+    "market_data": {
+      "sh_close": 3675.36,
+      "change_pct": null
+    },
+    "tags": ["bull", "peak", "post-covid", "sector-rotation"]
+  },
+  {
+    "id": "evt-064",
+    "date": "2022-03-16",
+    "title_zh": "国务院金融委专题会议——政策底确立",
+    "title_en": "FSDC Meeting — Policy Bottom Established",
+    "category": "regulation",
+    "description_zh": "2022年3月16日，国务院副总理刘鹤主持召开国务院金融稳定发展委员会专题会议，研究当前经济形势和资本市场问题。会议明确指出'要积极出台对市场有利的政策，慎重出台收缩性政策'，并明确表态对房地产、平台经济、中概股等市场关切做出积极回应。当日上证指数大涨3.48%报3170.71点，深成指涨4.02%，创业板涨5.20%。金融委会议的表态被市场解读为明确的'政策底'信号。然而市场底部往往在政策底之后，此后上证指数在4月27日触及2863点的市场底后才逐步企稳。",
+    "market_data": {
+      "sh_close": 3170.71,
+      "change_pct": 3.48
+    },
+    "tags": ["regulation", "policy-bottom", "market-rescue", "fsdc"]
+  },
+  {
+    "id": "evt-065",
+    "date": "2022-04-27",
+    "title_zh": "上证指数跌破2900——疫情封控引发市场底部",
+    "title_en": "Shanghai Composite Drops Below 2900 — Lockdown-Induced Market Bottom",
+    "category": "bear",
+    "description_zh": "2022年4月27日，受上海等地严格疫情封控、供应链中断、经济下行压力加大等多重利空冲击，上证指数盘中最低探至2863.65点，为2020年6月以来新低。4个月累计跌幅超22%。此后随着疫情缓解和政策发力，市场逐步反弹。",
+    "market_data": {
+      "sh_close": 2958.28,
+      "change_pct": null
+    },
+    "tags": ["bear", "trough", "covid-lockdown", "economic-slowdown"]
+  },
+  {
+    "id": "evt-066",
+    "date": "2022-11-28",
+    "title_zh": "证监会发布房企股权融资'第三支箭'——地产股暴涨",
+    "title_en": "CSRC Lifts Ban on Property Developer Equity Refinancing — 'Third Arrow'",
+    "category": "regulation",
+    "description_zh": "2022年11月28日，证监会发布支持房企股权融资的五项措施，包括恢复涉房上市公司并购重组及配套融资、恢复上市房企和涉房上市公司再融资等。这是时隔近6年重新放行房企A股股权融资。加上此前央行和银保监会的'金融16条'，三箭齐发全力拯救房地产行业。消息公布后地产股连续大涨，上证指数重回3100点上方。11月期间市场累计涨幅近9%，为2020年7月以来最大月涨幅。",
+    "market_data": {
+      "sh_close": 3078.55,
+      "change_pct": null
+    },
+    "tags": ["regulation", "property-rescue", "third-arrow", "real-estate"]
+  },
+  {
+    "id": "evt-067",
+    "date": "2023-02-01",
+    "title_zh": "全面实行股票发行注册制改革正式启动",
+    "title_en": "Full Registration-Based IPO Reform Officially Launched",
+    "category": "reform",
+    "description_zh": "2023年2月1日，中国证监会发布关于全面实行股票发行注册制相关制度的征求意见稿，宣布全面注册制改革正式启动。这标志着中国资本市场从科创板、创业板试点走向主板全面铺开，核准制在中国资本市场正式终结。当日上证指数收报3284.92点，涨0.90%。2023年4月10日，主板注册制首批10家企业正式上市交易，A股全面迈入注册制时代。此时A股上市公司已达5346家，总市值超过80万亿元。",
+    "market_data": {
+      "sh_close": 3284.92,
+      "change_pct": 0.9
+    },
+    "tags": ["reform", "registration-system", "landmark", "ipo-reform"]
+  },
+  {
+    "id": "evt-068",
+    "date": "2023-08-27",
+    "title_zh": "印花税减半征收——活跃资本市场政策组合拳",
+    "title_en": "Stamp Tax Cut by Half — Policy Measures to Revive Capital Market",
+    "category": "regulation",
+    "description_zh": "2023年8月27日（周日），财政部、税务总局发布公告，自8月28日起证券交易印花税实施减半征收（1‰降至0.5‰，且仅卖方单边缴纳），这是2008年以来首次下调印花税。同日，证监会配套推出阶段性收紧IPO节奏、规范大股东减持、调降融资保证金比例至80%等一揽子措施。8月28日，上证指数开盘暴涨超5%，但收盘仅涨1.13%报3098.64点，呈现'高开低走'态势。此次政策被称为活跃资本市场'四箭齐发'，旨在扭转低迷的市场信心。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["regulation", "stamp-tax", "market-support", "ipo-slowdown"]
+  },
+  {
+    "id": "evt-069",
+    "date": "2024-04-12",
+    "title_zh": "第三个'国九条'印发——资本市场高质量发展纲领",
+    "title_en": "Third 'State Council Nine Opinions' Issued — High-Quality Development Blueprint",
+    "category": "reform",
+    "description_zh": "2024年4月12日，国务院印发《关于加强监管防范风险推动资本市场高质量发展的若干意见》（第三个'国九条'），距2004年第一个国九条20年、距2014年第二个国九条10年。新国九条提出增强资本市场内在稳定性、大力推动中长期资金入市、加大对财务造假的打击力度、全面深化改革开放等核心要求。文件明确提出'未来5年基本形成资本市场高质量发展的总体框架'，为2024年924行情提供了政策背书。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["reform", "policy", "guo-jiu-tiao", "high-quality-development"]
+  },
+  {
+    "id": "evt-070",
+    "date": "2024-09-24",
+    "title_zh": "'924'政策组合拳——央行创设股市支持工具",
+    "title_en": "9-24 Policy Bazooka — PBoC Creates Equity Support Tools",
+    "category": "bull",
+    "description_zh": "2024年9月24日上午，中国人民银行行长潘功胜、金融监管总局局长李云泽、证监会主席吴清罕见举行联合新闻发布会，宣布系列重磅政策：降准0.5个百分点、降息、降存量房贷利率、首创两项资本市场支持工具——5000亿元证券基金保险公司互换便利和3000亿元股票回购增持再贷款、创设平准基金研究等。当日上证指数大涨4.15%报2863.13点，创四年多最大单日涨幅。此次发布会被市场称为'924政策大礼包'，标志着中国货币政策立场出现重大转变——央行首次直接通过结构性工具支持资本市场，堪比2005年股权分置改革和2015年国家队救市的政策级别。此后不到两周，上证指数暴涨至3337点以上，国庆后首个交易日（10月8日）更是以涨停开盘，单日成交3.48万亿元创历史天量。",
+    "market_data": {
+      "sh_close": 2863.13,
+      "change_pct": 4.15
+    },
+    "tags": ["bull", "policy-bazooka", "monetary-easing", "market-surge"]
+  },
+  {
+    "id": "evt-071",
+    "date": "2024-09-26",
+    "title_zh": "中央政治局会议定调'努力提振资本市场'",
+    "title_en": "Politburo Vows to 'Boost Capital Market' — Rare High-Level Endorsement",
+    "category": "bull",
+    "description_zh": "2024年9月26日，中共中央政治局召开会议，明确提出要'努力提振资本市场，大力引导中长期资金入市'，并发出'促进房地产市场止跌回稳'的罕见表述。这是十八大以来中央政治局首次在季度经济分析中如此明确地为股市背书，被市场解读为最高层的'信心背书'。次日上证指数继续大涨，市场情绪极度亢奋。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["bull", "politburo", "confidence", "policy-signal"]
+  },
+  {
+    "id": "evt-072",
+    "date": "2024-10-08",
+    "title_zh": "国庆后首日——上证指数近乎涨停开盘，成交额3.48万亿创天量",
+    "title_en": "Post-Golden Week — Shanghai Composite Nearly Gaps Up 10%, Turnover Hits Record 3.48 Trillion",
+    "category": "bull",
+    "description_zh": "2024年10月8日，国庆7天长假后首个交易日，上证指数以3674点（涨停板位置）跳空高开逾10%，两市单日成交额达到创纪录的3.48万亿元人民币，为A股有史以来最高单日成交。这是924政策组合拳的延续效应，大量新股民在国庆期间集中开户，散户热情空前。然而当日市场高开低走，最终涨幅收窄，大量追高资金遭遇浮亏。10月9日发改委新闻发布会未公布市场期待的财政增量措施，上证指数暴跌逾7%，市场狂热情绪迅速降温。此后上证指数在3000-3500点区间宽幅震荡。",
+    "market_data": {
+      "sh_close": 3489.78,
+      "change_pct": 4.59
+    },
+    "tags": ["bull", "record-volume", "market-frenzy", "retail-investors"]
+  },
+  {
+    "id": "evt-073",
+    "date": "1992-11-17",
+    "title_zh": "上证指数暴跌至386点——放开股价后的泡沫破裂",
+    "title_en": "Shanghai Composite Crashes to 386 — Post-Deregulation Bubble Bursts",
+    "category": "crash",
+    "description_zh": "1992年11月17日，上证指数从5月25日的1429点暴跌至386.85点，短短5个月跌幅高达72.9%。这是521放开股价后市场从极度亢奋到极度恐慌的第一个完整泡沫周期。大量追高买入的投资者损失惨重。然而386点也成为新一轮牛市的最低起点——在邓小平南巡讲话的持续政策利好下，市场旋即展开新一轮暴涨。",
+    "market_data": {
+      "sh_close": 386.85,
+      "change_pct": null
+    },
+    "tags": ["crash", "trough", "bubble-burst", "volatility"]
+  },
+  {
+    "id": "evt-074",
+    "date": "2008-09-19",
+    "title_zh": "A股全线涨停——三大救市措施后上证指数暴涨9.45%",
+    "title_en": "A-Share Market-Wide Limit-Up — Shanghai Composite Soars 9.45%",
+    "category": "bull",
+    "description_zh": "2008年9月19日，受前日晚间三大救市措施（印花税单边征收、汇金增持三大行、国资委支持央企回购）刺激，上证指数高开9.06%至2067.64点，最终收报2075.06点，大涨9.45%。深成指涨9.75%，两市千余只股票涨停，创造了A股历史上指数接近涨停的奇观。这是中国股市政策救市效应最极端的一次体现。",
+    "market_data": {
+      "sh_close": 2075.06,
+      "change_pct": 9.45
+    },
+    "tags": ["bull", "rescue", "limit-up", "policy-effect"]
+  },
+  {
+    "id": "evt-075",
+    "date": "2015-08-24",
+    "title_zh": "'黑色星期一'——全球市场暴跌，上证指数重挫8.49%",
+    "title_en": "Black Monday — Global Selloff, Shanghai Composite Plunges 8.49%",
+    "category": "crash",
+    "description_zh": "2015年8月24日，全球金融市场遭遇'黑色星期一'，受中国经济放缓担忧、人民币贬值、美联储加息预期等多重因素叠加，上证指数暴跌8.49%至3209点，创下2007年2月以来最大单日跌幅。两市超2000只个股跌停。此后两个交易日（8月26日），上证指数探至2850.71点的股灾最低点，此后在国家队持续入市干预下才逐步企稳。",
+    "market_data": {
+      "sh_close": 3209.91,
+      "change_pct": -8.49
+    },
+    "tags": ["crash", "global-selloff", "black-monday", "panic"]
+  },
+  {
+    "id": "evt-076",
+    "date": "2015-08-26",
+    "title_zh": "上证指数触及2850点——2015年股灾最低点",
+    "title_en": "Shanghai Composite Hits 2850 — Lowest Point of 2015 Crash",
+    "category": "crash",
+    "description_zh": "2015年8月26日，上证指数盘中最低探至2850.71点，为2015年股灾的最低点。从6月12日5178点的巅峰算起，短短75个交易日暴跌44.96%，史所罕见。此后在国家队持续入市、央行降息降准、清理配资工作收尾等多重政策对冲下，市场逐步展开修复性反弹，至12月23日回升至3684点。",
+    "market_data": {
+      "sh_close": 2927.29,
+      "change_pct": null
+    },
+    "tags": ["crash", "trough", "deleveraging", "panic-bottom"]
+  },
+  {
+    "id": "evt-077",
+    "date": "2018-10-19",
+    "title_zh": "上证指数跌破2500点——刘鹤等高层罕见'喊话'救市",
+    "title_en": "Shanghai Composite Breaks Below 2500 — Top Leaders Vow Support",
+    "category": "bear",
+    "description_zh": "2018年10月19日，在市场因中美贸易战持续下挫的背景下，上证指数收盘跌破2500点。国务院副总理刘鹤、央行行长易纲、银保监会主席郭树清、证监会主席刘士余罕见同时发声力挺股市。刘鹤表示'股市的调整和出清正为长期健康发展创造好的投资机会'。当日午后市场绝地反击，A股'一行三会'集体发声救市成为2018年熊市中的标志性时刻。10月19日盘中最低跌至2449.20点。",
+    "market_data": {
+      "sh_close": 2550.47,
+      "change_pct": null
+    },
+    "tags": ["bear", "trough", "trade-war", "policy-vow"]
+  },
+  {
+    "id": "evt-078",
+    "date": "2019-01-04",
+    "title_zh": "上证指数触及2440点——贸易战熊市底部",
+    "title_en": "Shanghai Composite Hits 2440 — Trade War Bear Market Bottom",
+    "category": "bear",
+    "description_zh": "2019年1月4日，上证指数盘中最低探至2440.91点，为2018年中美贸易战引发的漫长熊市的最低点。从2018年1月29日的3587高点算起，近一年的累计跌幅达32%。央行于1月4日盘后宣布全面降准1个百分点，释放约1.5万亿元资金。此后随着中美贸易谈判阶段性缓和、国内政策宽松持续加码，A股展开了强劲的春季攻势，在短短3个月内反弹至3288点，涨幅34.7%。2440点成为2019-2021年结构性牛市的起点。",
+    "market_data": {
+      "sh_close": 2514.87,
+      "change_pct": null
+    },
+    "tags": ["bear", "trough", "trade-war", "policy-easing"]
+  },
+  {
+    "id": "evt-079",
+    "date": "2024-02-05",
+    "title_zh": "上证指数盘中跌至2635点——国家队千亿托底",
+    "title_en": "Shanghai Composite Drops to 2635 — National Team Deploys Billions in ETF Buying",
+    "category": "bear",
+    "description_zh": "2024年1月底至2月初，A股市场出现恐慌性下跌，上证指数在2月5日盘中最低探至2635.09点，为2019年2月以来的近5年新低。市场情绪极度低迷，中小盘股票出现流动性危机。'国家队'通过买入沪深300、上证50等ETF大举托市，据估计累计买入达数千亿元。2月7日，吴清接替易会满出任证监会主席。此后在一系列政策利好推动下，市场逐步企稳反弹，至3月中旬重回3000点上方。",
+    "market_data": {
+      "sh_close": 2702.19,
+      "change_pct": null
+    },
+    "tags": ["bear", "trough", "national-team", "etf-rescue"]
+  },
+  {
+    "id": "evt-080",
+    "date": "2024-02-07",
+    "title_zh": "吴清出任证监会主席——'换帅'救市",
+    "title_en": "Wu Qing Appointed CSRC Chairman — Leadership Change to Rescue Market",
+    "category": "regulation",
+    "description_zh": "2024年2月7日，吴清接替易会满出任中国证监会第10任主席。吴清被称为'券商屠夫'，在上海工作期间以铁腕整治金融市场乱象著称。他的上任正值A股市场极度低迷之际（前一日上证指数盘中跌破2635点），体现了中央'以霹雳手段显菩萨心肠'救市决心。吴清上任后，证监会密集出台了一系列加强上市公司质量监管、鼓励分红回购、规范量化交易等政策。924行情期间，吴清宣布的资本市场长期资金入市改革方案成为三大核心政策之一。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["regulation", "leadership-change", "csrc", "market-support"]
+  },
+  {
+    "id": "evt-081",
+    "date": "2021-12-15",
+    "title_zh": "全面降准落地——上万亿长期资金释放",
+    "title_en": "Across-the-Board RRR Cut Implemented — Trillion-Yuan Liquidity Released",
+    "category": "regulation",
+    "description_zh": "2021年12月15日，中国人民银行下调金融机构存款准备金率0.5个百分点，释放长期资金约1.2万亿元。此次降准旨在支持实体经济发展，促进综合融资成本稳中有降。在2021年下半年经济下行压力加大、房地产债务风险暴露的背景下，货币政策开始从'稳健偏紧'转向'稳健偏松'。但A股受制于行业监管打击等因素，降准利好兑现后反而震荡走弱。",
+    "market_data": {
+      "sh_close": null,
+      "change_pct": null
+    },
+    "tags": ["regulation", "monetary-policy", "rrr-cut"]
+  },
+  {
+    "id": "evt-082",
+    "date": "2022-11-11",
+    "title_zh": "疫情'二十条'优化——防疫政策转向",
+    "title_en": "20-Point COVID Optimization Plan — Pandemic Policy Pivot",
+    "category": "regulation",
+    "description_zh": "2022年11月11日，国务院联防联控机制发布'二十条'优化疫情防控措施，包括缩短密接隔离时间、取消次密接判定、不再判定中风险区等。消息公布后A股和港股大幅飙升，上证指数单日涨1.69%，恒生指数大涨7.74%。外资当日大举回流A股。'二十条'标志着中国防疫政策的重大转向，为随后的12月全面放开和A股'解封行情'奠定了基础。",
+    "market_data": {
+      "sh_close": 3087.29,
+      "change_pct": 1.69
+    },
+    "tags": ["regulation", "covid-reopening", "policy-pivot", "market-rally"]
+  },
+  {
+    "id": "evt-083",
+    "date": "2025-08-13",
+    "title_zh": "上证指数突破'924'高点——创近四年新高",
+    "title_en": "Shanghai Composite Breaks Above 9-24 High — 4-Year Peak",
+    "category": "bull",
+    "description_zh": "2025年8月13日，上证指数收报3688.63点，正式突破2024年10月8日的924行情高点，创下2021年12月以来近4年新高。此前央行于5月将活期存款利率降至0.05%，宣告进入'准零利率'时代。银行股（农业银行年内涨32%）、AI/机器人、新能源等板块轮动上涨，保险和养老金等长线资金持续入市。分析人士称此轮行情为A股历史上首次'系统性慢牛'。截至2025年8月，中国A股上市公司超5300家，总市值超80万亿元。",
+    "market_data": {
+      "sh_close": 3688.63,
+      "change_pct": null
+    },
+    "tags": ["bull", "slow-bull", "new-high", "structural-reform"]
+  }
+]

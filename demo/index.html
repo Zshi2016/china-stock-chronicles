@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国股市编年史 — Demo</title>
+<style>
+:root {
+  --bg-primary: #0D1117;
+  --bg-card: #161B22;
+  --bg-hover: #1C2633;
+  --border: #30363D;
+  --text-primary: #E6EDF3;
+  --text-secondary: #B0B8C4;
+  --text-tertiary: #7D8590;
+  --accent: #58A6FF;
+  --green: #3FB950;
+  --red: #F85149;
+  --orange: #F0883E;
+  --purple: #A371F7;
+  --cyan: #39D2C0;
+  --yellow: #D29922;
+  --radius: 10px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 16px; line-height: 1.65; overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Header ---- */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(13,17,23,0.92); border-bottom: 1px solid var(--border);
+  padding: 12px 28px; display: flex; align-items: center; gap: 16px;
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+}
+.header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.03em; white-space: nowrap; }
+.header-right { display: flex; align-items: center; gap: 16px; margin-left: auto; flex-shrink: 0; }
+.header-stat { font-size: 13px; color: var(--text-tertiary); }
+.header-stat strong { color: var(--text-primary); font-size: 15px; }
+.status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+.status-dot.live { background: var(--green); box-shadow: 0 0 6px var(--green); }
+.btn-auth {
+  font-size: 13px; padding: 6px 14px; border-radius: 8px; cursor: pointer; white-space: nowrap;
+  border: 1px solid var(--border); background: var(--bg-card); color: var(--text-secondary);
+  transition: all 0.15s; font-family: inherit;
+}
+.btn-auth:hover { border-color: var(--accent); color: var(--text-primary); }
+.btn-auth.logged-in { border-color: var(--green); color: var(--green); }
+
+/* ---- Layout ---- */
+.app { display: flex; max-width: 1480px; margin: 0 auto; height: calc(100vh - 57px); }
+
+/* ---- Sidebar ---- */
+.sidebar {
+  width: 390px; flex-shrink: 0; border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+
+/* ---- Today in History ---- */
+.today-panel {
+  padding: 10px 20px; border-bottom: 1px solid var(--border);
+  background: rgba(88,166,255,0.04); cursor: pointer; transition: all 0.15s;
+}
+.today-panel:hover { background: rgba(88,166,255,0.08); }
+.today-header { display: flex; justify-content: space-between; align-items: center; }
+.today-header .label { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase; }
+.today-header .date { font-size: 13px; color: var(--text-secondary); }
+.today-items { margin-top: 6px; }
+.today-item { font-size: 13px; color: var(--text-secondary); line-height: 1.4; padding: 3px 0; }
+.today-item .t-year { color: var(--text-tertiary); margin-right: 6px; }
+.today-empty { font-size: 12px; color: var(--text-tertiary); margin-top: 4px; }
+
+/* Chart */
+.chart-panel { padding: 20px 20px 12px; border-bottom: 1px solid var(--border); position: relative; }
+.chart-label { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.chart-label .title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+.chart-label .sub { font-size: 12px; color: var(--text-tertiary); }
+.chart-panel canvas { width: 100%; border-radius: 8px; cursor: crosshair; }
+.chart-toggle-row { display: flex; gap: 6px; margin-bottom: 6px; }
+.chart-btn {
+  font-size: 11px; padding: 3px 10px; border-radius: 10px; cursor: pointer;
+  border: 1px solid var(--border); background: var(--bg-card); color: var(--text-tertiary);
+  transition: all 0.12s; font-family: inherit;
+}
+.chart-btn:hover { border-color: var(--accent); color: var(--text-secondary); }
+.chart-btn.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* Tooltip */
+.chart-tooltip {
+  position: fixed; pointer-events: none; z-index: 200;
+  background: rgba(22,27,34,0.96); border: 1px solid var(--border);
+  border-radius: 6px; padding: 6px 10px; font-size: 12px; font-variant-numeric: tabular-nums;
+  display: none; white-space: nowrap;
+}
+.chart-tooltip .tt-date { color: var(--text-tertiary); }
+.chart-tooltip .tt-val { color: var(--text-primary); font-weight: 600; margin-top: 2px; }
+
+/* Filter bar */
+.tab-bar { display: flex; border-bottom: 1px solid var(--border); }
+.tab-bar .tab {
+  flex: 1; text-align: center; padding: 12px 0; font-size: 15px; font-weight: 600;
+  color: var(--text-tertiary); cursor: pointer; border-bottom: 2px solid transparent;
+  transition: all 0.15s; user-select: none;
+}
+.tab-bar .tab:hover { color: var(--text-primary); }
+.tab-bar .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+.search-wrap { padding: 10px 20px; border-bottom: 1px solid var(--border); }
+.search-wrap input {
+  width: 100%; padding: 8px 12px; font-size: 14px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary);
+  font-family: inherit; outline: none; transition: border-color 0.15s;
+}
+.search-wrap input:focus { border-color: var(--accent); }
+.search-wrap input::placeholder { color: var(--text-tertiary); }
+
+.filter-bar {
+  padding: 10px 20px 12px; border-bottom: 1px solid var(--border);
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.filter-chip {
+  font-size: 13px; padding: 5px 14px; border-radius: 18px;
+  border: 1px solid var(--border); background: var(--bg-card);
+  color: var(--text-secondary); cursor: pointer; transition: all 0.15s;
+  white-space: nowrap; user-select: none;
+}
+.filter-chip:hover { border-color: var(--accent); color: var(--text-primary); background: var(--bg-hover); }
+.filter-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 600; }
+
+/* Event list */
+.event-list-scroll { flex: 1; overflow-y: auto; padding: 0 16px 32px; }
+.timeline-track { position: relative; padding-left: 32px; }
+.timeline-line { position: absolute; left: 15px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+
+/* Year separator */
+.year-separator {
+  position: relative; margin: 18px 0 12px; left: -32px; padding-left: 32px;
+  font-size: 18px; font-weight: 700; color: var(--text-primary); letter-spacing: 0.04em;
+}
+.year-separator::before {
+  content: ''; position: absolute; left: 9px; top: 50%; width: 14px; height: 14px;
+  border-radius: 50%; background: var(--accent); border: 3px solid var(--bg-primary);
+  transform: translateY(-50%);
+}
+
+/* Event card */
+.event-card {
+  position: relative; margin: 8px 0; padding: 16px 18px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); cursor: pointer; transition: all 0.18s;
+}
+.event-card:hover { background: var(--bg-hover); border-color: #58A6FF60; }
+.event-card .dot {
+  position: absolute; left: -23px; top: 20px;
+  width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--bg-primary);
+}
+.event-card .fav-star {
+  position: absolute; right: 12px; top: 12px;
+  font-size: 16px; cursor: pointer; opacity: 0.3; transition: all 0.15s; user-select: none;
+}
+.event-card .fav-star:hover { opacity: 0.8; transform: scale(1.2); }
+.event-card .fav-star.on { opacity: 1; color: var(--yellow); }
+.event-date { font-size: 13px; color: var(--text-tertiary); margin-bottom: 5px; font-variant-numeric: tabular-nums; }
+.event-header { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
+.event-badge { font-size: 11px; padding: 3px 9px; border-radius: 10px; color: #fff; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+.event-title { font-size: 16px; font-weight: 600; line-height: 1.4; }
+.event-desc {
+  font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  margin-top: 4px;
+}
+.event-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 13px; color: var(--text-tertiary); }
+.event-footer .index-value { color: var(--accent); font-weight: 700; font-size: 14px; font-variant-numeric: tabular-nums; }
+.event-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.tag-chip {
+  font-size: 11px; padding: 2px 8px; border-radius: 8px;
+  background: rgba(88,166,255,0.1); color: var(--accent);
+  cursor: pointer; transition: all 0.12s; white-space: nowrap;
+}
+.tag-chip:hover { background: rgba(88,166,255,0.2); }
+
+/* ---- Detail Panel ---- */
+.detail-panel { flex: 1; overflow-y: auto; padding: 40px 48px; display: flex; justify-content: center; }
+.detail-empty { text-align: center; color: var(--text-tertiary); margin-top: 120px; }
+.detail-empty .icon { font-size: 72px; margin-bottom: 20px; opacity: 0.25; }
+.detail-empty p { font-size: 16px; }
+.detail-content { max-width: 720px; width: 100%; }
+.detail-content .kicker { font-size: 13px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+.detail-content .kicker .fav-star-big { font-size: 20px; cursor: pointer; opacity: 0.4; transition: all 0.15s; }
+.detail-content .kicker .fav-star-big:hover { opacity: 0.9; }
+.detail-content .kicker .fav-star-big.on { opacity: 1; color: var(--yellow); }
+.detail-content h2 { font-size: 26px; font-weight: 700; margin-bottom: 20px; line-height: 1.3; }
+.detail-content .desc-full { font-size: 16px; color: #C8D1DC; line-height: 1.85; margin-bottom: 28px; }
+.detail-content .event-tags { margin-bottom: 20px; }
+
+.snapshot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
+.snapshot-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; }
+.snapshot-card .label { font-size: 13px; color: var(--text-tertiary); margin-bottom: 4px; }
+.snapshot-card .value { font-size: 22px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+.snapshot-card .value.negative { color: var(--red); }
+.snapshot-card .value.positive { color: var(--green); }
+
+.related-section { margin-top: 8px; }
+.related-section h3 { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; }
+.related-card {
+  display: block; padding: 14px 18px; margin-bottom: 8px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); cursor: pointer; transition: all 0.15s;
+}
+.related-card:hover { background: var(--bg-hover); border-color: #58A6FF40; }
+.related-card .r-date { font-size: 13px; color: var(--text-tertiary); margin-bottom: 2px; }
+.related-card .r-title { font-size: 15px; font-weight: 500; }
+
+/* Loading / Error */
+.loading { text-align: center; padding: 48px 20px; color: var(--text-tertiary); font-size: 15px; }
+.spinner { display: inline-block; width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 8px; vertical-align: middle; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.error-state { text-align: center; padding: 48px 20px; color: var(--red); font-size: 15px; }
+.error-state small { display: block; margin-top: 8px; color: var(--text-tertiary); }
+.no-results { text-align: center; padding: 32px 20px; color: var(--text-tertiary); font-size: 14px; }
+
+/* ---- Compare View ---- */
+.compare-wrap { padding: 16px 20px; flex: 1; overflow-y: auto; display: none; }
+.compare-wrap.active { display: block; }
+.compare-pickers { display: flex; gap: 10px; margin-bottom: 14px; }
+.compare-pickers select {
+  flex: 1; padding: 8px 10px; font-size: 14px;
+  background: var(--bg-card); color: var(--text-primary);
+  border: 1px solid var(--border); border-radius: 8px;
+  font-family: inherit; cursor: pointer;
+}
+.compare-pickers select:focus { outline: none; border-color: var(--accent); }
+.compare-chart-wrap { margin-bottom: 16px; position: relative; }
+.compare-chart-wrap canvas { width: 100%; border-radius: 8px; cursor: crosshair; }
+.compare-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.compare-stat {
+  padding: 12px 14px; background: var(--bg-card);
+  border: 1px solid var(--border); border-radius: 8px;
+}
+.compare-stat .s-label { font-size: 12px; color: var(--text-tertiary); margin-bottom: 2px; }
+.compare-stat .s-values { display: flex; justify-content: space-between; align-items: baseline; }
+.compare-stat .s-val { font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.compare-stat .s-val.a { color: var(--accent); }
+.compare-stat .s-val.b { color: var(--orange); }
+.compare-legend { display: flex; gap: 20px; margin-bottom: 12px; font-size: 13px; }
+.compare-legend span { display: flex; align-items: center; gap: 6px; }
+.compare-legend .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; }
+
+/* ---- Auth Modal ---- */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px 32px; width: 380px; max-width: 90vw;
+}
+.modal h3 { font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+.modal .field { margin-bottom: 14px; }
+.modal .field label { display: block; font-size: 13px; color: var(--text-tertiary); margin-bottom: 4px; }
+.modal .field input {
+  width: 100%; padding: 10px 12px; font-size: 14px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--bg-primary); color: var(--text-primary);
+  font-family: inherit; outline: none;
+}
+.modal .field input:focus { border-color: var(--accent); }
+.modal .btn-row { display: flex; gap: 10px; margin-top: 20px; }
+.modal .btn {
+  flex: 1; padding: 10px; font-size: 14px; font-weight: 600; border-radius: 8px;
+  cursor: pointer; border: none; font-family: inherit; transition: all 0.12s;
+}
+.modal .btn.primary { background: var(--accent); color: #fff; }
+.modal .btn.primary:hover { opacity: 0.85; }
+.modal .btn.ghost { background: transparent; color: var(--text-secondary); border: 1px solid var(--border); }
+.modal .btn.ghost:hover { border-color: var(--accent); color: var(--text-primary); }
+.modal .switch { text-align: center; margin-top: 14px; font-size: 13px; color: var(--text-tertiary); }
+.modal .switch a { color: var(--accent); cursor: pointer; }
+.modal .error { font-size: 12px; color: var(--red); margin-top: 4px; display: none; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #484F58; }
+
+/* ---- Story Mode ---- */
+.story-wrap { padding: 0 16px 32px; flex: 1; overflow-y: auto; display: none; }
+.story-wrap.active { display: block; }
+.story-intro {
+  padding: 14px 14px 18px; margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.story-intro h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.story-intro p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+.cycle-card {
+  padding: 18px 14px; margin-bottom: 10px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); cursor: pointer; transition: all 0.15s;
+  border-left: 4px solid var(--border);
+}
+.cycle-card:hover { background: var(--bg-hover); border-color: #58A6FF40; }
+.cycle-card.bull { border-left-color: var(--green); }
+.cycle-card.bear { border-left-color: var(--red); }
+.cycle-card .cyc-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.cycle-card .cyc-name { font-size: 15px; font-weight: 700; line-height: 1.3; }
+.cycle-card .cyc-badge {
+  font-size: 11px; padding: 3px 9px; border-radius: 10px; color: #fff; white-space: nowrap;
+}
+.cycle-card .cyc-meta { display: flex; gap: 16px; margin-bottom: 10px; font-size: 13px; color: var(--text-tertiary); }
+.cycle-card .cyc-meta span { display: flex; align-items: center; gap: 4px; }
+.cycle-card .cyc-meta .val { color: var(--text-primary); font-weight: 600; font-variant-numeric: tabular-nums; }
+.cycle-card .cyc-narrative {
+  font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+  margin-bottom: 10px;
+}
+.cycle-card .cyc-events { display: flex; flex-wrap: wrap; gap: 6px; }
+.cycle-card .cyc-event-tag {
+  font-size: 12px; padding: 3px 10px; border-radius: 10px;
+  background: rgba(88,166,255,0.08); color: var(--accent);
+  cursor: pointer; transition: all 0.12s;
+}
+.cycle-card .cyc-event-tag:hover { background: rgba(88,166,255,0.18); }
+.story-detail { display: none; padding: 0 16px 32px; flex: 1; overflow-y: auto; }
+.story-detail.active { display: block; }
+.story-detail .cyc-narrative { margin-bottom: 16px; }
+.story-detail .cyc-events-section h4 { font-size: 14px; font-weight: 600; margin-bottom: 10px; color: var(--text-primary); }
+.story-detail .cyc-event-card {
+  display: block; padding: 12px 14px; margin-bottom: 6px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 8px; cursor: pointer; transition: all 0.12s;
+}
+.story-detail .cyc-event-card:hover { background: var(--bg-hover); border-color: #58A6FF40; }
+.story-detail .cyc-event-card .ce-date { font-size: 12px; color: var(--text-tertiary); }
+.story-detail .cyc-event-card .ce-title { font-size: 14px; font-weight: 500; }
+
+/* Mobile */
+@media (max-width: 860px) {
+  .app { flex-direction: column; height: auto; }
+  .sidebar { width: 100%; border-right: none; max-height: 55vh; }
+  .detail-panel { padding: 24px 20px; }
+  .detail-content h2 { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Auth Modal -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal">
+    <h3 id="authTitle">登录</h3>
+    <div class="field" id="nameField" style="display:none">
+      <label>昵称</label>
+      <input type="text" id="authName" placeholder="可选">
+    </div>
+    <div class="field">
+      <label>邮箱</label>
+      <input type="email" id="authEmail" placeholder="your@email.com">
+    </div>
+    <div class="field">
+      <label>密码</label>
+      <input type="password" id="authPassword" placeholder="至少6位">
+    </div>
+    <div class="error" id="authError"></div>
+    <div class="btn-row">
+      <button class="btn ghost" id="btnAuthCancel">取消</button>
+      <button class="btn primary" id="btnAuthSubmit">登录</button>
+    </div>
+    <div class="switch" id="authSwitch">
+      没有账号？<a id="linkSwitch">立即注册</a>
+    </div>
+  </div>
+</div>
+
+<!-- Tooltip -->
+<div class="chart-tooltip" id="tooltip">
+  <div class="tt-date"></div>
+  <div class="tt-val"></div>
+</div>
+
+<!-- Header -->
+<div class="header">
+  <h1>中国股市编年史</h1>
+  <div class="header-right">
+    <div class="header-stat">事件 <strong id="statEvents">—</strong></div>
+    <div class="header-stat">周期 <strong id="statCycles">—</strong></div>
+    <div class="header-stat">数据 <strong id="statRange">—</strong></div>
+    <span id="statusBadge" style="font-size:13px;color:var(--text-tertiary)"><span class="status-dot"></span>连接中</span>
+    <button class="btn-auth" id="btnAuth" onclick="handleAuthClick()">登录</button>
+  </div>
+</div>
+
+<div class="app">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Today in History -->
+    <div class="today-panel" id="todayPanel" style="display:none">
+      <div class="today-header">
+        <span class="label">那年今日</span>
+        <span class="date" id="todayDate"></span>
+      </div>
+      <div class="today-items" id="todayItems"></div>
+    </div>
+
+    <!-- Mini Chart -->
+    <div class="chart-panel">
+      <div class="chart-label">
+        <span class="title">上证综指</span>
+        <span class="sub">1990 — 2026</span>
+      </div>
+      <div class="chart-toggle-row">
+        <button class="chart-btn on" data-mode="line" onclick="setChartMode('line')">折线</button>
+        <button class="chart-btn" data-mode="candle" onclick="setChartMode('candle')">K线</button>
+        <button class="chart-btn" data-mode="linevol" onclick="setChartMode('linevol')">折线+量</button>
+      </div>
+      <canvas id="miniChart" height="170"></canvas>
+      <canvas id="volChart" height="40" style="margin-top:2px;display:none"></canvas>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tab-bar" id="tabBar">
+      <div class="tab active" data-tab="timeline">时间线</div>
+      <div class="tab" data-tab="story">故事线</div>
+      <div class="tab" data-tab="compare">事件对比</div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-wrap" id="searchWrap">
+      <input type="search" id="searchInput" placeholder="搜索事件标题、描述或标签..." oninput="onSearch()">
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-bar" id="filterBar"></div>
+
+    <!-- Event List -->
+    <div class="event-list-scroll" id="eventList">
+      <div class="loading"><span class="spinner"></span>加载中...</div>
+    </div>
+
+    <!-- Compare View -->
+    <!-- Story View -->
+    <div class="story-wrap" id="storyView">
+      <div class="loading"><span class="spinner"></span>加载故事线...</div>
+    </div>
+
+    <div class="compare-wrap" id="compareView">
+      <div class="compare-pickers">
+        <select id="cmpEventA"><option value="">— 选择事件A —</option></select>
+        <select id="cmpEventB"><option value="">— 选择事件B —</option></select>
+      </div>
+      <div class="compare-legend">
+        <span><i class="swatch" style="background:#58A6FF"></i> 事件A</span>
+        <span><i class="swatch" style="background:#F0883E"></i> 事件B</span>
+      </div>
+      <div class="compare-chart-wrap">
+        <canvas id="compareChart" height="280"></canvas>
+      </div>
+      <div class="compare-stats" id="compareStats"></div>
+    </div>
+  </div>
+
+  <!-- Detail -->
+  <div class="detail-panel" id="detailPanel">
+    <div class="detail-empty">
+      <div class="icon">&#x1F4C8;</div>
+      <p>选择左侧事件查看详情</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================================
+// State
+// ============================================================================
+const API = '';
+let allEvents = [], allCycles = [], dailyData = [];
+let activeCategory = 'all', searchTerm = '', chartMode = 'line';
+let authToken = localStorage.getItem('jwt_token');
+let userInfo = null;
+let favorites = new Set();
+let sampledForChart = [];
+
+const CATEGORIES = [
+  { key: 'all', label: '全部', color: '#58A6FF' },
+  { key: 'milestone', label: '里程碑', color: '#58A6FF' },
+  { key: 'bull', label: '牛市', color: '#3FB950' },
+  { key: 'bear', label: '熊市', color: '#F85149' },
+  { key: 'crash', label: '崩盘', color: '#F0883E' },
+  { key: 'regulation', label: '监管', color: '#A371F7' },
+  { key: 'reform', label: '改革', color: '#39D2C0' },
+  { key: 'scandal', label: '黑天鹅', color: '#D29922' },
+];
+const catMap = {};
+CATEGORIES.forEach(c => { catMap[c.key] = c; });
+
+const TAG_CN = {
+  'milestone':'里程碑','bull':'牛市','bear':'熊市','crash':'崩盘','regulation':'监管',
+  'reform':'改革','scandal':'黑天鹅','ipo':'IPO','volatility':'波动','peak':'顶点',
+  'trough':'低谷','policy-intervention':'政策干预','market-surge':'市场暴涨',
+  'market-manipulation':'市场操纵','tech-bubble':'科技泡沫','financial-crisis':'金融危机',
+  'external-shock':'外部冲击','rescue-policy':'救市','price-liberalization':'价格放开',
+  'price-limit':'涨跌停','delisting':'退市','st-system':'ST制度',
+  'institutional-building':'制度建设','institutional-investor':'机构投资者',
+  'legal-framework':'法规框架','trading-rule':'交易规则','speculation':'投机',
+  'exchange-foundation':'交易所成立','shenzhen':'深圳','index':'指数',
+  'internationalization':'国际化','social-unrest':'社会动荡','political-event':'政治事件',
+  'bond':'债券','futures':'期货','fund':'基金','policy-driven':'政策驱动',
+  'southern-tour':'南巡',
+};
+
+function tagLabel(t) { return TAG_CN[t] || t.replace(/-/g,' '); }
+
+// ============================================================================
+// API helpers
+// ============================================================================
+async function fetchJSON(path, opts = {}) {
+  const headers = { ...opts.headers };
+  if (authToken) headers['Authorization'] = 'Bearer ' + authToken;
+  const res = await fetch(API + path, { ...opts, headers });
+  if (!res.ok) {
+    const text = await res.text();
+    let msg = text;
+    try { msg = JSON.parse(text).message || text; } catch(_) {}
+    throw new Error(res.status + ': ' + msg);
+  }
+  return res.json();
+}
+
+// ============================================================================
+// Auth
+// ============================================================================
+let authMode = 'login'; // 'login' | 'register'
+
+function handleAuthClick() {
+  if (authToken && userInfo) {
+    logout();
+    return;
+  }
+  showAuthModal('login');
+}
+
+function showAuthModal(mode) {
+  authMode = mode;
+  document.getElementById('authTitle').textContent = mode === 'login' ? '登录' : '注册';
+  document.getElementById('nameField').style.display = mode === 'register' ? '' : 'none';
+  document.getElementById('btnAuthSubmit').textContent = mode === 'login' ? '登录' : '注册';
+  document.getElementById('authSwitch').innerHTML = mode === 'login'
+    ? '没有账号？<a id="linkSwitch">立即注册</a>'
+    : '已有账号？<a id="linkSwitch">去登录</a>';
+  document.getElementById('authError').style.display = 'none';
+  document.getElementById('authEmail').value = '';
+  document.getElementById('authPassword').value = '';
+  document.getElementById('authName').value = '';
+  document.getElementById('authModal').classList.add('open');
+  document.getElementById('linkSwitch').onclick = () => showAuthModal(mode === 'login' ? 'register' : 'login');
+}
+
+function hideAuthModal() {
+  document.getElementById('authModal').classList.remove('open');
+}
+
+async function doAuth() {
+  const email = document.getElementById('authEmail').value.trim();
+  const password = document.getElementById('authPassword').value;
+  const displayName = document.getElementById('authName').value.trim() || undefined;
+  const errEl = document.getElementById('authError');
+
+  if (!email || !password) {
+    errEl.textContent = '请填写邮箱和密码';
+    errEl.style.display = '';
+    return;
+  }
+
+  try {
+    const endpoint = authMode === 'login' ? '/api/auth/login' : '/api/auth/register';
+    const body = authMode === 'login' ? { email, password } : { email, password, displayName };
+    const res = await fetchJSON(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    authToken = res.token;
+    userInfo = res.user;
+    localStorage.setItem('jwt_token', authToken);
+    updateAuthUI();
+    hideAuthModal();
+    await loadFavorites();
+  } catch (err) {
+    errEl.textContent = err.message;
+    errEl.style.display = '';
+  }
+}
+
+function logout() {
+  authToken = null;
+  userInfo = null;
+  favorites.clear();
+  localStorage.removeItem('jwt_token');
+  updateAuthUI();
+  renderEventList(activeCategory);
+}
+
+function updateAuthUI() {
+  const btn = document.getElementById('btnAuth');
+  if (authToken && userInfo) {
+    btn.textContent = userInfo.displayName || userInfo.email || '已登录';
+    btn.classList.add('logged-in');
+    btn.title = '点击退出登录';
+  } else {
+    btn.textContent = '登录';
+    btn.classList.remove('logged-in');
+    btn.title = '登录以收藏事件';
+  }
+}
+
+async function loadFavorites() {
+  if (!authToken) return;
+  try {
+    const res = await fetchJSON('/api/favorites');
+    favorites = new Set((res.data || []).map(f => f.event_id));
+  } catch (_) { /* ignore */ }
+}
+
+async function toggleFavorite(eventId) {
+  if (!authToken) {
+    showAuthModal('login');
+    return;
+  }
+  try {
+    if (favorites.has(eventId)) {
+      await fetchJSON('/api/favorites/' + eventId, { method: 'DELETE' });
+      favorites.delete(eventId);
+    } else {
+      await fetchJSON('/api/favorites', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ event_id: eventId })
+      });
+      favorites.add(eventId);
+    }
+    renderEventList(activeCategory);
+    // refresh detail if open
+    const panel = document.getElementById('detailPanel');
+    if (panel.dataset.currentId === eventId) showDetail(eventId);
+  } catch (err) {
+    if (err.message.includes('401')) { logout(); showAuthModal('login'); }
+  }
+}
+
+// ============================================================================
+// Init
+// ============================================================================
+async function init() {
+  document.getElementById('btnAuthSubmit').addEventListener('click', doAuth);
+  document.getElementById('btnAuthCancel').addEventListener('click', hideAuthModal);
+  document.getElementById('authModal').addEventListener('click', function(e) {
+    if (e.target === this) hideAuthModal();
+  });
+
+  // Enter key in password field
+  document.getElementById('authPassword').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doAuth();
+  });
+
+  updateAuthUI();
+
+  try {
+    const [evRes, cyRes, ixRes] = await Promise.all([
+      fetchJSON('/api/events?limit=100'),
+      fetchJSON('/api/cycles'),
+      fetchJSON('/api/daily?code=000001&limit=2000')
+    ]);
+    allEvents = evRes.data || [];
+    allCycles = cyRes.data || [];
+    dailyData = ixRes.data || [];
+
+    document.getElementById('statEvents').textContent = allEvents.length;
+    document.getElementById('statCycles').textContent = allCycles.length;
+    if (dailyData.length) {
+      document.getElementById('statRange').textContent = dailyData[0].date.slice(0,4) + '–' + dailyData[dailyData.length-1].date.slice(0,4);
+    }
+    const badge = document.getElementById('statusBadge');
+    badge.innerHTML = '<span class="status-dot live"></span>已连接';
+    badge.style.color = 'var(--text-secondary)';
+
+    if (authToken) {
+      try {
+        const me = await fetchJSON('/api/auth/me');
+        userInfo = me.user;
+        updateAuthUI();
+        await loadFavorites();
+      } catch (_) { logout(); }
+    }
+
+    renderFilters();
+    renderEventList(activeCategory);
+    drawMiniChart();
+    showTodayInHistory();
+  } catch (err) {
+    console.error(err);
+    document.getElementById('statusBadge').innerHTML = '<span class="status-dot"></span>离线';
+    document.getElementById('eventList').innerHTML = '<div class="error-state">无法连接后端<br><small>' + err.message + '</small></div>';
+  }
+}
+
+// ============================================================================
+// Today in History
+// ============================================================================
+async function showTodayInHistory() {
+  const now = new Date();
+  const month = now.getMonth() + 1;
+  const day = now.getDate();
+  document.getElementById('todayDate').textContent = month + '月' + day + '日';
+
+  try {
+    const res = await fetchJSON('/api/events/today-in-history?month=' + month + '&day=' + day);
+    const items = res.data || [];
+    const container = document.getElementById('todayItems');
+    const panel = document.getElementById('todayPanel');
+
+    if (items.length) {
+      container.innerHTML = items.slice(0, 3).map(e =>
+        `<div class="today-item" data-id="${e.id}" style="cursor:pointer">
+          <span class="t-year">${e.date.slice(0,4)}</span>${e.title_zh}
+        </div>`
+      ).join('');
+      container.querySelectorAll('.today-item').forEach(el => {
+        el.addEventListener('click', e => { e.stopPropagation(); showDetail(el.dataset.id); });
+      });
+      panel.style.display = '';
+    } else {
+      container.innerHTML = '<div class="today-empty">今天没有历史事件</div>';
+      panel.style.display = '';
+    }
+  } catch (_) {
+    document.getElementById('todayPanel').style.display = 'none';
+  }
+}
+
+// ============================================================================
+// Search
+// ============================================================================
+function onSearch() {
+  searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+  renderEventList(activeCategory);
+}
+
+// ============================================================================
+// Filters
+// ============================================================================
+function renderFilters() {
+  document.getElementById('filterBar').innerHTML = CATEGORIES.map(c =>
+    `<span class="filter-chip${c.key===activeCategory?' active':''}" data-key="${c.key}">${c.label}</span>`
+  ).join('');
+  document.querySelectorAll('.filter-chip').forEach(c => {
+    c.addEventListener('click', () => {
+      activeCategory = c.dataset.key;
+      renderFilters();
+      renderEventList(activeCategory);
+    });
+  });
+}
+
+// ============================================================================
+// Event List
+// ============================================================================
+function renderEventList(cat) {
+  let filtered = allEvents;
+  if (cat !== 'all') filtered = filtered.filter(e => e.category === cat);
+  if (searchTerm) {
+    filtered = filtered.filter(e =>
+      (e.title_zh || '').toLowerCase().includes(searchTerm) ||
+      (e.description_zh || '').toLowerCase().includes(searchTerm) ||
+      (e.tags || []).some(t => t.toLowerCase().includes(searchTerm))
+    );
+  }
+
+  const container = document.getElementById('eventList');
+  if (!filtered.length) {
+    container.innerHTML = '<div class="no-results">没有匹配的事件</div>';
+    return;
+  }
+
+  let prevYear = null;
+  let html = '<div class="timeline-track"><div class="timeline-line"></div>';
+
+  filtered.forEach(e => {
+    const c = catMap[e.category] || catMap.milestone;
+    const sh = (e.market_data && e.market_data.sh_close) || e.sh_close;
+    const year = e.date.slice(0, 4);
+    const isFav = favorites.has(e.id);
+    const tags = e.tags || [];
+
+    if (year !== prevYear) {
+      html += `<div class="year-separator">${year}</div>`;
+      prevYear = year;
+    }
+
+    html += `
+      <div class="event-card" data-id="${e.id}">
+        <div class="dot" style="background:${c.color}"></div>
+        <span class="fav-star${isFav?' on':''}" data-fav="${e.id}" title="${isFav?'取消收藏':'收藏'}">${isFav ? '★' : '☆'}</span>
+        <div class="event-date">${e.date.slice(5)}</div>
+        <div class="event-header">
+          <span class="event-badge" style="background:${c.color}">${c.label}</span>
+          <span class="event-title">${e.title_zh}</span>
+        </div>
+        <div class="event-desc">${e.description_zh || ''}</div>
+        ${tags.length ? `<div class="event-tags">${tags.slice(0,4).map(t => `<span class="tag-chip" data-tag="${t}">${tagLabel(t)}</span>`).join('')}</div>` : ''}
+        ${sh ? `<div class="event-footer"><span>上证综指收盘</span><span class="index-value">${sh.toLocaleString('en-US')}</span></div>` : ''}
+      </div>`;
+  });
+  html += '</div>';
+  container.innerHTML = html;
+
+  // Event card click
+  container.querySelectorAll('.event-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      if (e.target.closest('.fav-star') || e.target.closest('.tag-chip')) return;
+      showDetail(card.dataset.id);
+    });
+  });
+
+  // Favorite star click
+  container.querySelectorAll('.fav-star').forEach(star => {
+    star.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toggleFavorite(star.dataset.fav);
+    });
+  });
+
+  // Tag click
+  container.querySelectorAll('.tag-chip').forEach(chip => {
+    chip.addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('searchInput').value = tagLabel(chip.dataset.tag);
+      searchTerm = tagLabel(chip.dataset.tag).toLowerCase();
+      renderEventList(activeCategory);
+    });
+  });
+}
+
+// ============================================================================
+// Detail
+// ============================================================================
+async function showDetail(id) {
+  const panel = document.getElementById('detailPanel');
+  panel.innerHTML = '<div class="loading"><span class="spinner"></span>加载中...</div>';
+  panel.dataset.currentId = id;
+  try {
+    const ev = await fetchJSON('/api/events/' + id);
+    const c = catMap[ev.category] || catMap.milestone;
+    const sh = ev.sh_close;
+    const pct = ev.change_pct;
+    const pctClass = pct != null ? (pct >= 0 ? 'positive' : 'negative') : '';
+    const isFav = favorites.has(ev.id);
+    const tags = ev.tags || [];
+
+    panel.innerHTML = `
+      <div class="detail-content">
+        <div class="kicker">
+          ${ev.date} · ${c.label}
+          <span class="fav-star-big${isFav?' on':''}" data-fav="${ev.id}" title="${isFav?'取消收藏':'收藏'}" onclick="event.stopPropagation();toggleFavorite('${ev.id}')">${isFav ? '★' : '☆'}</span>
+        </div>
+        <h2>${ev.title_zh}</h2>
+        <div class="desc-full">${ev.description_zh || ''}</div>
+        ${tags.length ? `<div class="event-tags">${tags.map(t => `<span class="tag-chip" data-tag="${t}" onclick="event.stopPropagation();document.getElementById('searchInput').value='${tagLabel(t)}';searchTerm='${tagLabel(t).toLowerCase()}';renderEventList(activeCategory)">${tagLabel(t)}</span>`).join('')}</div>` : ''}
+        ${sh != null ? `
+        <div class="snapshot-grid">
+          <div class="snapshot-card">
+            <div class="label">上证综指收盘</div>
+            <div class="value">${sh.toLocaleString('en-US')}</div>
+          </div>
+          <div class="snapshot-card">
+            <div class="label">当日涨跌幅</div>
+            <div class="value ${pctClass}">${pct != null ? (pct>=0?'+':'')+pct+'%' : '—'}</div>
+          </div>
+        </div>` : ''}
+        ${ev.related && ev.related.length ? `
+        <div class="related-section">
+          <h3>相关事件</h3>
+          ${ev.related.map(r => `
+            <div class="related-card" data-id="${r.id}">
+              <div class="r-date">${r.date}</div>
+              <div class="r-title">${r.title_zh}</div>
+            </div>`).join('')}
+        </div>` : ''}
+      </div>`;
+    panel.querySelectorAll('.related-card').forEach(c => {
+      c.addEventListener('click', () => showDetail(c.dataset.id));
+    });
+  } catch (err) {
+    panel.innerHTML = '<div class="error-state">加载失败<br><small>' + err.message + '</small></div>';
+  }
+}
+
+// ============================================================================
+// Mini Chart (Line / Candlestick / Line+Volume)
+// ============================================================================
+function drawMiniChart() {
+  const canvas = document.getElementById('miniChart');
+  const volCanvas = document.getElementById('volChart');
+  if (!dailyData.length) return;
+
+  const container = canvas.parentElement;
+  const W = container.clientWidth - 40;
+  const mainH = 170, volH = 40;
+  canvas.width = W; canvas.height = mainH;
+  volCanvas.width = W; volCanvas.height = volH;
+
+  // Sample data
+  const step = Math.max(1, Math.floor(dailyData.length / 400));
+  sampledForChart = dailyData.filter((_, i) => i % step === 0 || i === dailyData.length - 1);
+
+  if (chartMode === 'candle') {
+    drawCandlestick(canvas, sampledForChart, mainH);
+    volCanvas.style.display = 'none';
+  } else if (chartMode === 'linevol') {
+    drawLineChart(canvas, sampledForChart, mainH, 38);
+    drawVolume(volCanvas, sampledForChart, volH);
+    volCanvas.style.display = '';
+  } else {
+    drawLineChart(canvas, sampledForChart, mainH, mainH);
+    volCanvas.style.display = 'none';
+  }
+}
+
+function setChartMode(mode) {
+  chartMode = mode;
+  document.querySelectorAll('.chart-btn').forEach(b => b.classList.toggle('on', b.dataset.mode === mode));
+  drawMiniChart();
+}
+
+function drawLineChart(canvas, data, H, ch) {
+  const pad = { top: 10, right: 10, bottom: H - ch + 18, left: 10 };
+  const cw = canvas.width - pad.left - pad.right;
+  const chartH = ch - pad.top - 18;
+
+  let maxV = -Infinity, minV = Infinity;
+  data.forEach(d => { if (d.close > maxV) maxV = d.close; if (d.close < minV) minV = d.close; });
+  const range = maxV - minV || 1;
+  maxV += range * 0.05; minV -= range * 0.05;
+
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, H);
+
+  const xPos = i => pad.left + (i / (data.length - 1)) * cw;
+  const yPos = v => pad.top + chartH - ((v - minV) / (maxV - minV)) * chartH;
+
+  // Bull/bear bands
+  allCycles.forEach(cycle => {
+    const sy = parseInt(cycle.start_date.slice(0, 4));
+    const ey = parseInt((cycle.end_date || '2026').slice(0, 4));
+    let fi = -1, ti = -1;
+    data.forEach((d, i) => {
+      const y = parseInt(d.date.slice(0, 4));
+      if (fi === -1 && y >= sy) fi = i;
+      if (y <= ey) ti = i;
+    });
+    if (fi >= 0 && ti >= fi) {
+      ctx.fillStyle = cycle.type === 'bull' ? 'rgba(63,185,80,0.07)' : 'rgba(248,81,73,0.05)';
+      ctx.fillRect(xPos(fi), pad.top, xPos(ti) - xPos(fi), chartH);
+    }
+  });
+
+  // Grid
+  ctx.strokeStyle = 'rgba(139,148,158,0.10)'; ctx.lineWidth = 0.5;
+  for (let g = 0; g <= 4; g++) {
+    const gy = pad.top + (chartH / 4) * g;
+    ctx.beginPath(); ctx.moveTo(pad.left, gy); ctx.lineTo(canvas.width - pad.right, gy); ctx.stroke();
+  }
+
+  // Line
+  ctx.strokeStyle = '#58A6FF'; ctx.lineWidth = 1.8; ctx.lineJoin = 'round';
+  ctx.beginPath();
+  data.forEach((d, i) => { const px = xPos(i), py = yPos(d.close); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); });
+  ctx.stroke();
+
+  // Gradient fill
+  ctx.lineTo(xPos(data.length - 1), pad.top + chartH);
+  ctx.lineTo(xPos(0), pad.top + chartH); ctx.closePath();
+  const grad = ctx.createLinearGradient(0, pad.top, 0, pad.top + chartH);
+  grad.addColorStop(0, 'rgba(88,166,255,0.22)'); grad.addColorStop(1, 'rgba(88,166,255,0.01)');
+  ctx.fillStyle = grad; ctx.fill();
+
+  // Year labels
+  ctx.fillStyle = '#7D8590'; ctx.font = '10px -apple-system, sans-serif'; ctx.textAlign = 'center';
+  [1990,1995,2000,2005,2010,2015,2020,2026].forEach(year => {
+    const idx = data.findIndex(d => parseInt(d.date.slice(0, 4)) >= year);
+    if (idx >= 0) ctx.fillText(String(year), xPos(idx), H - 3);
+  });
+
+  // Store for tooltip
+  canvas._chartMeta = { data, xPos, yPos, minV, maxV, pad };
+}
+
+function drawCandlestick(canvas, data, H) {
+  const pad = { top: 10, right: 10, bottom: 30, left: 10 };
+  const cw = canvas.width - pad.left - pad.right;
+  const chartH = H - pad.top - pad.bottom;
+
+  let maxV = -Infinity, minV = Infinity;
+  data.forEach(d => { if (d.high > maxV) maxV = d.high; if (d.low < minV) minV = d.low; });
+  const range = maxV - minV || 1;
+  maxV += range * 0.05; minV -= range * 0.05;
+
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, H);
+
+  const xPos = i => pad.left + (i / (data.length - 1)) * cw;
+  const yPos = v => pad.top + chartH - ((v - minV) / (maxV - minV)) * chartH;
+
+  // Bull/bear bands
+  allCycles.forEach(cycle => {
+    const sy = parseInt(cycle.start_date.slice(0, 4));
+    const ey = parseInt((cycle.end_date || '2026').slice(0, 4));
+    let fi = -1, ti = -1;
+    data.forEach((d, i) => {
+      const y = parseInt(d.date.slice(0, 4));
+      if (fi === -1 && y >= sy) fi = i;
+      if (y <= ey) ti = i;
+    });
+    if (fi >= 0 && ti >= fi) {
+      ctx.fillStyle = cycle.type === 'bull' ? 'rgba(63,185,80,0.07)' : 'rgba(248,81,73,0.05)';
+      ctx.fillRect(xPos(fi), pad.top, xPos(ti) - xPos(fi), chartH);
+    }
+  });
+
+  // Grid
+  ctx.strokeStyle = 'rgba(139,148,158,0.10)'; ctx.lineWidth = 0.5;
+  for (let g = 0; g <= 4; g++) {
+    const gy = pad.top + (chartH / 4) * g;
+    ctx.beginPath(); ctx.moveTo(pad.left, gy); ctx.lineTo(canvas.width - pad.right, gy); ctx.stroke();
+  }
+
+  // Candles
+  const candleW = Math.max(1, (cw / data.length) * 0.7);
+  const halfW = candleW / 2;
+  ctx.lineWidth = 1;
+
+  data.forEach((d, i) => {
+    const cx = xPos(i);
+    const openY = yPos(d.open || d.close);
+    const closeY = yPos(d.close);
+    const highY = yPos(d.high || d.close);
+    const lowY = yPos(d.low || d.close);
+    const isUp = d.close >= (d.open || d.close);
+
+    ctx.strokeStyle = isUp ? '#3FB950' : '#F85149';
+    ctx.beginPath(); ctx.moveTo(cx, highY); ctx.lineTo(cx, lowY); ctx.stroke();
+
+    ctx.fillStyle = isUp ? '#3FB950' : '#F85149';
+    const bodyTop = Math.min(openY, closeY);
+    const bodyH = Math.max(1, Math.abs(closeY - openY));
+    ctx.fillRect(cx - halfW, bodyTop, candleW, bodyH);
+  });
+
+  // Year labels
+  ctx.fillStyle = '#7D8590'; ctx.font = '10px -apple-system, sans-serif'; ctx.textAlign = 'center';
+  [1990,1995,2000,2005,2010,2015,2020,2026].forEach(year => {
+    const idx = data.findIndex(d => parseInt(d.date.slice(0, 4)) >= year);
+    if (idx >= 0) ctx.fillText(String(year), xPos(idx), H - 3);
+  });
+
+  canvas._chartMeta = { data, xPos, yPos, minV, maxV, pad, isCandle: true };
+}
+
+function drawVolume(canvas, data, H) {
+  const pad = { top: 4, right: 10, bottom: 4, left: 10 };
+  const cw = canvas.width - pad.left - pad.right;
+  const chartH = H - pad.top - pad.bottom;
+
+  let maxV = 0;
+  data.forEach(d => { if (d.volume > maxV) maxV = d.volume; });
+  if (!maxV) return;
+
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, H);
+
+  const xPos = i => pad.left + (i / (data.length - 1)) * cw;
+  const barW = Math.max(1, (cw / data.length) * 0.7);
+  const halfW = barW / 2;
+
+  data.forEach((d, i) => {
+    const bh = (d.volume / maxV) * chartH;
+    const isUp = d.close >= (d.open || d.close);
+    ctx.fillStyle = isUp ? 'rgba(63,185,80,0.35)' : 'rgba(248,81,73,0.3)';
+    ctx.fillRect(xPos(i) - halfW, pad.top + chartH - bh, barW, bh);
+  });
+}
+
+// ============================================================================
+// Chart Tooltip
+// ============================================================================
+function initChartTooltip(canvas) {
+  const tooltip = document.getElementById('tooltip');
+
+  canvas.addEventListener('mousemove', function(e) {
+    const meta = canvas._chartMeta;
+    if (!meta) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const scaleX = canvas.width / rect.width;
+    const scaledX = mx * scaleX;
+
+    // Find closest data point
+    let closestIdx = 0, closestDist = Infinity;
+    meta.data.forEach((d, i) => {
+      const px = meta.xPos(i);
+      const dist = Math.abs(scaledX - px);
+      if (dist < closestDist) { closestDist = dist; closestIdx = i; }
+    });
+
+    if (closestDist > 30) {
+      tooltip.style.display = 'none';
+      return;
+    }
+
+    const d = meta.data[closestIdx];
+    tooltip.querySelector('.tt-date').textContent = d.date;
+    const val = meta.isCandle ? d.close : d.close;
+    tooltip.querySelector('.tt-val').textContent = val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    tooltip.style.display = '';
+    tooltip.style.left = (e.clientX + 14) + 'px';
+    tooltip.style.top = (e.clientY - 40) + 'px';
+  });
+
+  canvas.addEventListener('mouseleave', function() {
+    tooltip.style.display = 'none';
+  });
+}
+
+// ============================================================================
+// Tabs
+// ============================================================================
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    const mode = t.dataset.tab;
+    const isTimeline = mode === 'timeline', isStory = mode === 'story', isCompare = mode === 'compare';
+    document.getElementById('filterBar').style.display = isTimeline ? '' : 'none';
+    document.getElementById('searchWrap').style.display = isTimeline ? '' : 'none';
+    document.getElementById('eventList').style.display = isTimeline ? '' : 'none';
+    document.getElementById('storyView').classList.toggle('active', isStory);
+    document.getElementById('compareView').classList.toggle('active', isCompare);
+    if (isStory) renderStoryMode();
+    if (isCompare) initCompareView();
+  });
+});
+
+// ============================================================================
+// Compare Tool
+// ============================================================================
+function initCompareView() {
+  const selA = document.getElementById('cmpEventA');
+  const selB = document.getElementById('cmpEventB');
+  if (selA.options.length > 1) return;
+
+  const sorted = [...allEvents].sort((a, b) => b.date.localeCompare(a.date));
+  const opts = sorted.map(e =>
+    `<option value="${e.id}">${e.date.slice(0,4)} ${e.title_zh.slice(0,20)}</option>`
+  ).join('');
+  selA.innerHTML = '<option value="">— 选择事件A —</option>' + opts;
+  selB.innerHTML = '<option value="">— 选择事件B —</option>' + opts;
+
+  const evt031 = allEvents.find(e => e.id === 'evt-031');
+  const evt046 = allEvents.find(e => e.id === 'evt-046');
+  if (evt031) selA.value = 'evt-031';
+  if (evt046) selB.value = 'evt-046';
+
+  selA.addEventListener('change', runComparison);
+  selB.addEventListener('change', runComparison);
+  if (evt031 && evt046) runComparison();
+}
+
+async function runComparison() {
+  const idA = document.getElementById('cmpEventA').value;
+  const idB = document.getElementById('cmpEventB').value;
+  if (!idA || !idB) return;
+
+  const evA = allEvents.find(e => e.id === idA);
+  const evB = allEvents.find(e => e.id === idB);
+  if (!evA || !evB) return;
+
+  const before = 120, after = 120;
+  const startA = isoDate(addDays(parseDate(evA.date), -before));
+  const endA   = isoDate(addDays(parseDate(evA.date), after));
+  const startB = isoDate(addDays(parseDate(evB.date), -before));
+  const endB   = isoDate(addDays(parseDate(evB.date), after));
+
+  try {
+    const [resA, resB] = await Promise.all([
+      fetchJSON(`/api/daily?code=000001&start=${startA}&end=${endA}`),
+      fetchJSON(`/api/daily?code=000001&start=${startB}&end=${endB}`)
+    ]);
+    const dataA = resA.data || [], dataB = resB.data || [];
+    if (dataA.length < 10 || dataB.length < 10) return;
+
+    const evDateA = parseDate(evA.date).getTime();
+    const evDateB = parseDate(evB.date).getTime();
+    let idxA = 0, idxB = 0, minDiffA = Infinity, minDiffB = Infinity;
+    dataA.forEach((d, i) => { const diff = Math.abs(new Date(d.date).getTime() - evDateA); if (diff < minDiffA) { minDiffA = diff; idxA = i; } });
+    dataB.forEach((d, i) => { const diff = Math.abs(new Date(d.date).getTime() - evDateB); if (diff < minDiffB) { minDiffB = diff; idxB = i; } });
+
+    const winA = dataA.slice(Math.max(0, idxA - 30), Math.min(dataA.length, idxA + 31));
+    const winB = dataB.slice(Math.max(0, idxB - 30), Math.min(dataB.length, idxB + 31));
+    if (winA.length < 5 || winB.length < 5) return;
+
+    const baseA = winA[0].close, baseB = winB[0].close;
+    const retA = winA.map(d => ({ day: d.date, val: ((d.close - baseA) / baseA) * 100 }));
+    const retB = winB.map(d => ({ day: d.date, val: ((d.close - baseB) / baseB) * 100 }));
+
+    drawCompareChart(retA, retB, evA, evB);
+    renderCompareStats(retA, retB, evA, evB);
+  } catch (err) { console.error('Comparison error:', err); }
+}
+
+function drawCompareChart(retA, retB, evA, evB) {
+  const canvas = document.getElementById('compareChart');
+  const container = canvas.parentElement;
+  canvas.width = container.clientWidth - 10;
+  const W = canvas.width, H = canvas.height;
+  const pad = { top: 20, right: 20, bottom: 28, left: 48 };
+  const cw = W - pad.left - pad.right, ch = H - pad.top - pad.bottom;
+
+  let minV = Infinity, maxV = -Infinity;
+  [...retA, ...retB].forEach(r => { if (r.val < minV) minV = r.val; if (r.val > maxV) maxV = r.val; });
+  const range = maxV - minV || 1;
+  maxV += range * 0.1; minV -= range * 0.1;
+
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, W, H);
+
+  function drawLine(data, color, lineW) {
+    ctx.strokeStyle = color; ctx.lineWidth = lineW; ctx.lineJoin = 'round'; ctx.beginPath();
+    data.forEach((r, i) => {
+      const px = pad.left + (i / (data.length - 1)) * cw;
+      const py = pad.top + ch - ((r.val - minV) / (maxV - minV)) * ch;
+      i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    });
+    ctx.stroke();
+  }
+
+  // Grid
+  ctx.strokeStyle = 'rgba(139,148,158,0.10)'; ctx.lineWidth = 0.5;
+  for (let g = 0; g <= 4; g++) {
+    const gy = pad.top + (ch / 4) * g;
+    ctx.beginPath(); ctx.moveTo(pad.left, gy); ctx.lineTo(W - pad.right, gy); ctx.stroke();
+  }
+  // Zero line
+  const zy = pad.top + ch - ((0 - minV) / (maxV - minV)) * ch;
+  ctx.strokeStyle = 'rgba(139,148,158,0.3)'; ctx.lineWidth = 1;
+  ctx.setLineDash([5,5]); ctx.beginPath(); ctx.moveTo(pad.left, zy); ctx.lineTo(W - pad.right, zy); ctx.stroke(); ctx.setLineDash([]);
+
+  // Event day marker
+  const midX = pad.left + cw / 2;
+  ctx.strokeStyle = 'rgba(230,237,243,0.2)'; ctx.lineWidth = 1;
+  ctx.setLineDash([2,4]); ctx.beginPath(); ctx.moveTo(midX, pad.top); ctx.lineTo(midX, pad.top + ch); ctx.stroke(); ctx.setLineDash([]);
+
+  drawLine(retA, '#58A6FF', 2.2);
+  drawLine(retB, '#F0883E', 2.2);
+
+  // Y-axis labels
+  ctx.fillStyle = '#7D8590'; ctx.font = '10px -apple-system, sans-serif'; ctx.textAlign = 'right';
+  for (let g = 0; g <= 4; g++) {
+    const v = minV + (maxV - minV) * (g / 4);
+    const gy = pad.top + ch - (g / 4) * ch;
+    ctx.fillText(v.toFixed(1) + '%', pad.left - 6, gy + 3);
+  }
+
+  ctx.fillStyle = '#7D8590'; ctx.font = '11px -apple-system, sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('← 事件前', pad.left + cw * 0.2, H - 3);
+  ctx.fillText('事件日', midX, H - 3);
+  ctx.fillText('事件后 →', pad.left + cw * 0.8, H - 3);
+
+  // Tooltip metadata
+  const allPts = [];
+  const maxLen = Math.max(retA.length, retB.length);
+  for (let i = 0; i < maxLen; i++) {
+    const px = pad.left + (i / (maxLen - 1)) * cw;
+    allPts.push({ px, a: retA[i], b: retB[i] });
+  }
+  canvas._cmpMeta = { allPts, minV, maxV, pad, ch, evA, evB };
+}
+
+function renderCompareStats(retA, retB, evA, evB) {
+  function stats(ret) {
+    const vals = ret.map(r => r.val);
+    const n = vals.length;
+    const totalRet = vals[n-1];
+    const maxRet = Math.max(...vals);
+    const minRet = Math.min(...vals);
+    let peak = vals[0], maxDD = 0;
+    vals.forEach(v => { if (v > peak) peak = v; const dd = (peak - v); if (dd > maxDD) maxDD = dd; });
+    const mean = vals.reduce((a,b) => a+b, 0) / n;
+    const variance = vals.reduce((a,b) => a + (b-mean)**2, 0) / n;
+    const vol = Math.sqrt(variance);
+    return { totalRet, maxDD, maxRet, minRet, vol };
+  }
+  const sA = stats(retA), sB = stats(retB);
+  const rows = [
+    { label: '区间涨跌幅', a: sA.totalRet, b: sB.totalRet, fmt: v => (v>=0?'+':'')+v.toFixed(2)+'%', better: 'higher' },
+    { label: '最大回撤', a: sA.maxDD, b: sB.maxDD, fmt: v => '-'+v.toFixed(2)+'%', better: 'lower' },
+    { label: '最高收益', a: sA.maxRet, b: sB.maxRet, fmt: v => (v>=0?'+':'')+v.toFixed(2)+'%', better: 'higher' },
+    { label: '最低收益', a: sA.minRet, b: sB.minRet, fmt: v => (v>=0?'+':'')+v.toFixed(2)+'%', better: 'higher' },
+    { label: '波动率 (σ)', a: sA.vol, b: sB.vol, fmt: v => v.toFixed(2)+'%', better: 'lower' },
+  ];
+  document.getElementById('compareStats').innerHTML = rows.map(r => {
+    const aBetter = r.better === 'higher' ? r.a > r.b : r.a < r.b;
+    const bBetter = r.better === 'higher' ? r.b > r.a : r.b < r.a;
+    return `<div class="compare-stat">
+      <div class="s-label">${r.label}</div>
+      <div class="s-values">
+        <span class="s-val a" style="${aBetter?'font-weight:800':''}">${r.fmt(r.a)}</span>
+        <span class="s-val b" style="${bBetter?'font-weight:800':''}">${r.fmt(r.b)}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ============================================================================
+// Compare chart tooltip
+// ============================================================================
+function initCompareTooltip(canvas) {
+  const tooltip = document.getElementById('tooltip');
+  canvas.addEventListener('mousemove', function(e) {
+    const meta = canvas._cmpMeta;
+    if (!meta) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const scaleX = canvas.width / rect.width;
+    const scaledX = mx * scaleX;
+
+    let closest = null, closestDist = Infinity;
+    meta.allPts.forEach(pt => {
+      const dist = Math.abs(scaledX - pt.px);
+      if (dist < closestDist) { closestDist = dist; closest = pt; }
+    });
+
+    if (!closest || closestDist > 30) { tooltip.style.display = 'none'; return; }
+
+    const parts = [];
+    if (closest.a) parts.push(`<span style="color:#58A6FF">A: ${closest.a.val.toFixed(2)}%</span>`);
+    if (closest.b) parts.push(`<span style="color:#F0883E">B: ${closest.b.val.toFixed(2)}%</span>`);
+    tooltip.querySelector('.tt-date').innerHTML = (closest.a || closest.b).day;
+    tooltip.querySelector('.tt-val').innerHTML = parts.join(' &nbsp;');
+    tooltip.style.display = '';
+    tooltip.style.left = (e.clientX + 14) + 'px';
+    tooltip.style.top = (e.clientY - 40) + 'px';
+  });
+  canvas.addEventListener('mouseleave', function() { tooltip.style.display = 'none'; });
+}
+
+// ============================================================================
+// Utils
+// ============================================================================
+function parseDate(s) { const p = s.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
+function addDays(d, n) { const r = new Date(d); r.setDate(r.getDate() + n); return r; }
+function isoDate(d) { return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
+
+// ============================================================================
+// Story Mode
+// ============================================================================
+let storyViewMode = 'list'; // 'list' | 'detail'
+let currentStoryCycle = null;
+
+function renderStoryMode() {
+  if (!allCycles.length) {
+    document.getElementById('storyView').innerHTML = '<div class="loading"><span class="spinner"></span>加载故事线...</div>';
+    return;
+  }
+  storyViewMode = 'list';
+  const sorted = [...allCycles].sort((a, b) => a.start_date.localeCompare(b.start_date));
+
+  function fmtPct(v) { const sign = v >= 0 ? '+' : ''; return sign + v.toFixed(1) + '%'; }
+
+  const html = `
+    <div class="story-intro">
+      <h3>中国股市的牛熊轮回</h3>
+      <p>从1990年上交所开市至今，A股经历了${sorted.length}轮完整的牛熊周期。每一轮牛市都有它的驱动力，每一轮熊市都有它的教训。点击任意周期查看详情。</p>
+    </div>
+    ${sorted.map(cyc => {
+      const peak = cyc.peak_value || cyc.end_value;
+      const trough = cyc.trough_value || cyc.start_value;
+      const startV = cyc.start_value || 100;
+      const endV = cyc.end_value || startV;
+      const totalRet = ((endV - startV) / startV) * 100;
+      const isBull = cyc.type === 'bull';
+      const months = cyc.duration_months || '';
+      const keyEvents = (cyc.key_events || []).map(eid => allEvents.find(e => e.id === eid)).filter(Boolean);
+
+      return `<div class="cycle-card ${cyc.type}" data-cycle-id="${cyc.id}">
+        <div class="cyc-header">
+          <span class="cyc-name">${cyc.name_zh}</span>
+          <span class="cyc-badge" style="background:${isBull?'var(--green)':'var(--red)'}">${isBull?'牛市':'熊市'}</span>
+        </div>
+        <div class="cyc-meta">
+          <span>${cyc.start_date.slice(0,7)} → ${(cyc.end_date||'至今').slice(0,7)}</span>
+          ${months ? `<span>持续 <strong class="val">${months}</strong> 个月</span>` : ''}
+          <span>${startV.toFixed(0)} → ${endV.toFixed(0)} <strong class="val" style="color:${totalRet>=0?'var(--green)':'var(--red)'}">${fmtPct(totalRet)}</strong></span>
+        </div>
+        <div class="cyc-narrative">${cyc.narrative_zh || ''}</div>
+        ${keyEvents.length ? `<div class="cyc-events">${keyEvents.slice(0,5).map(e => `<span class="cyc-event-tag" data-event-id="${e.id}">${e.date.slice(0,4)} ${e.title_zh.slice(0,12)}</span>`).join('')}</div>` : ''}
+      </div>`;
+    }).join('')}
+  `;
+  document.getElementById('storyView').innerHTML = html;
+
+  // Cycle card click → show detail
+  document.querySelectorAll('.cycle-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      if (e.target.closest('.cyc-event-tag')) return;
+      const cycId = card.dataset.cycleId;
+      const cyc = allCycles.find(c => c.id === cycId);
+      if (cyc) showStoryDetail(cyc);
+    });
+  });
+
+  // Event tag click → show event detail
+  document.querySelectorAll('.cyc-event-tag').forEach(tag => {
+    tag.addEventListener('click', function(e) {
+      e.stopPropagation();
+      showDetail(tag.dataset.eventId);
+    });
+  });
+}
+
+function showStoryDetail(cyc) {
+  storyViewMode = 'detail';
+  currentStoryCycle = cyc;
+  const isBull = cyc.type === 'bull';
+  const peak = cyc.peak_value || cyc.end_value;
+  const trough = cyc.trough_value || cyc.start_value;
+  const startV = cyc.start_value || 100;
+  const endV = cyc.end_value || startV;
+  const totalRet = ((endV - startV) / startV) * 100;
+  const keyEvents = (cyc.key_events || []).map(eid => allEvents.find(e => e.id === eid)).filter(Boolean);
+
+  document.getElementById('storyView').innerHTML = `
+    <div style="padding: 8px 0 16px;">
+      <button class="chart-btn" onclick="renderStoryMode()" style="font-size:13px;padding:6px 14px;margin-bottom:14px;">← 返回故事线</button>
+      <div class="cycle-card ${cyc.type}" style="border-left-width:5px;cursor:default;">
+        <div class="cyc-header">
+          <span class="cyc-name" style="font-size:19px;">${cyc.name_zh}</span>
+          <span class="cyc-badge" style="background:${isBull?'var(--green)':'var(--red)'};font-size:13px;">${isBull?'牛市':'熊市'}</span>
+        </div>
+        <div class="cyc-meta" style="font-size:14px;">
+          <span>${cyc.start_date} → ${cyc.end_date || '至今'}</span>
+          ${cyc.duration_months ? `<span>持续 <strong class="val">${cyc.duration_months}</strong> 个月</span>` : ''}
+          <span>${startV.toFixed(0)} → ${endV.toFixed(0)} <strong class="val" style="color:${totalRet>=0?'var(--green)':'var(--red)'}">${totalRet>=0?'+':''}${totalRet.toFixed(1)}%</strong></span>
+        </div>
+        ${peak ? `<div class="cyc-meta" style="margin-bottom:12px;"><span>最高: <strong class="val">${peak.toFixed(0)}</strong> (${cyc.peak_date||''})</span>${trough ? `<span>最低: <strong class="val">${trough.toFixed(0)}</strong> (${cyc.trough_date||''})</span>` : ''}</div>` : ''}
+        <div class="cyc-narrative" style="-webkit-line-clamp:unset;">${cyc.narrative_zh || ''}</div>
+        ${keyEvents.length ? `
+        <div class="cyc-events-section" style="margin-top:16px;">
+          <h4>关键事件 (${keyEvents.length})</h4>
+          ${keyEvents.map(e => `
+            <div class="cyc-event-card" data-event-id="${e.id}">
+              <div class="ce-date">${e.date}</div>
+              <div class="ce-title">${e.title_zh}</div>
+            </div>
+          `).join('')}
+        </div>` : ''}
+      </div>
+    </div>
+  `;
+
+  // Event card click
+  document.querySelectorAll('.cyc-event-card').forEach(c => {
+    c.addEventListener('click', () => showDetail(c.dataset.eventId));
+  });
+}
+
+// ============================================================================
+// Boot
+// ============================================================================
+init();
+initChartTooltip(document.getElementById('miniChart'));
+initCompareTooltip(document.getElementById('compareChart'));
+</script>
+</body>
+</html>
