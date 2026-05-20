@@ -7,10 +7,13 @@
     "category": "milestone",
     "description_zh": "1990年12月19日，上海证券交易所正式开业，标志着中国现代资本市场的诞生。首批挂牌交易的仅有8只股票（史称'老八股'），包括延中实业、真空电子、飞乐音响等。上交所采用先进的电脑自动撮合交易系统，实现了证券交易的无纸化。开业首日，上证综合指数以100点为基准正式发布。同日，深圳证券交易所已于12月1日试营业。上交所的成立是中国经济体制改革的标志性事件，开启了资本市场服务实体经济的新篇章。此后三十余年，中国股市从'老八股'起步，逐步成长为全球第二大股票市场。",
     "market_data": {
-      "sh_close": 100.0,
+      "sh_close": 100,
       "change_pct": null
     },
-    "tags": ["exchange-foundation", "milestone"]
+    "tags": [
+      "exchange-foundation",
+      "milestone"
+    ]
   },
   {
     "id": "evt-002",
@@ -23,7 +26,11 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["exchange-foundation", "milestone", "shenzhen"]
+    "tags": [
+      "exchange-foundation",
+      "milestone",
+      "shenzhen"
+    ]
   },
   {
     "id": "evt-003",
@@ -36,7 +43,10 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["index", "milestone"]
+    "tags": [
+      "index",
+      "milestone"
+    ]
   },
   {
     "id": "evt-004",
@@ -49,7 +59,11 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["internationalization", "ipo", "milestone"]
+    "tags": [
+      "internationalization",
+      "ipo",
+      "milestone"
+    ]
   },
   {
     "id": "evt-005",
@@ -62,7 +76,38 @@
       "sh_close": 1266.49,
       "change_pct": 105.27
     },
-    "tags": ["reform", "price-liberalization", "market-surge", "volatility"]
+    "tags": [
+      "reform",
+      "price-liberalization",
+      "market-surge",
+      "volatility"
+    ],
+    "affected_sectors": [
+      {
+        "name": "金融",
+        "impact": "positive"
+      },
+      {
+        "name": "地产",
+        "impact": "positive"
+      },
+      {
+        "name": "浦东概念股",
+        "impact": "positive"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "豫园商城",
+        "code": "600655",
+        "role": "当时最高价股，达万元/股"
+      },
+      {
+        "name": "爱使股份",
+        "code": "600652",
+        "role": "老八股之一，521行情暴涨代表"
+      }
+    ]
   },
   {
     "id": "evt-006",
@@ -75,7 +120,12 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["scandal", "ipo", "regulation", "social-unrest"]
+    "tags": [
+      "scandal",
+      "ipo",
+      "regulation",
+      "social-unrest"
+    ]
   },
   {
     "id": "evt-007",
@@ -88,7 +138,11 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["regulation", "milestone", "institutional-building"]
+    "tags": [
+      "regulation",
+      "milestone",
+      "institutional-building"
+    ]
   },
   {
     "id": "evt-008",
@@ -101,7 +155,47 @@
       "sh_close": 1558.95,
       "change_pct": null
     },
-    "tags": ["bull", "peak", "southern-tour"]
+    "tags": [
+      "bull",
+      "peak",
+      "southern-tour"
+    ],
+    "affected_sectors": [
+      {
+        "name": "浦东概念股",
+        "impact": "positive"
+      },
+      {
+        "name": "金融",
+        "impact": "positive"
+      },
+      {
+        "name": "商业百货",
+        "impact": "positive"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "豫园商城",
+        "code": "600655",
+        "role": "当时A股最高价股，突破万元"
+      },
+      {
+        "name": "四川长虹",
+        "code": "600839",
+        "role": "当时第一蓝筹股"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "上证综指点位",
+        "value": "1558点"
+      },
+      {
+        "label": "后续最大跌幅",
+        "value": "79%（跌至325点）"
+      }
+    ]
   },
   {
     "id": "evt-009",
@@ -114,7 +208,11 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["fund", "milestone", "institutional-investor"]
+    "tags": [
+      "fund",
+      "milestone",
+      "institutional-investor"
+    ]
   },
   {
     "id": "evt-010",
@@ -127,7 +225,48 @@
       "sh_close": 333.92,
       "change_pct": null
     },
-    "tags": ["bear", "trough", "rescue-policy", "volatility"]
+    "tags": [
+      "bear",
+      "trough",
+      "rescue-policy",
+      "volatility"
+    ],
+    "affected_sectors": [
+      {
+        "name": "全市场",
+        "impact": "negative"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "马钢股份",
+        "code": "600808",
+        "role": "325点时最低价股，仅0.20元/股"
+      },
+      {
+        "name": "四川长虹",
+        "code": "600839",
+        "role": "第一蓝筹股，随后成为1996年牛市龙头"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "上证综指点位",
+        "value": "325.89点"
+      },
+      {
+        "label": "上证综指市盈率",
+        "value": "约12倍"
+      },
+      {
+        "label": "上证综指市净率",
+        "value": "约1.5倍"
+      },
+      {
+        "label": "从1558点最大跌幅",
+        "value": "79.1%"
+      }
+    ]
   },
   {
     "id": "evt-011",
@@ -140,7 +279,11 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["regulation", "rescue", "policy-intervention"]
+    "tags": [
+      "regulation",
+      "rescue",
+      "policy-intervention"
+    ]
   },
   {
     "id": "evt-012",
@@ -153,7 +296,11 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["regulation", "trading-rule", "speculation"]
+    "tags": [
+      "regulation",
+      "trading-rule",
+      "speculation"
+    ]
   },
   {
     "id": "evt-013",
@@ -166,7 +313,28 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["scandal", "futures", "market-manipulation", "bond"]
+    "tags": [
+      "scandal",
+      "futures",
+      "market-manipulation",
+      "bond"
+    ],
+    "affected_sectors": [
+      {
+        "name": "期货公司",
+        "impact": "negative"
+      },
+      {
+        "name": "证券公司",
+        "impact": "negative"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "事件结果",
+        "value": "万国证券被申银证券合并，总裁管金生入狱17年"
+      }
+    ]
   },
   {
     "id": "evt-014",
@@ -179,7 +347,36 @@
       "sh_close": 1000.02,
       "change_pct": -9.91
     },
-    "tags": ["regulation", "crash", "price-limit", "policy-intervention"]
+    "tags": [
+      "regulation",
+      "crash",
+      "price-limit",
+      "policy-intervention"
+    ],
+    "affected_sectors": [
+      {
+        "name": "全市场",
+        "impact": "negative"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "两日跌幅",
+        "value": "约30%"
+      },
+      {
+        "label": "蒸发市值（估算）",
+        "value": "约2500亿元"
+      }
+    ],
+    "references": [
+      {
+        "type": "news",
+        "title": "人民日报特约评论员：正确认识当前股票市场",
+        "url": "https://www.people.com.cn/",
+        "date": "1996-12-16"
+      }
+    ]
   },
   {
     "id": "evt-015",
@@ -192,7 +389,10 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["milestone", "political-event"]
+    "tags": [
+      "milestone",
+      "political-event"
+    ]
   },
   {
     "id": "evt-016",
@@ -205,7 +405,11 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["bear", "external-shock", "financial-crisis"]
+    "tags": [
+      "bear",
+      "external-shock",
+      "financial-crisis"
+    ]
   },
   {
     "id": "evt-017",
@@ -218,7 +422,11 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["regulation", "delisting", "st-system"]
+    "tags": [
+      "regulation",
+      "delisting",
+      "st-system"
+    ]
   },
   {
     "id": "evt-018",
@@ -231,7 +439,11 @@
       "sh_close": 1059.87,
       "change_pct": 4.64
     },
-    "tags": ["bull", "tech-bubble", "policy-driven"]
+    "tags": [
+      "bull",
+      "tech-bubble",
+      "policy-driven"
+    ]
   },
   {
     "id": "evt-019",
@@ -244,7 +456,11 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["regulation", "legislation", "legal-framework"]
+    "tags": [
+      "regulation",
+      "legislation",
+      "legal-framework"
+    ]
   },
   {
     "id": "evt-020",
@@ -257,7 +473,35 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["bull", "milestone", "market-manipulation", "tech-bubble"]
+    "tags": [
+      "bull",
+      "milestone",
+      "market-manipulation",
+      "tech-bubble"
+    ],
+    "affected_sectors": [
+      {
+        "name": "科技网络股",
+        "impact": "positive"
+      },
+      {
+        "name": "计算机应用",
+        "impact": "positive"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "亿安科技",
+        "code": "000008",
+        "role": "A股首只百元股，最高达126.31元，后被证监会查处"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "亿安科技最高价",
+        "value": "126.31元"
+      }
+    ]
   },
   {
     "id": "evt-021",
@@ -270,7 +514,32 @@
       "sh_close": 2245.44,
       "change_pct": null
     },
-    "tags": ["bear", "peak", "state-share-reduction", "policy-risk"]
+    "tags": [
+      "bear",
+      "peak",
+      "state-share-reduction",
+      "policy-risk"
+    ],
+    "affected_sectors": [
+      {
+        "name": "国有上市公司（钢铁、石化、电力）",
+        "impact": "negative"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "国有股减持消息公布后上证跌幅",
+        "value": "约40%（2245→1339）"
+      }
+    ],
+    "references": [
+      {
+        "type": "policy",
+        "title": "减持国有股筹集社会保障资金管理暂行办法",
+        "url": "https://www.gov.cn/",
+        "date": "2001-06-12"
+      }
+    ]
   },
   {
     "id": "evt-022",
@@ -283,7 +552,11 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["regulation", "policy-reversal", "state-share"]
+    "tags": [
+      "regulation",
+      "policy-reversal",
+      "state-share"
+    ]
   },
   {
     "id": "evt-023",
@@ -296,7 +569,12 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["internationalization", "reform", "qeii", "opening-up"]
+    "tags": [
+      "internationalization",
+      "reform",
+      "qeii",
+      "opening-up"
+    ]
   },
   {
     "id": "evt-024",
@@ -309,7 +587,12 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["reform", "policy", "guo-jiu-tiao", "capital-market"]
+    "tags": [
+      "reform",
+      "policy",
+      "guo-jiu-tiao",
+      "capital-market"
+    ]
   },
   {
     "id": "evt-025",
@@ -322,7 +605,12 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["milestone", "sme-board", "shenzhen", "multi-level-market"]
+    "tags": [
+      "milestone",
+      "sme-board",
+      "shenzhen",
+      "multi-level-market"
+    ]
   },
   {
     "id": "evt-026",
@@ -335,7 +623,10 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["regulation", "tax-reduction"]
+    "tags": [
+      "regulation",
+      "tax-reduction"
+    ]
   },
   {
     "id": "evt-027",
@@ -348,7 +639,12 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["reform", "share-structure", "defining-moment", "institutional-change"]
+    "tags": [
+      "reform",
+      "share-structure",
+      "defining-moment",
+      "institutional-change"
+    ]
   },
   {
     "id": "evt-028",
@@ -361,7 +657,37 @@
       "sh_close": 1034.38,
       "change_pct": null
     },
-    "tags": ["bear", "trough", "historic-bottom", "turning-point"]
+    "tags": [
+      "bear",
+      "trough",
+      "historic-bottom",
+      "turning-point"
+    ],
+    "notable_stocks": [
+      {
+        "name": "中信证券",
+        "code": "600030",
+        "role": "2005年上市，随后成为6124大牛市龙头"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "上证综指点位",
+        "value": "998.23点"
+      },
+      {
+        "label": "上证综指市盈率",
+        "value": "约15倍"
+      },
+      {
+        "label": "上证综指市净率",
+        "value": "约1.7倍"
+      },
+      {
+        "label": "从2245点最大跌幅",
+        "value": "55.5%"
+      }
+    ]
   },
   {
     "id": "evt-029",
@@ -374,7 +700,11 @@
       "sh_close": null,
       "change_pct": 8.21
     },
-    "tags": ["bull", "rebound", "turning-point"]
+    "tags": [
+      "bull",
+      "rebound",
+      "turning-point"
+    ]
   },
   {
     "id": "evt-030",
@@ -387,7 +717,11 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["ipo", "reform", "regulation"]
+    "tags": [
+      "ipo",
+      "reform",
+      "regulation"
+    ]
   },
   {
     "id": "evt-031",
@@ -400,7 +734,43 @@
       "sh_close": 4053.09,
       "change_pct": -6.5
     },
-    "tags": ["crash", "stamp-tax", "policy-risk", "whipsaw"]
+    "tags": [
+      "crash",
+      "stamp-tax",
+      "policy-risk",
+      "whipsaw"
+    ],
+    "affected_sectors": [
+      {
+        "name": "蓝筹股",
+        "impact": "positive"
+      },
+      {
+        "name": "题材股/小盘股",
+        "impact": "negative"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "中国平安",
+        "code": "601318",
+        "role": "蓝筹代表，530后受益于风格切换"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "跌停个股数",
+        "value": "近900只"
+      },
+      {
+        "label": "蒸发市值",
+        "value": "约1.2万亿元"
+      },
+      {
+        "label": "当日两市成交额",
+        "value": "约4160亿元（当时历史第二高）"
+      }
+    ]
   },
   {
     "id": "evt-032",
@@ -413,7 +783,11 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["internationalization", "capital-account", "hk-stocks"]
+    "tags": [
+      "internationalization",
+      "capital-account",
+      "hk-stocks"
+    ]
   },
   {
     "id": "evt-033",
@@ -426,7 +800,42 @@
       "sh_close": 6092.06,
       "change_pct": null
     },
-    "tags": ["bull", "peak", "all-time-high", "landmark"]
+    "tags": [
+      "bull",
+      "peak",
+      "all-time-high",
+      "landmark"
+    ],
+    "notable_stocks": [
+      {
+        "name": "中国船舶",
+        "code": "600150",
+        "role": "首只突破300元的股票，牛市标杆"
+      },
+      {
+        "name": "中国铝业",
+        "code": "601600",
+        "role": "有色板块龙头，牛市涨幅超10倍"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "上证综指点位",
+        "value": "6124.04点"
+      },
+      {
+        "label": "上证综指市盈率",
+        "value": "约56倍"
+      },
+      {
+        "label": "上证综指市净率",
+        "value": "约7.1倍"
+      },
+      {
+        "label": "从998点累计涨幅",
+        "value": "513%"
+      }
+    ]
   },
   {
     "id": "evt-034",
@@ -439,7 +848,11 @@
       "sh_close": null,
       "change_pct": 9.29
     },
-    "tags": ["regulation", "tax-reduction", "rescue"]
+    "tags": [
+      "regulation",
+      "tax-reduction",
+      "rescue"
+    ]
   },
   {
     "id": "evt-035",
@@ -452,7 +865,12 @@
       "sh_close": 1895.84,
       "change_pct": -1.72
     },
-    "tags": ["regulation", "rescue", "combo-measures", "huijin"]
+    "tags": [
+      "regulation",
+      "rescue",
+      "combo-measures",
+      "huijin"
+    ]
   },
   {
     "id": "evt-036",
@@ -465,7 +883,60 @@
       "sh_close": 1771.82,
       "change_pct": 2.81
     },
-    "tags": ["crash", "trough", "global-financial-crisis", "v-reversal"]
+    "tags": [
+      "crash",
+      "trough",
+      "global-financial-crisis",
+      "v-reversal"
+    ],
+    "affected_sectors": [
+      {
+        "name": "券商",
+        "impact": "positive"
+      },
+      {
+        "name": "银行",
+        "impact": "positive"
+      },
+      {
+        "name": "出口行业",
+        "impact": "negative"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "中信证券",
+        "code": "600030",
+        "role": "反弹龙头，率先触底反弹"
+      },
+      {
+        "name": "中国平安",
+        "code": "601318",
+        "role": "金融股反弹代表"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "上证综指点位",
+        "value": "1664.93点"
+      },
+      {
+        "label": "上证综指市盈率",
+        "value": "约13倍"
+      },
+      {
+        "label": "上证综指市净率",
+        "value": "约2.1倍"
+      },
+      {
+        "label": "从6124点最大跌幅",
+        "value": "72.8%"
+      },
+      {
+        "label": "蒸发市值（峰值至谷底）",
+        "value": "约22.6万亿元"
+      }
+    ]
   },
   {
     "id": "evt-037",
@@ -478,7 +949,68 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["regulation", "fiscal-stimulus", "economic-rescue"]
+    "tags": [
+      "regulation",
+      "fiscal-stimulus",
+      "economic-rescue"
+    ],
+    "affected_sectors": [
+      {
+        "name": "基建",
+        "impact": "positive"
+      },
+      {
+        "name": "钢铁",
+        "impact": "positive"
+      },
+      {
+        "name": "水泥",
+        "impact": "positive"
+      },
+      {
+        "name": "有色金属",
+        "impact": "positive"
+      },
+      {
+        "name": "工程机械",
+        "impact": "positive"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "海螺水泥",
+        "code": "600585",
+        "role": "四万亿刺激最受益基建龙头"
+      },
+      {
+        "name": "三一重工",
+        "code": "600031",
+        "role": "工程机械龙头，业绩增长数倍"
+      },
+      {
+        "name": "宝钢股份",
+        "code": "600019",
+        "role": "钢铁行业龙头"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "刺激计划总规模",
+        "value": "4万亿元"
+      },
+      {
+        "label": "上证反弹幅度（1664→3478）",
+        "value": "109%"
+      }
+    ],
+    "references": [
+      {
+        "type": "policy",
+        "title": "国务院常务会议关于扩大内需促进经济增长的十项措施",
+        "url": "https://www.gov.cn/",
+        "date": "2008-11-05"
+      }
+    ]
   },
   {
     "id": "evt-038",
@@ -491,7 +1023,12 @@
       "sh_close": 2995.85,
       "change_pct": 1.2
     },
-    "tags": ["milestone", "chinext", "multi-level-market", "shenzhen"]
+    "tags": [
+      "milestone",
+      "chinext",
+      "multi-level-market",
+      "shenzhen"
+    ]
   },
   {
     "id": "evt-039",
@@ -504,7 +1041,24 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["reform", "margin-trading", "innovation", "leverage"]
+    "tags": [
+      "reform",
+      "margin-trading",
+      "innovation",
+      "leverage"
+    ],
+    "affected_sectors": [
+      {
+        "name": "券商",
+        "impact": "positive"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "首批标的",
+        "value": "90只"
+      }
+    ]
   },
   {
     "id": "evt-040",
@@ -517,7 +1071,26 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["milestone", "derivatives", "futures", "risk-management"]
+    "tags": [
+      "milestone",
+      "derivatives",
+      "futures",
+      "risk-management"
+    ],
+    "affected_sectors": [
+      {
+        "name": "期货概念",
+        "impact": "positive"
+      },
+      {
+        "name": "券商",
+        "impact": "positive"
+      },
+      {
+        "name": "权重蓝筹",
+        "impact": "positive"
+      }
+    ]
   },
   {
     "id": "evt-041",
@@ -530,7 +1103,40 @@
       "sh_close": 1959.51,
       "change_pct": -0.19
     },
-    "tags": ["crash", "liquidity-crisis", "money-shortage", "v-reversal"]
+    "tags": [
+      "crash",
+      "liquidity-crisis",
+      "money-shortage",
+      "v-reversal"
+    ],
+    "affected_sectors": [
+      {
+        "name": "银行",
+        "impact": "negative"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "工商银行",
+        "code": "601398",
+        "role": "银行间拆借利率飙升核心标的"
+      },
+      {
+        "name": "兴业银行",
+        "code": "601166",
+        "role": "同业业务占比高，受冲击最大"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "蒸发市值",
+        "value": "约2.84万亿元"
+      },
+      {
+        "label": "上证跌幅（14个交易日）",
+        "value": "约20%"
+      }
+    ]
   },
   {
     "id": "evt-042",
@@ -543,7 +1149,12 @@
       "sh_close": 2068.45,
       "change_pct": -0.65
     },
-    "tags": ["scandal", "fat-finger", "algo-trading", "market-error"]
+    "tags": [
+      "scandal",
+      "fat-finger",
+      "algo-trading",
+      "market-error"
+    ]
   },
   {
     "id": "evt-043",
@@ -556,7 +1167,12 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["reform", "policy", "guo-jiu-tiao", "capital-market"]
+    "tags": [
+      "reform",
+      "policy",
+      "guo-jiu-tiao",
+      "capital-market"
+    ]
   },
   {
     "id": "evt-044",
@@ -569,7 +1185,12 @@
       "sh_close": 2474.01,
       "change_pct": -0.19
     },
-    "tags": ["milestone", "internationalization", "stock-connect", "opening-up"]
+    "tags": [
+      "milestone",
+      "internationalization",
+      "stock-connect",
+      "opening-up"
+    ]
   },
   {
     "id": "evt-045",
@@ -582,7 +1203,26 @@
       "sh_close": 2486.79,
       "change_pct": 1.39
     },
-    "tags": ["bull", "monetary-policy", "rate-cut", "leverage"]
+    "tags": [
+      "bull",
+      "monetary-policy",
+      "rate-cut",
+      "leverage"
+    ],
+    "affected_sectors": [
+      {
+        "name": "房地产",
+        "impact": "positive"
+      },
+      {
+        "name": "券商",
+        "impact": "positive"
+      },
+      {
+        "name": "高负债行业",
+        "impact": "positive"
+      }
+    ]
   },
   {
     "id": "evt-046",
@@ -595,7 +1235,57 @@
       "sh_close": 5166.35,
       "change_pct": 0.87
     },
-    "tags": ["bull", "peak", "leverage", "margin-trading"]
+    "tags": [
+      "bull",
+      "peak",
+      "leverage",
+      "margin-trading"
+    ],
+    "affected_sectors": [
+      {
+        "name": "互联网金融",
+        "impact": "negative"
+      },
+      {
+        "name": "券商",
+        "impact": "negative"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "安硕信息",
+        "code": "300380",
+        "role": "首只400元股，随后暴跌超过90%"
+      },
+      {
+        "name": "全通教育",
+        "code": "300359",
+        "role": "在线教育概念龙头，泡沫破灭后暴跌"
+      },
+      {
+        "name": "东方财富",
+        "code": "300059",
+        "role": "互联网券商龙头，配资相关标的"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "上证综指点位",
+        "value": "5178.19点"
+      },
+      {
+        "label": "上证综指市盈率",
+        "value": "约23倍"
+      },
+      {
+        "label": "两市两融余额",
+        "value": "2.27万亿元（历史最高）"
+      },
+      {
+        "label": "场外配资规模（估算）",
+        "value": "约4-5万亿元"
+      }
+    ]
   },
   {
     "id": "evt-047",
@@ -606,9 +1296,30 @@
     "description_zh": "2015年6月13日（周六），证监会发布通知要求各券商清理场外配资账户。6月15日（周一），上证指数重挫2%，深成指暴跌2.88%，拉开了2015年股灾的序幕。此后数周公募基金赎回压力骤增、两融标的被强制平仓，多米诺骨牌效应逐渐扩散为千股跌停的金融灾难。18个交易日内上证指数从5178点暴跌至3400点以下，市场陷入极度恐慌。",
     "market_data": {
       "sh_close": null,
-      "change_pct": -2.0
+      "change_pct": -2
     },
-    "tags": ["crash", "regulation", "margin-financing", "deleveraging"]
+    "tags": [
+      "crash",
+      "regulation",
+      "margin-financing",
+      "deleveraging"
+    ],
+    "affected_sectors": [
+      {
+        "name": "互联网金融",
+        "impact": "negative"
+      },
+      {
+        "name": "券商",
+        "impact": "negative"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "蒸发市值（单日）",
+        "value": "约2万亿元"
+      }
+    ]
   },
   {
     "id": "evt-048",
@@ -621,7 +1332,18 @@
       "sh_close": 3775.91,
       "change_pct": 2.41
     },
-    "tags": ["crash", "rescue", "national-team", "bailout"]
+    "tags": [
+      "crash",
+      "rescue",
+      "national-team",
+      "bailout"
+    ],
+    "key_numbers": [
+      {
+        "label": "当日跌停个股数",
+        "value": "约1350只"
+      }
+    ]
   },
   {
     "id": "evt-049",
@@ -634,7 +1356,26 @@
       "sh_close": 3296.26,
       "change_pct": -6.86
     },
-    "tags": ["crash", "circuit-breaker", "regulation-failure", "policy-error"]
+    "tags": [
+      "crash",
+      "circuit-breaker",
+      "regulation-failure",
+      "policy-error"
+    ],
+    "key_numbers": [
+      {
+        "label": "熔断次数",
+        "value": "4天2次熔断"
+      },
+      {
+        "label": "跌停个股数",
+        "value": "超过1600只"
+      },
+      {
+        "label": "蒸发市值（4天）",
+        "value": "约6.6万亿元"
+      }
+    ]
   },
   {
     "id": "evt-050",
@@ -644,10 +1385,14 @@
     "category": "crash",
     "description_zh": "2016年1月7日，A股开盘仅13分钟就触发二次熔断，全天交易停止。上证指数暴跌7.04%收报3125.00点，近1800只个股跌停。当晚，上交所、深交所、中金所联合宣布自1月8日起暂停实施指数熔断机制。熔断机制仅运行4个交易日即宣告夭折，成为中国资本市场历史上寿命最短的制度创新之一。",
     "market_data": {
-      "sh_close": 3125.0,
+      "sh_close": 3125,
       "change_pct": -7.04
     },
-    "tags": ["crash", "circuit-breaker", "regulation-failure"]
+    "tags": [
+      "crash",
+      "circuit-breaker",
+      "regulation-failure"
+    ]
   },
   {
     "id": "evt-051",
@@ -660,7 +1405,11 @@
       "sh_close": 3204.71,
       "change_pct": -1.21
     },
-    "tags": ["milestone", "internationalization", "stock-connect"]
+    "tags": [
+      "milestone",
+      "internationalization",
+      "stock-connect"
+    ]
   },
   {
     "id": "evt-052",
@@ -673,7 +1422,12 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["milestone", "internationalization", "msci", "passive-investing"]
+    "tags": [
+      "milestone",
+      "internationalization",
+      "msci",
+      "passive-investing"
+    ]
   },
   {
     "id": "evt-053",
@@ -686,7 +1440,12 @@
       "sh_close": 3075.14,
       "change_pct": -0.66
     },
-    "tags": ["milestone", "internationalization", "msci", "foreign-capital"]
+    "tags": [
+      "milestone",
+      "internationalization",
+      "msci",
+      "foreign-capital"
+    ]
   },
   {
     "id": "evt-054",
@@ -699,7 +1458,12 @@
       "sh_close": 2665.43,
       "change_pct": -0.41
     },
-    "tags": ["reform", "star-market", "registration-ipo", "policy-announcement"]
+    "tags": [
+      "reform",
+      "star-market",
+      "registration-ipo",
+      "policy-announcement"
+    ]
   },
   {
     "id": "evt-055",
@@ -712,7 +1476,12 @@
       "sh_close": 2886.97,
       "change_pct": -1.27
     },
-    "tags": ["milestone", "star-market", "registration-ipo", "tech-board"]
+    "tags": [
+      "milestone",
+      "star-market",
+      "registration-ipo",
+      "tech-board"
+    ]
   },
   {
     "id": "evt-056",
@@ -725,7 +1494,12 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["regulation", "securities-law", "registration-system", "legal-reform"]
+    "tags": [
+      "regulation",
+      "securities-law",
+      "registration-system",
+      "legal-reform"
+    ]
   },
   {
     "id": "evt-057",
@@ -738,7 +1512,61 @@
       "sh_close": 2746.61,
       "change_pct": -7.72
     },
-    "tags": ["crash", "covid-19", "external-shock", "rebound"]
+    "tags": [
+      "crash",
+      "covid-19",
+      "external-shock",
+      "rebound"
+    ],
+    "affected_sectors": [
+      {
+        "name": "医药",
+        "impact": "positive"
+      },
+      {
+        "name": "在线办公/教育",
+        "impact": "positive"
+      },
+      {
+        "name": "消费",
+        "impact": "negative"
+      },
+      {
+        "name": "旅游",
+        "impact": "negative"
+      },
+      {
+        "name": "航空",
+        "impact": "negative"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "迈瑞医疗",
+        "code": "300760",
+        "role": "医疗器械龙头"
+      },
+      {
+        "name": "英科医疗",
+        "code": "300677",
+        "role": "手套概念涨幅超10倍"
+      },
+      {
+        "name": "中国中免",
+        "code": "601888",
+        "role": "免税龙头，疫情承压后强势反弹"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "跌停个股数",
+        "value": "超3000只"
+      },
+      {
+        "label": "蒸发市值（单日）",
+        "value": "约4.5万亿元"
+      }
+    ]
   },
   {
     "id": "evt-058",
@@ -751,7 +1579,11 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["regulation", "securities-law", "investor-protection"]
+    "tags": [
+      "regulation",
+      "securities-law",
+      "investor-protection"
+    ]
   },
   {
     "id": "evt-059",
@@ -764,7 +1596,12 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["reform", "registration-ipo", "chinext", "20pct-limit"]
+    "tags": [
+      "reform",
+      "registration-ipo",
+      "chinext",
+      "20pct-limit"
+    ]
   },
   {
     "id": "evt-060",
@@ -777,7 +1614,12 @@
       "sh_close": 3550.4,
       "change_pct": -0.68
     },
-    "tags": ["regulation", "education-crackdown", "sector-wipeout", "policy-risk"]
+    "tags": [
+      "regulation",
+      "education-crackdown",
+      "sector-wipeout",
+      "policy-risk"
+    ]
   },
   {
     "id": "evt-061",
@@ -790,7 +1632,12 @@
       "sh_close": 3581.73,
       "change_pct": -0.43
     },
-    "tags": ["milestone", "beijing-exchange", "sme", "specialized-enterprises"]
+    "tags": [
+      "milestone",
+      "beijing-exchange",
+      "sme",
+      "specialized-enterprises"
+    ]
   },
   {
     "id": "evt-062",
@@ -803,7 +1650,11 @@
       "sh_close": 3533.3,
       "change_pct": -0.16
     },
-    "tags": ["milestone", "beijing-exchange", "multi-level-market"]
+    "tags": [
+      "milestone",
+      "beijing-exchange",
+      "multi-level-market"
+    ]
   },
   {
     "id": "evt-063",
@@ -816,7 +1667,53 @@
       "sh_close": 3675.36,
       "change_pct": null
     },
-    "tags": ["bull", "peak", "post-covid", "sector-rotation"]
+    "tags": [
+      "bull",
+      "peak",
+      "post-covid",
+      "sector-rotation"
+    ],
+    "affected_sectors": [
+      {
+        "name": "白酒",
+        "impact": "negative"
+      },
+      {
+        "name": "医药",
+        "impact": "negative"
+      },
+      {
+        "name": "新能源",
+        "impact": "negative"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "贵州茅台",
+        "code": "600519",
+        "role": "核心资产之王，从2600跌至1300"
+      },
+      {
+        "name": "宁德时代",
+        "code": "300750",
+        "role": "新能源标杆，高点回调超40%"
+      },
+      {
+        "name": "药明康德",
+        "code": "603259",
+        "role": "CXO龙头，高点回调超60%"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "上证综指点位",
+        "value": "3731.69点"
+      },
+      {
+        "label": "核心资产整体回调幅度",
+        "value": "超30%"
+      }
+    ]
   },
   {
     "id": "evt-064",
@@ -829,7 +1726,38 @@
       "sh_close": 3170.71,
       "change_pct": 3.48
     },
-    "tags": ["regulation", "policy-bottom", "market-rescue", "fsdc"]
+    "tags": [
+      "regulation",
+      "policy-bottom",
+      "market-rescue",
+      "fsdc"
+    ],
+    "affected_sectors": [
+      {
+        "name": "互联网平台",
+        "impact": "positive"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "腾讯控股",
+        "code": "0700.HK",
+        "role": "平台经济龙头，会议后大幅反弹"
+      },
+      {
+        "name": "美团",
+        "code": "3690.HK",
+        "role": "平台经济代表，政策底确立后反弹"
+      }
+    ],
+    "references": [
+      {
+        "type": "policy",
+        "title": "国务院金融委会议新闻稿",
+        "url": "https://www.gov.cn/",
+        "date": "2022-03-16"
+      }
+    ]
   },
   {
     "id": "evt-065",
@@ -842,7 +1770,32 @@
       "sh_close": 2958.28,
       "change_pct": null
     },
-    "tags": ["bear", "trough", "covid-lockdown", "economic-slowdown"]
+    "tags": [
+      "bear",
+      "trough",
+      "covid-lockdown",
+      "economic-slowdown"
+    ],
+    "affected_sectors": [
+      {
+        "name": "消费",
+        "impact": "negative"
+      },
+      {
+        "name": "旅游",
+        "impact": "negative"
+      },
+      {
+        "name": "核酸检测/防疫",
+        "impact": "positive"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "上证综指点位",
+        "value": "2863.65点"
+      }
+    ]
   },
   {
     "id": "evt-066",
@@ -855,7 +1808,38 @@
       "sh_close": 3078.55,
       "change_pct": null
     },
-    "tags": ["regulation", "property-rescue", "third-arrow", "real-estate"]
+    "tags": [
+      "regulation",
+      "property-rescue",
+      "third-arrow",
+      "real-estate"
+    ],
+    "affected_sectors": [
+      {
+        "name": "房地产",
+        "impact": "positive"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "万科A",
+        "code": "000002",
+        "role": "地产龙头，第三支箭直接受益"
+      },
+      {
+        "name": "保利发展",
+        "code": "600048",
+        "role": "央企地产龙头"
+      }
+    ],
+    "references": [
+      {
+        "type": "policy",
+        "title": "证监会恢复房企股权融资",
+        "url": "https://www.csrc.gov.cn/",
+        "date": "2022-11-28"
+      }
+    ]
   },
   {
     "id": "evt-067",
@@ -868,7 +1852,22 @@
       "sh_close": 3284.92,
       "change_pct": 0.9
     },
-    "tags": ["reform", "registration-system", "landmark", "ipo-reform"]
+    "tags": [
+      "reform",
+      "registration-system",
+      "landmark",
+      "ipo-reform"
+    ],
+    "affected_sectors": [
+      {
+        "name": "券商投行",
+        "impact": "positive"
+      },
+      {
+        "name": "ST壳资源",
+        "impact": "negative"
+      }
+    ]
   },
   {
     "id": "evt-068",
@@ -881,7 +1880,38 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["regulation", "stamp-tax", "market-support", "ipo-slowdown"]
+    "tags": [
+      "regulation",
+      "stamp-tax",
+      "market-support",
+      "ipo-slowdown"
+    ],
+    "affected_sectors": [
+      {
+        "name": "券商",
+        "impact": "positive"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "中信证券",
+        "code": "600030",
+        "role": "牛市旗手"
+      },
+      {
+        "name": "东方财富",
+        "code": "300059",
+        "role": "互联网券商龙头"
+      }
+    ],
+    "references": [
+      {
+        "type": "policy",
+        "title": "财政部、税务总局关于减半征收证券交易印花税的公告",
+        "url": "https://www.mof.gov.cn/",
+        "date": "2023-08-27"
+      }
+    ]
   },
   {
     "id": "evt-069",
@@ -894,7 +1924,12 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["reform", "policy", "guo-jiu-tiao", "high-quality-development"]
+    "tags": [
+      "reform",
+      "policy",
+      "guo-jiu-tiao",
+      "high-quality-development"
+    ]
   },
   {
     "id": "evt-070",
@@ -907,7 +1942,56 @@
       "sh_close": 2863.13,
       "change_pct": 4.15
     },
-    "tags": ["bull", "policy-bazooka", "monetary-easing", "market-surge"]
+    "tags": [
+      "bull",
+      "policy-bazooka",
+      "monetary-easing",
+      "market-surge"
+    ],
+    "affected_sectors": [
+      {
+        "name": "券商",
+        "impact": "positive"
+      },
+      {
+        "name": "金融科技",
+        "impact": "positive"
+      },
+      {
+        "name": "沪深300成分股",
+        "impact": "positive"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "东方财富",
+        "code": "300059",
+        "role": "牛市旗手+互联网券商"
+      },
+      {
+        "name": "中信证券",
+        "code": "600030",
+        "role": "券商龙头"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "首日北向资金净流入",
+        "value": "约120亿元"
+      },
+      {
+        "label": "行情启动后6日涨幅",
+        "value": "近30%"
+      }
+    ],
+    "references": [
+      {
+        "type": "policy",
+        "title": "央行、金融监管总局、证监会联合发布会",
+        "url": "https://www.pbc.gov.cn/",
+        "date": "2024-09-24"
+      }
+    ]
   },
   {
     "id": "evt-071",
@@ -920,7 +2004,20 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["bull", "politburo", "confidence", "policy-signal"]
+    "tags": [
+      "bull",
+      "politburo",
+      "confidence",
+      "policy-signal"
+    ],
+    "references": [
+      {
+        "type": "policy",
+        "title": "中共中央政治局会议公报",
+        "url": "https://www.gov.cn/",
+        "date": "2024-09-26"
+      }
+    ]
   },
   {
     "id": "evt-072",
@@ -933,7 +2030,35 @@
       "sh_close": 3489.78,
       "change_pct": 4.59
     },
-    "tags": ["bull", "record-volume", "market-frenzy", "retail-investors"]
+    "tags": [
+      "bull",
+      "record-volume",
+      "market-frenzy",
+      "retail-investors"
+    ],
+    "affected_sectors": [
+      {
+        "name": "券商",
+        "impact": "positive"
+      },
+      {
+        "name": "金融科技",
+        "impact": "positive"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "东方财富",
+        "code": "300059",
+        "role": "成交额创纪录主要受益者"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "两市成交额",
+        "value": "3.48万亿元（历史最高）"
+      }
+    ]
   },
   {
     "id": "evt-073",
@@ -946,7 +2071,12 @@
       "sh_close": 386.85,
       "change_pct": null
     },
-    "tags": ["crash", "trough", "bubble-burst", "volatility"]
+    "tags": [
+      "crash",
+      "trough",
+      "bubble-burst",
+      "volatility"
+    ]
   },
   {
     "id": "evt-074",
@@ -959,7 +2089,12 @@
       "sh_close": 2075.06,
       "change_pct": 9.45
     },
-    "tags": ["bull", "rescue", "limit-up", "policy-effect"]
+    "tags": [
+      "bull",
+      "rescue",
+      "limit-up",
+      "policy-effect"
+    ]
   },
   {
     "id": "evt-075",
@@ -972,7 +2107,22 @@
       "sh_close": 3209.91,
       "change_pct": -8.49
     },
-    "tags": ["crash", "global-selloff", "black-monday", "panic"]
+    "tags": [
+      "crash",
+      "global-selloff",
+      "black-monday",
+      "panic"
+    ],
+    "key_numbers": [
+      {
+        "label": "跌停个股数",
+        "value": "超2000只"
+      },
+      {
+        "label": "蒸发市值（单日）",
+        "value": "约3万亿元"
+      }
+    ]
   },
   {
     "id": "evt-076",
@@ -985,7 +2135,12 @@
       "sh_close": 2927.29,
       "change_pct": null
     },
-    "tags": ["crash", "trough", "deleveraging", "panic-bottom"]
+    "tags": [
+      "crash",
+      "trough",
+      "deleveraging",
+      "panic-bottom"
+    ]
   },
   {
     "id": "evt-077",
@@ -998,7 +2153,12 @@
       "sh_close": 2550.47,
       "change_pct": null
     },
-    "tags": ["bear", "trough", "trade-war", "policy-vow"]
+    "tags": [
+      "bear",
+      "trough",
+      "trade-war",
+      "policy-vow"
+    ]
   },
   {
     "id": "evt-078",
@@ -1011,7 +2171,30 @@
       "sh_close": 2514.87,
       "change_pct": null
     },
-    "tags": ["bear", "trough", "trade-war", "policy-easing"]
+    "tags": [
+      "bear",
+      "trough",
+      "trade-war",
+      "policy-easing"
+    ],
+    "notable_stocks": [
+      {
+        "name": "东方通信",
+        "code": "600776",
+        "role": "10倍牛股，2440底后暴涨"
+      },
+      {
+        "name": "中兴通讯",
+        "code": "000063",
+        "role": "贸易战核心标的"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "上证综指点位",
+        "value": "2440.91点"
+      }
+    ]
   },
   {
     "id": "evt-079",
@@ -1024,7 +2207,22 @@
       "sh_close": 2702.19,
       "change_pct": null
     },
-    "tags": ["bear", "trough", "national-team", "etf-rescue"]
+    "tags": [
+      "bear",
+      "trough",
+      "national-team",
+      "etf-rescue"
+    ],
+    "key_numbers": [
+      {
+        "label": "上证综指点位",
+        "value": "2635.09点"
+      },
+      {
+        "label": "蒸发市值（峰值起算）",
+        "value": "约8万亿元"
+      }
+    ]
   },
   {
     "id": "evt-080",
@@ -1037,7 +2235,12 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["regulation", "leadership-change", "csrc", "market-support"]
+    "tags": [
+      "regulation",
+      "leadership-change",
+      "csrc",
+      "market-support"
+    ]
   },
   {
     "id": "evt-081",
@@ -1050,7 +2253,11 @@
       "sh_close": null,
       "change_pct": null
     },
-    "tags": ["regulation", "monetary-policy", "rrr-cut"]
+    "tags": [
+      "regulation",
+      "monetary-policy",
+      "rrr-cut"
+    ]
   },
   {
     "id": "evt-082",
@@ -1063,7 +2270,47 @@
       "sh_close": 3087.29,
       "change_pct": 1.69
     },
-    "tags": ["regulation", "covid-reopening", "policy-pivot", "market-rally"]
+    "tags": [
+      "regulation",
+      "covid-reopening",
+      "policy-pivot",
+      "market-rally"
+    ],
+    "affected_sectors": [
+      {
+        "name": "消费",
+        "impact": "positive"
+      },
+      {
+        "name": "旅游",
+        "impact": "positive"
+      },
+      {
+        "name": "航空",
+        "impact": "positive"
+      },
+      {
+        "name": "餐饮",
+        "impact": "positive"
+      }
+    ],
+    "notable_stocks": [
+      {
+        "name": "中国中免",
+        "code": "601888",
+        "role": "免税龙头，防疫优化后显著受益"
+      },
+      {
+        "name": "锦江酒店",
+        "code": "600754",
+        "role": "酒店龙头，出行复苏直接受益"
+      },
+      {
+        "name": "上海机场",
+        "code": "600009",
+        "role": "航空枢纽，国际航线恢复受益"
+      }
+    ]
   },
   {
     "id": "evt-083",
@@ -1076,6 +2323,35 @@
       "sh_close": 3688.63,
       "change_pct": null
     },
-    "tags": ["bull", "slow-bull", "new-high", "structural-reform"]
+    "tags": [
+      "bull",
+      "slow-bull",
+      "new-high",
+      "structural-reform"
+    ],
+    "affected_sectors": [
+      {
+        "name": "银行",
+        "impact": "positive"
+      },
+      {
+        "name": "AI/机器人",
+        "impact": "positive"
+      },
+      {
+        "name": "新能源",
+        "impact": "positive"
+      }
+    ],
+    "key_numbers": [
+      {
+        "label": "上证综指点位",
+        "value": "约3674点"
+      },
+      {
+        "label": "日成交额",
+        "value": "约1.2-1.5万亿元"
+      }
+    ]
   }
 ]
