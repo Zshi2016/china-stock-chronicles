@@ -26,22 +26,17 @@ const PORT = parseInt(process.env.PORT, 10) || 3000;
 // Middleware
 // ---------------------------------------------------------------------------
 
-// CORS — open in development, restricted in production.
-if (process.env.NODE_ENV === 'production') {
-  const corsOrigins = process.env.CORS_ORIGIN
-    ? process.env.CORS_ORIGIN.split(',').map(s => s.trim())
-    : [];
+// CORS — public demo, open by default. Restrict via CORS_ORIGIN if needed.
+if (process.env.CORS_ORIGIN && process.env.CORS_ORIGIN !== '*') {
+  const corsOrigins = process.env.CORS_ORIGIN.split(',').map(s => s.trim());
   app.use(cors({
     origin(origin, callback) {
-      if (!origin || corsOrigins.includes(origin) || corsOrigins.includes('*')) {
-        return callback(null, true);
-      }
+      if (!origin || corsOrigins.includes(origin)) return callback(null, true);
       callback(new Error(`Origin ${origin} not allowed by CORS`));
     },
     credentials: true,
   }));
 } else {
-  // Development: allow everything (including file:// origins)
   app.use(cors());
 }
 
