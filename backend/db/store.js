@@ -98,7 +98,10 @@ function listEvents(opts = {}) {
     const q = opts.search.trim().toLowerCase();
     filtered = filtered.filter(e =>
       (e.title_zh && e.title_zh.toLowerCase().includes(q)) ||
-      (e.description_zh && e.description_zh.toLowerCase().includes(q))
+      (e.description_zh && e.description_zh.toLowerCase().includes(q)) ||
+      (e.tags && e.tags.some(t => t.toLowerCase().includes(q))) ||
+      (e.affected_sectors && e.affected_sectors.some(s => s.name.toLowerCase().includes(q))) ||
+      (e.notable_stocks && e.notable_stocks.some(s => s.name.toLowerCase().includes(q) || s.role.toLowerCase().includes(q) || s.code.includes(q)))
     );
   }
 
