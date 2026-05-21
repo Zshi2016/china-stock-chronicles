@@ -256,6 +256,28 @@ body {
 .related-card .r-date { font-size: 13px; color: var(--text-tertiary); margin-bottom: 3px; font-weight: 500; }
 .related-card .r-title { font-size: 15px; font-weight: 600; }
 
+/* ---- Enriched Data Sections ---- */
+.enrich-section { margin-bottom: 24px; }
+.enrich-section h3 { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; }
+.key-numbers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+.kn-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.kn-card .kn-label { font-size: 12px; color: var(--text-tertiary); margin-bottom: 4px; font-weight: 500; }
+.kn-card .kn-value { font-size: 17px; font-weight: 700; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+.sector-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.sector-chip { font-size: 13px; padding: 5px 14px; border-radius: 16px; font-weight: 600; white-space: nowrap; }
+.sector-chip.sector-up { background: rgba(77,175,145,0.1); color: var(--green); border: 1px solid rgba(77,175,145,0.2); }
+.sector-chip.sector-down { background: rgba(224,86,96,0.1); color: var(--red); border: 1px solid rgba(224,86,96,0.2); }
+.stocks-table { display: flex; flex-direction: column; gap: 4px; }
+.stock-row { display: flex; align-items: center; gap: 12px; padding: 8px 12px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; }
+.stock-row .stock-name { font-weight: 700; color: var(--text-primary); min-width: 80px; }
+.stock-row .stock-code { font-size: 12px; color: var(--text-tertiary); font-family: 'SF Mono', monospace; }
+.stock-row .stock-role { flex: 1; color: var(--text-secondary); font-size: 13px; }
+.ref-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; font-size: 13px; }
+.ref-row .ref-link { color: var(--accent-blue); text-decoration: none; font-weight: 500; transition: all 0.15s; }
+.ref-row .ref-link:hover { text-decoration: underline; color: var(--accent); }
+.ref-row .ref-type { font-size: 11px; padding: 2px 8px; border-radius: 8px; background: rgba(90,159,212,0.1); color: var(--accent-blue); white-space: nowrap; }
+.ref-row .ref-date { font-size: 11px; color: var(--text-tertiary); white-space: nowrap; }
+
 /* Loading / Error */
 .loading { text-align: center; padding: 56px 20px; color: var(--text-tertiary); font-size: 15px; }
 .spinner { display: inline-block; width: 22px; height: 22px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; margin-right: 10px; vertical-align: middle; }
@@ -963,6 +985,54 @@ function renderEventList(cat) {
 }
 
 // ============================================================================
+// Enriched data renderer
+// ============================================================================
+function renderEnrichedData(ev) {
+  let html = '';
+
+  // Key numbers
+  if (ev.key_numbers && ev.key_numbers.length) {
+    html += `<div class="enrich-section"><h3>关键数据</h3><div class="key-numbers-grid">`;
+    for (const kn of ev.key_numbers) {
+      html += `<div class="kn-card"><div class="kn-label">${kn.label}</div><div class="kn-value">${kn.value}</div></div>`;
+    }
+    html += `</div></div>`;
+  }
+
+  // Affected sectors
+  if (ev.affected_sectors && ev.affected_sectors.length) {
+    html += `<div class="enrich-section"><h3>影响板块</h3><div class="sector-chips">`;
+    for (const s of ev.affected_sectors) {
+      const cls = s.impact === 'positive' ? 'sector-up' : 'sector-down';
+      const arrow = s.impact === 'positive' ? '↑' : '↓';
+      html += `<span class="sector-chip ${cls}">${arrow} ${s.name}</span>`;
+    }
+    html += `</div></div>`;
+  }
+
+  // Notable stocks
+  if (ev.notable_stocks && ev.notable_stocks.length) {
+    html += `<div class="enrich-section"><h3>知名个股</h3><div class="stocks-table">`;
+    for (const s of ev.notable_stocks) {
+      html += `<div class="stock-row"><span class="stock-name">${s.name}</span><span class="stock-code">${s.code}</span><span class="stock-role">${s.role}</span></div>`;
+    }
+    html += `</div></div>`;
+  }
+
+  // References
+  if (ev.references && ev.references.length) {
+    html += `<div class="enrich-section"><h3>原始文献</h3>`;
+    for (const r of ev.references) {
+      const typeLabel = r.type === 'policy' ? '政策文件' : r.type === 'news' ? '新闻报道' : '参考资料';
+      html += `<div class="ref-row"><a href="${r.url}" target="_blank" rel="noopener" class="ref-link">${r.title}</a><span class="ref-type">${typeLabel}</span>${r.date ? `<span class="ref-date">${r.date}</span>` : ''}</div>`;
+    }
+    html += `</div>`;
+  }
+
+  return html;
+}
+
+// ============================================================================
 // Detail
 // ============================================================================
 async function showDetail(id) {
@@ -999,6 +1069,7 @@ async function showDetail(id) {
             <div class="value ${pctClass}">${pct != null ? (pct>=0?'+':'')+pct+'%' : '—'}</div>
           </div>
         </div>` : ''}
+        ${renderEnrichedData(ev)}
         ${(() => {
           // Build cause-effect chain: all events in the same cycle, ordered by date
           const cyc = getEventCycle(ev);
