@@ -65,6 +65,12 @@ app.use('/api/events', eventsRoutes);
 app.use('/api', indexRoutes);
 app.use('/api', authRoutes);
 
+// Sector monthly data — served as static JSON
+const sectorsPath = require('path').join(__dirname, '..', 'data', 'sector_monthly.json');
+app.get('/api/sectors/monthly', (_req, res) => {
+  res.sendFile(sectorsPath);
+});
+
 // ---------------------------------------------------------------------------
 // 404 handler — must come after all routes.
 // ---------------------------------------------------------------------------
