@@ -437,6 +437,35 @@ body {
 .stats-year-fill { height: 100%; border-radius: 5px; background: var(--accent); transition: width 0.5s; }
 .stats-year-count { width: 24px; font-size: 11px; color: var(--text-tertiary); text-align: right; }
 
+/* ---- Sector Heatmap ---- */
+.sector-view { display: none; padding: 20px 24px; overflow-y: auto; height: 100%; }
+.sector-view.active { display: block; }
+.sector-view h2 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+.sector-view .sv-subtitle { font-size: 13px; color: var(--text-tertiary); margin-bottom: 18px; }
+.heatmap-wrap { overflow-x: auto; margin-bottom: 28px; }
+.heatmap-table { border-collapse: collapse; font-size: 12px; width: 100%; min-width: 700px; }
+.heatmap-table th { padding: 6px 4px; text-align: center; color: var(--text-tertiary); font-weight: 600; font-size: 11px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg-card); z-index: 1; }
+.heatmap-table th.hm-sector { text-align: left; padding-left: 10px; min-width: 80px; }
+.heatmap-table td { padding: 2px 3px; text-align: center; }
+.heatmap-table td.hm-sector { text-align: left; padding-left: 10px; font-weight: 600; font-size: 12px; white-space: nowrap; }
+.heatmap-table .hm-cell { border-radius: 3px; font-variant-numeric: tabular-nums; font-size: 11px; font-weight: 600; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
+.heatmap-table .hm-cell:hover { transform: scale(1.15); box-shadow: 0 0 8px rgba(0,0,0,0.5); z-index: 2; position: relative; }
+.hm-legend { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 12px; color: var(--text-tertiary); }
+.hm-legend-bar { width: 120px; height: 10px; border-radius: 5px; background: linear-gradient(90deg, var(--red), #3a3030, #303040, var(--green)); }
+.sector-best-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+.sb-card { background: var(--bg-card); border-radius: var(--radius); padding: 12px 16px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.sb-card:hover { border-color: var(--accent); background: var(--bg-hover); }
+.sb-sector { font-weight: 700; font-size: 14px; }
+.sb-best { text-align: right; }
+.sb-month { font-size: 12px; color: var(--text-tertiary); }
+.sb-ret { font-size: 16px; font-weight: 700; }
+.sb-ret.up { color: var(--green); }
+.sb-ret.down { color: var(--red); }
+.sector-year-select { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.sector-year-select button { font-size: 12px; padding: 4px 12px; border-radius: 4px; cursor: pointer; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-secondary); font-family: var(--font); transition: all 0.15s; }
+.sector-year-select button:hover { border-color: var(--accent); color: var(--accent); }
+.sector-year-select button.sy-active { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); font-weight: 700; }
+
 /* Mobile */
 @media (max-width: 860px) {
   .app { flex-direction: column; height: auto; }
@@ -526,6 +555,7 @@ body {
       <div class="tab" data-tab="story">故事线</div>
       <div class="tab" data-tab="compare">事件对比</div>
       <div class="tab" data-tab="stats">数据看板</div>
+      <div class="tab" data-tab="sectors">板块轮动</div>
     </div>
 
     <!-- Search -->
@@ -550,6 +580,11 @@ body {
     <!-- Stats View -->
     <div class="stats-wrap" id="statsView">
       <div class="loading"><span class="spinner"></span>加载统计数据...</div>
+    </div>
+
+    <!-- Sector Rotation View -->
+    <div class="sector-view" id="sectorView">
+      <div class="loading"><span class="spinner"></span>加载板块数据...</div>
     </div>
 
     <div class="compare-wrap" id="compareView">
@@ -582,7 +617,7 @@ body {
 // State
 // ============================================================================
 const API = '';
-let allEvents = [], allCycles = [], dailyData = [];
+let allEvents = [], allCycles = [], dailyData = [], sectorData = [];
 let activeCategory = 'all', searchTerm = '', chartMode = 'line';
 let authToken = localStorage.getItem('jwt_token');
 let userInfo = null;
@@ -1377,16 +1412,18 @@ document.querySelectorAll('.tab').forEach(t => {
     document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
     t.classList.add('active');
     const mode = t.dataset.tab;
-    const isTimeline = mode === 'timeline', isStory = mode === 'story', isCompare = mode === 'compare', isStats = mode === 'stats';
+    const isTimeline = mode === 'timeline', isStory = mode === 'story', isCompare = mode === 'compare', isStats = mode === 'stats', isSectors = mode === 'sectors';
     document.getElementById('filterBar').style.display = isTimeline ? '' : 'none';
     document.getElementById('searchWrap').style.display = isTimeline ? '' : 'none';
     document.getElementById('eventList').style.display = isTimeline ? '' : 'none';
     document.getElementById('storyView').classList.toggle('active', isStory);
     document.getElementById('compareView').classList.toggle('active', isCompare);
     document.getElementById('statsView').classList.toggle('active', isStats);
+    document.getElementById('sectorView').classList.toggle('active', isSectors);
     if (isStory) renderStoryMode();
     if (isCompare) initCompareView();
     if (isStats) renderStatsDashboard();
+    if (isSectors) renderSectorHeatmap();
   });
 });
 
@@ -1830,6 +1867,125 @@ function renderStatsDashboard() {
         </table>
       </div>
     </div>
+  `;
+}
+
+// ============================================================================
+// Sector Heatmap
+// ============================================================================
+async function renderSectorHeatmap() {
+  const view = document.getElementById('sectorView');
+
+  if (!sectorData.length) {
+    view.innerHTML = '<div class="loading"><span class="spinner"></span>加载板块数据...</div>';
+    try {
+      const res = await fetch('/api/sectors/monthly');
+      sectorData = await res.json();
+    } catch (e) {
+      view.innerHTML = '<div class="loading" style="color:var(--red)">加载失败: ' + e.message + '</div>';
+      return;
+    }
+  }
+
+  const records = sectorData;
+  const sectors = [...new Set(records.map(r => r.sector))].sort();
+  const months = [1,2,3,4,5,6,7,8,9,10,11,12];
+  const monthLabels = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+
+  // Build lookup: sector -> month -> [returns]
+  const lookup = {};
+  for (const s of sectors) {
+    lookup[s] = {};
+    for (const m of months) lookup[s][m] = [];
+  }
+  for (const r of records) {
+    if (lookup[r.sector] && lookup[r.sector][r.month]) {
+      lookup[r.sector][r.month].push(r.return_pct);
+    }
+  }
+
+  // Compute averages
+  const avg = {};
+  for (const s of sectors) {
+    avg[s] = {};
+    for (const m of months) {
+      const vals = lookup[s][m];
+      avg[s][m] = vals.length ? vals.reduce((a,b) => a+b, 0) / vals.length : null;
+    }
+  }
+
+  // Find global min/max for color scale
+  let allAvgs = [];
+  for (const s of sectors) for (const m of months) if (avg[s][m] != null) allAvgs.push(avg[s][m]);
+  const maxAbs = Math.max(Math.abs(Math.min(...allAvgs)), Math.abs(Math.max(...allAvgs)), 0.5);
+
+  function colorFor(val) {
+    if (val == null) return 'transparent';
+    const t = val / maxAbs; // -1 to 1
+    const abs = Math.abs(t);
+    if (t > 0) {
+      const g = Math.round(77 + (175-77) * abs);
+      const r = Math.round(47 + (77-47) * (1-abs));
+      return `rgb(${r},${g},${Math.round(47+(145-47)*(1-abs))})`;
+    } else {
+      const r = Math.round(224 - (224-160) * abs);
+      const g = Math.round(86 - (86-50) * abs);
+      return `rgb(${r},${g},${Math.round(96-(96-60)*abs)})`;
+    }
+  }
+
+  // Sort sectors by total avg return
+  const sectorAvgReturn = {};
+  for (const s of sectors) {
+    const vals = months.map(m => avg[s][m]).filter(v => v != null);
+    sectorAvgReturn[s] = vals.length ? vals.reduce((a,b) => a+b, 0) / vals.length : 0;
+  }
+  const sortedSectors = [...sectors].sort((a,b) => sectorAvgReturn[b] - sectorAvgReturn[a]);
+
+  // Build heatmap
+  let heatHTML = '<div class="hm-legend"><span style="color:var(--red)">跌</span><div class="hm-legend-bar"></div><span style="color:var(--green)">涨</span><span style="margin-left:8px;color:var(--text-tertiary)">各月历史平均涨跌幅</span></div>';
+  heatHTML += '<div class="heatmap-wrap"><table class="heatmap-table"><thead><tr><th class="hm-sector">板块</th>';
+  for (const m of months) heatHTML += `<th>${m}月</th>`;
+  heatHTML += '<th style="color:var(--accent)">平均</th></tr></thead><tbody>';
+
+  for (const s of sortedSectors) {
+    heatHTML += `<tr><td class="hm-sector">${s}</td>`;
+    for (const m of months) {
+      const v = avg[s][m];
+      const bg = colorFor(v);
+      const tc = v != null && Math.abs(v) > maxAbs * 0.5 ? '#fff' : (v != null && Math.abs(v) > maxAbs * 0.3 ? '#ccc' : '');
+      heatHTML += `<td class="hm-cell" style="background:${bg};color:${tc||'var(--text-secondary)'}" title="${s} ${m}月 平均${v!=null?v.toFixed(2)+'%':'无数据'}">${v != null ? (v>0?'+':'')+v.toFixed(1) : '-'}</td>`;
+    }
+    const sAvg = sectorAvgReturn[s];
+    heatHTML += `<td style="font-weight:700;color:${sAvg>0?'var(--green)':'var(--red)'};font-size:12px">${sAvg>0?'+':''}${sAvg.toFixed(2)}%</td></tr>`;
+  }
+  heatHTML += '</tbody></table></div>';
+
+  // Best month per sector
+  const bestMonths = sortedSectors.map(s => {
+    let bestM = 0, bestV = -Infinity;
+    for (const m of months) { if (avg[s][m] != null && avg[s][m] > bestV) { bestV = avg[s][m]; bestM = m; } }
+    return { sector: s, month: bestM, ret: bestV };
+  });
+
+  let bestHTML = '<h3 style="font-size:16px;font-weight:700;margin-bottom:10px;color:var(--text-primary)">各板块最佳月份</h3>';
+  bestHTML += '<div class="sector-best-list">';
+  for (const b of bestMonths) {
+    bestHTML += `<div class="sb-card">
+      <span class="sb-sector">${b.sector}</span>
+      <div class="sb-best">
+        <div class="sb-month">${b.month}月</div>
+        <div class="sb-ret ${b.ret>0?'up':'down'}">${b.ret>0?'+':''}${b.ret.toFixed(2)}%</div>
+      </div>
+    </div>`;
+  }
+  bestHTML += '</div>';
+
+  view.innerHTML = `
+    <h2>板块月度轮动热力图</h2>
+    <div class="sv-subtitle">25个行业板块 · 行=板块 列=月份 · 颜色深浅代表历史平均涨跌幅 · 基于2010年至今数据</div>
+    ${heatHTML}
+    ${bestHTML}
   `;
 }
 
