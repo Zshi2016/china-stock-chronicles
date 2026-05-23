@@ -94,6 +94,14 @@ body {
 .chart-label { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
 .chart-label .title { font-size: 15px; font-weight: 700; color: var(--text-primary); }
 .chart-label .sub { font-size: 12px; color: var(--text-tertiary); font-weight: 500; }
+.index-switcher { display: flex; gap: 4px; }
+.idx-btn { font-size: 12px; padding: 3px 10px; border-radius: 4px; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--text-tertiary); font-family: var(--font); transition: all 0.15s; }
+.idx-btn:hover { border-color: var(--accent); color: var(--text-secondary); }
+.idx-btn.active { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); font-weight: 700; }
+.index-snapshot { display: flex; gap: 12px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+.is-item { display: flex; flex-direction: column; }
+.is-name { font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; }
+.is-val { font-size: 14px; font-weight: 700; color: var(--text-primary); font-variant-numeric: tabular-nums; }
 .chart-panel canvas { width: 100%; border-radius: 6px; cursor: crosshair; }
 .chart-toggle-row { display: flex; gap: 5px; margin-bottom: 8px; }
 .chart-btn {
@@ -537,8 +545,12 @@ body {
     <!-- Mini Chart -->
     <div class="chart-panel">
       <div class="chart-label">
-        <span class="title">上证综指</span>
-        <span class="sub">1990 — 2026</span>
+        <div class="index-switcher">
+          <button class="idx-btn active" data-idx="000001" onclick="switchIndex('000001')">上证</button>
+          <button class="idx-btn" data-idx="399001" onclick="switchIndex('399001')">深证</button>
+          <button class="idx-btn" data-idx="000300" onclick="switchIndex('000300')">沪深300</button>
+        </div>
+        <span class="sub" id="idxRange">1990 — 2026</span>
       </div>
       <div class="chart-toggle-row">
         <button class="chart-btn on" data-mode="line" onclick="setChartMode('line')">折线</button>
@@ -547,6 +559,11 @@ body {
       </div>
       <canvas id="miniChart" height="170"></canvas>
       <canvas id="volChart" height="40" style="margin-top:2px;display:none"></canvas>
+      <div class="index-snapshot" id="indexSnapshot">
+        <div class="is-item"><span class="is-name">上证</span><span class="is-val" id="isVal1">—</span></div>
+        <div class="is-item"><span class="is-name">深证</span><span class="is-val" id="isVal2">—</span></div>
+        <div class="is-item"><span class="is-name">沪深300</span><span class="is-val" id="isVal3">—</span></div>
+      </div>
     </div>
 
     <!-- Tabs -->
@@ -618,6 +635,8 @@ body {
 // ============================================================================
 const API = '';
 let allEvents = [], allCycles = [], dailyData = [], sectorData = [];
+let allIndexData = {}; // code -> data[]
+let activeIndex = '000001';
 let activeCategory = 'all', searchTerm = '', chartMode = 'line';
 let authToken = localStorage.getItem('jwt_token');
 let userInfo = null;
@@ -809,20 +828,33 @@ async function init() {
   updateAuthUI();
 
   try {
-    const [evRes, cyRes, ixRes] = await Promise.all([
+    const [evRes, cyRes, ix1, ix2, ix3] = await Promise.all([
       fetchJSON('/api/events?limit=100'),
       fetchJSON('/api/cycles'),
-      fetchJSON('/api/daily?code=000001&limit=2000')
+      fetchJSON('/api/daily?code=000001&limit=2000'),
+      fetchJSON('/api/daily?code=399001&limit=2000'),
+      fetchJSON('/api/daily?code=000300&limit=2000')
     ]);
     allEvents = evRes.data || [];
     allCycles = cyRes.data || [];
-    dailyData = ixRes.data || [];
+    allIndexData['000001'] = ix1.data || [];
+    allIndexData['399001'] = ix2.data || [];
+    allIndexData['000300'] = ix3.data || [];
+    dailyData = allIndexData['000001'];
 
     document.getElementById('statEvents').textContent = allEvents.length;
     document.getElementById('statCycles').textContent = allCycles.length;
     if (dailyData.length) {
       document.getElementById('statRange').textContent = dailyData[0].date.slice(0,4) + '–' + dailyData[dailyData.length-1].date.slice(0,4);
     }
+    // Update index snapshot
+    ['000001','399001','000300'].forEach((code, i) => {
+      const data = allIndexData[code] || [];
+      if (data.length) {
+        const last = data[data.length - 1];
+        document.getElementById('isVal' + (i+1)).textContent = last.close.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      }
+    });
     const badge = document.getElementById('statusBadge');
     badge.innerHTML = '<span class="status-dot live"></span>已连接';
     badge.style.color = 'var(--text-secondary)';
@@ -1165,6 +1197,22 @@ async function showDetail(id) {
   } catch (err) {
     panel.innerHTML = '<div class="error-state">加载失败<br><small>' + err.message + '</small></div>';
   }
+}
+
+// ============================================================================
+// Index Switcher
+// ============================================================================
+const INDEX_NAMES = { '000001': '上证综指', '399001': '深证成指', '000300': '沪深300' };
+const INDEX_RANGES = { '000001': '1990 — 2026', '399001': '1991 — 2026', '000300': '2005 — 2026' };
+
+function switchIndex(code) {
+  activeIndex = code;
+  dailyData = allIndexData[code] || [];
+  document.querySelectorAll('.idx-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.idx === code);
+  });
+  document.getElementById('idxRange').textContent = INDEX_RANGES[code] || '';
+  drawMiniChart();
 }
 
 // ============================================================================
