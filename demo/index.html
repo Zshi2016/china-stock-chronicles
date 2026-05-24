@@ -411,6 +411,35 @@ body {
 .story-detail .cyc-event-card .ce-date { font-size: 12px; color: var(--text-tertiary); margin-bottom: 2px; }
 .story-detail .cyc-event-card .ce-title { font-size: 14px; font-weight: 600; }
 
+/* ---- Chronicle View (编年) ---- */
+.chronicle-wrap { padding: 0; flex: 1; overflow-y: auto; display: none; }
+.chronicle-wrap.active { display: block; }
+.chronicle-chart-panel { position: sticky; top: 61px; z-index: 10; background: var(--bg-primary); border-bottom: 1px solid var(--border); padding: 16px 24px; }
+.chronicle-chart-panel .cc-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.chronicle-chart-panel .cc-title { font-size: 18px; font-weight: 700; }
+.chronicle-chart-panel .cc-sub { font-size: 12px; color: var(--text-tertiary); }
+.cc-canvas-wrap { position: relative; }
+.cc-canvas-wrap canvas { display: block; width: 100%; }
+.chronicle-chapters { padding: 20px 24px 60px; max-width: 900px; margin: 0 auto; }
+.chronicle-chapters h3 { font-size: 16px; font-weight: 700; margin-bottom: 18px; color: var(--text-primary); }
+.chr-chapter { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border); cursor: pointer; transition: all 0.2s; scroll-margin-top: 220px; }
+.chr-chapter:hover { background: rgba(201,163,80,0.03); padding-left: 8px; }
+.chr-chapter.highlight { background: rgba(201,163,80,0.08); border-color: rgba(201,163,80,0.3); }
+.chr-num { width: 32px; height: 32px; border-radius: 50%; background: var(--bg-card); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--accent); flex-shrink: 0; margin-top: 2px; transition: all 0.2s; }
+.chr-chapter.highlight .chr-num { background: var(--accent); color: var(--bg-primary); }
+.chr-body { flex: 1; min-width: 0; }
+.chr-date { font-size: 12px; color: var(--text-tertiary); margin-bottom: 3px; font-variant-numeric: tabular-nums; }
+.chr-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; line-height: 1.4; }
+.chr-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.chr-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.chr-tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: var(--bg-card); color: var(--text-tertiary); border: 1px solid var(--border); }
+.chr-data { display: flex; gap: 16px; margin-top: 6px; font-size: 13px; }
+.chr-data-item { display: flex; gap: 4px; }
+.chr-data-label { color: var(--text-tertiary); }
+.chr-data-val { font-weight: 600; font-variant-numeric: tabular-nums; }
+.chr-data-val.up { color: var(--green); }
+.chr-data-val.down { color: var(--red); }
+
 /* ---- Stats Dashboard ---- */
 .stats-wrap { padding: 12px 20px 40px; flex: 1; overflow-y: auto; display: none; }
 .stats-wrap.active { display: block; }
@@ -569,7 +598,7 @@ body {
     <!-- Tabs -->
     <div class="tab-bar" id="tabBar">
       <div class="tab active" data-tab="timeline">时间线</div>
-      <div class="tab" data-tab="story">故事线</div>
+      <div class="tab" data-tab="story">编年</div>
       <div class="tab" data-tab="compare">事件对比</div>
       <div class="tab" data-tab="stats">数据看板</div>
       <div class="tab" data-tab="sectors">板块轮动</div>
@@ -1766,68 +1795,289 @@ function isoDate(d) { return d.getFullYear() + '-' + String(d.getMonth()+1).padS
 // ============================================================================
 // Story Mode
 // ============================================================================
-let storyViewMode = 'list'; // 'list' | 'detail'
-let currentStoryCycle = null;
+let chronicleActiveIdx = -1;
 
-function renderStoryMode() {
-  if (!allCycles.length) {
-    document.getElementById('storyView').innerHTML = '<div class="loading"><span class="spinner"></span>加载故事线...</div>';
+function renderStoryMode() { renderChronicle(); }
+
+function renderChronicle() {
+  const view = document.getElementById('storyView');
+  if (!allEvents.length) {
+    view.innerHTML = '<div class="loading"><span class="spinner"></span>加载编年数据...</div>';
     return;
   }
-  storyViewMode = 'list';
-  const sorted = [...allCycles].sort((a, b) => a.start_date.localeCompare(b.start_date));
 
-  function fmtPct(v) { const sign = v >= 0 ? '+' : ''; return sign + v.toFixed(1) + '%'; }
+  // Sort events chronologically
+  const sorted = [...allEvents].sort((a, b) => a.date.localeCompare(b.date));
 
-  const html = `
-    <div class="story-intro">
-      <h3>中国股市的牛熊轮回</h3>
-      <p>从1990年上交所开市至今，A股经历了${sorted.length}轮完整的牛熊周期。每一轮牛市都有它的驱动力，每一轮熊市都有它的教训。点击任意周期查看详情。</p>
+  // Roman numerals for markers
+  const roman = ['0','I','II','III','IV','V','VI','VII','VIII','IX','X',
+    'XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX',
+    'XXI','XXII','XXIII','XXIV','XXV','XXVI','XXVII','XXVIII','XXIX','XXX',
+    'XXXI','XXXII','XXXIII','XXXIV','XXXV','XXXVI','XXXVII','XXXVIII','XXXIX','XL',
+    'XLI','XLII','XLIII','XLIV','XLV','XLVI','XLVII','XLVIII','XLIX','L',
+    'LI','LII','LIII','LIV','LV','LVI','LVII','LVIII','LIX','LX',
+    'LXI','LXII','LXIII','LXIV','LXV','LXVI','LXVII','LXVIII','LXIX','LXX',
+    'LXXI','LXXII','LXXIII','LXXIV','LXXV','LXXVI','LXXVII','LXXVIII','LXXIX','LXXX',
+    'LXXXI','LXXXII','LXXXIII'];
+
+  // Build the chronicle HTML
+  const CAT_NAMES = { policy:'政策', bubble:'泡沫', crash:'崩盘', reform:'改革', international:'国际', scandal:'丑闻', milestone:'里程碑', other:'其他' };
+
+  let chaptersHTML = '';
+  sorted.forEach((ev, i) => {
+    const md = ev.market_data || {};
+    const chg = md.change_pct ?? ev.change_pct;
+    const sh = md.sh_close ?? ev.sh_close;
+    const tags = Array.isArray(ev.tags) ? ev.tags : [];
+
+    chaptersHTML += `
+    <div class="chr-chapter" data-evt-id="${ev.id}" data-evt-idx="${i}" id="chapter-${i}" onclick="showDetail('${ev.id}')">
+      <div class="chr-num">${roman[i+1] || (i+1)}</div>
+      <div class="chr-body">
+        <div class="chr-date">${ev.date}</div>
+        <div class="chr-title">${ev.title_zh || ev.title_en}</div>
+        <div class="chr-desc">${(ev.description_zh || ev.description_en || '').slice(0, 200)}</div>
+        <div class="chr-meta">
+          <span class="chr-tag" style="background:rgba(201,163,80,0.1);color:var(--accent);border-color:rgba(201,163,80,0.25)">${CAT_NAMES[ev.category] || ev.category}</span>
+          ${tags.slice(0,3).map(t => `<span class="chr-tag">${t}</span>`).join('')}
+        </div>
+        ${sh != null || chg != null ? `
+        <div class="chr-data">
+          ${sh != null ? `<div class="chr-data-item"><span class="chr-data-label">上证收盘</span><span class="chr-data-val" style="color:var(--accent)">${sh.toLocaleString('en-US',{minimumFractionDigits:2})}</span></div>` : ''}
+          ${chg != null ? `<div class="chr-data-item"><span class="chr-data-label">涨跌幅</span><span class="chr-data-val ${chg>=0?'up':'down'}">${chg>0?'+':''}${chg.toFixed(2)}%</span></div>` : ''}
+        </div>` : ''}
+      </div>
+    </div>`;
+  });
+
+  const idxNames = { '000001': '上证综指', '399001': '深证成指', '000300': '沪深300' };
+
+  view.innerHTML = `
+    <div class="chronicle-wrap active">
+      <div class="chronicle-chart-panel">
+        <div class="cc-header">
+          <span class="cc-title">中国股市编年史 · ${idxNames[activeIndex] || ''}</span>
+          <span class="cc-sub">${sorted.length} 个历史事件 · 1992–2026</span>
+        </div>
+        <div class="cc-canvas-wrap">
+          <canvas id="chronicleChart" height="200"></canvas>
+        </div>
+        <div class="index-switcher" style="margin-top:8px">
+          <button class="idx-btn ${activeIndex==='000001'?'active':''}" data-idx="000001" onclick="switchChronicleIdx('000001')">上证</button>
+          <button class="idx-btn ${activeIndex==='399001'?'active':''}" data-idx="399001" onclick="switchChronicleIdx('399001')">深证</button>
+          <button class="idx-btn ${activeIndex==='000300'?'active':''}" data-idx="000300" onclick="switchChronicleIdx('000300')">沪深300</button>
+        </div>
+      </div>
+      <div class="chronicle-chapters" id="chronicleChapters">
+        <h3>历史事件编年</h3>
+        ${chaptersHTML}
+      </div>
     </div>
-    ${sorted.map(cyc => {
-      const peak = cyc.peak_value || cyc.end_value;
-      const trough = cyc.trough_value || cyc.start_value;
-      const startV = cyc.start_value || 100;
-      const endV = cyc.end_value || startV;
-      const totalRet = ((endV - startV) / startV) * 100;
-      const isBull = cyc.type === 'bull';
-      const months = cyc.duration_months || '';
-      const keyEvents = (cyc.key_events || []).map(eid => allEvents.find(e => e.id === eid)).filter(Boolean);
-
-      return `<div class="cycle-card ${cyc.type}" data-cycle-id="${cyc.id}">
-        <div class="cyc-header">
-          <span class="cyc-name">${cyc.name_zh}</span>
-          <span class="cyc-badge" style="background:${isBull?'var(--green)':'var(--red)'}">${isBull?'牛市':'熊市'}</span>
-        </div>
-        <div class="cyc-meta">
-          <span>${cyc.start_date.slice(0,7)} → ${(cyc.end_date||'至今').slice(0,7)}</span>
-          ${months ? `<span>持续 <strong class="val">${months}</strong> 个月</span>` : ''}
-          <span>${startV.toFixed(0)} → ${endV.toFixed(0)} <strong class="val" style="color:${totalRet>=0?'var(--green)':'var(--red)'}">${fmtPct(totalRet)}</strong></span>
-        </div>
-        <div class="cyc-narrative">${cyc.narrative_zh || ''}</div>
-        ${keyEvents.length ? `<div class="cyc-events">${keyEvents.slice(0,5).map(e => `<span class="cyc-event-tag" data-event-id="${e.id}">${e.date.slice(0,4)} ${e.title_zh.slice(0,12)}</span>`).join('')}</div>` : ''}
-      </div>`;
-    }).join('')}
   `;
-  document.getElementById('storyView').innerHTML = html;
 
-  // Cycle card click → show detail
-  document.querySelectorAll('.cycle-card').forEach(card => {
-    card.addEventListener('click', function(e) {
-      if (e.target.closest('.cyc-event-tag')) return;
-      const cycId = card.dataset.cycleId;
-      const cyc = allCycles.find(c => c.id === cycId);
-      if (cyc) showStoryDetail(cyc);
+  chronicleActiveIdx = -1;
+  setTimeout(() => drawChronicleChart(sorted), 50);
+
+  // Intersection observer to highlight chapter numbers on chart
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = parseInt(entry.target.dataset.evtIdx);
+        if (!isNaN(idx) && idx !== chronicleActiveIdx) {
+          chronicleActiveIdx = idx;
+          drawChronicleChart(sorted);
+        }
+      }
     });
+  }, { threshold: 0.5, rootMargin: '-200px 0px 0px 0px' });
+
+  document.querySelectorAll('.chr-chapter').forEach(el => obs.observe(el));
+}
+
+function switchChronicleIdx(code) {
+  activeIndex = code;
+  dailyData = allIndexData[code] || [];
+  document.querySelectorAll('.idx-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.idx === code);
+  });
+  renderChronicle();
+}
+
+function drawChronicleChart(sorted) {
+  const canvas = document.getElementById('chronicleChart');
+  if (!canvas || !dailyData.length) return;
+
+  const container = canvas.parentElement;
+  const W = container.clientWidth;
+  const H = 200;
+  canvas.width = W; canvas.height = H;
+
+  const pad = { top: 8, right: 16, bottom: 28, left: 16 };
+  const cw = W - pad.left - pad.right;
+  const ch = H - pad.top - pad.bottom;
+
+  // Sample data
+  const step = Math.max(1, Math.floor(dailyData.length / 600));
+  const sampled = dailyData.filter((_, i) => i % step === 0 || i === dailyData.length - 1);
+
+  let maxV = -Infinity, minV = Infinity;
+  sampled.forEach(d => { if (d.close > maxV) maxV = d.close; if (d.close < minV) minV = d.close; });
+  const range = maxV - minV || 1;
+  maxV += range * 0.05; minV -= range * 0.05;
+
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, W, H);
+
+  const xPos = i => pad.left + (i / (sampled.length - 1)) * cw;
+  const yPos = v => pad.top + ch - ((v - minV) / (maxV - minV)) * ch;
+
+  // Bull/bear bands
+  allCycles.forEach(cycle => {
+    const sy = parseInt(cycle.start_date.slice(0, 4));
+    const ey = parseInt((cycle.end_date || '2026').slice(0, 4));
+    let fi = -1, ti = -1;
+    sampled.forEach((d, i) => {
+      const y = parseInt(d.date.slice(0, 4));
+      if (fi === -1 && y >= sy) fi = i;
+      if (y <= ey) ti = i;
+    });
+    if (fi >= 0 && ti >= fi) {
+      ctx.fillStyle = cycle.type === 'bull' ? 'rgba(63,185,80,0.06)' : 'rgba(248,81,73,0.04)';
+      ctx.fillRect(xPos(fi), pad.top, xPos(ti) - xPos(fi), ch);
+    }
   });
 
-  // Event tag click → show event detail
-  document.querySelectorAll('.cyc-event-tag').forEach(tag => {
-    tag.addEventListener('click', function(e) {
-      e.stopPropagation();
-      showDetail(tag.dataset.eventId);
+  // Grid
+  ctx.strokeStyle = 'rgba(139,148,158,0.08)'; ctx.lineWidth = 0.5;
+  for (let g = 0; g <= 4; g++) {
+    const gy = pad.top + (ch / 4) * g;
+    ctx.beginPath(); ctx.moveTo(pad.left, gy); ctx.lineTo(W - pad.right, gy); ctx.stroke();
+  }
+
+  // Line
+  ctx.strokeStyle = '#c9a350'; ctx.lineWidth = 1.8; ctx.lineJoin = 'round';
+  ctx.beginPath();
+  sampled.forEach((d, i) => { const px = xPos(i), py = yPos(d.close); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); });
+  ctx.stroke();
+
+  // Gradient fill
+  ctx.lineTo(xPos(sampled.length - 1), pad.top + ch);
+  ctx.lineTo(xPos(0), pad.top + ch); ctx.closePath();
+  const grad = ctx.createLinearGradient(0, pad.top, 0, pad.top + ch);
+  grad.addColorStop(0, 'rgba(201,163,80,0.18)'); grad.addColorStop(1, 'rgba(201,163,80,0.01)');
+  ctx.fillStyle = grad; ctx.fill();
+
+  // Event markers — numbered badges
+  const markerColor = {
+    policy: '#c9a350', bubble: '#e05660', crash: '#e05660', reform: '#5a9fd4',
+    international: '#d48540', scandal: '#e05660', milestone: '#4daf91', other: '#9b7ec4'
+  };
+  const roman = ['0','I','II','III','IV','V','VI','VII','VIII','IX','X',
+    'XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX',
+    'XXI','XXII','XXIII','XXIV','XXV','XXVI','XXVII','XXVIII','XXIX','XXX',
+    'XXXI','XXXII','XXXIII','XXXIV','XXXV','XXXVI','XXXVII','XXXVIII','XXXIX','XL',
+    'XLI','XLII','XLIII','XLIV','XLV','XLVI','XLVII','XLVIII','XLIX','L',
+    'LXI','LXII','LXIII','LXIV','LXV','LXVI','LXVII','LXVIII','LXIX','LXX',
+    'LXXI','LXXII','LXXIII','LXXIV','LXXV','LXXVI','LXXVII','LXXVIII','LXXIX','LXXX',
+    'LXXXI','LXXXII','LXXXIII'];
+
+  canvas._chrMarkers = [];
+  sorted.forEach((ev, i) => {
+    let idx = -1, minDist = Infinity;
+    sampled.forEach((d, di) => {
+      const dist = Math.abs((d.date || '').localeCompare(ev.date));
+      if (dist < minDist) { minDist = dist; idx = di; }
     });
+    if (idx >= 0 && minDist < 7) {
+      const px = xPos(idx);
+      const py = yPos(sampled[idx].close);
+      const cat = ev.category || 'other';
+      const isActive = i === chronicleActiveIdx;
+      const r = isActive ? 11 : 8;
+
+      // Highlight circle
+      if (isActive) {
+        ctx.beginPath();
+        ctx.arc(px, py, r + 3, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(201,163,80,0.25)';
+        ctx.fill();
+      }
+
+      // Badge circle
+      ctx.beginPath();
+      ctx.arc(px, py, r, 0, Math.PI * 2);
+      ctx.fillStyle = isActive ? markerColor[cat] : 'var(--bg-primary)';
+      ctx.fill();
+      ctx.strokeStyle = markerColor[cat] || '#c9a350';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Number
+      ctx.fillStyle = isActive ? '#fff' : (markerColor[cat] || '#c9a350');
+      ctx.font = `${isActive?'9px':'7px'} -apple-system, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(roman[i+1] || (i+1), px, py);
+
+      canvas._chrMarkers.push({ px, py, r: r+3, ev, idx: i });
+    }
   });
+
+  // Year labels
+  ctx.fillStyle = '#7D8590'; ctx.font = '10px -apple-system, sans-serif'; ctx.textAlign = 'center';
+  [1990,1995,2000,2005,2010,2015,2020,2026].forEach(year => {
+    const idx = sampled.findIndex(d => parseInt(d.date.slice(0, 4)) >= year);
+    if (idx >= 0) ctx.fillText(String(year), xPos(idx), H - 4);
+  });
+
+  // Click handler
+  canvas.onclick = function(e) {
+    if (!canvas._chrMarkers) return;
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    for (const mk of canvas._chrMarkers) {
+      if (Math.abs(mx*scaleX - mk.px) < 15 && Math.abs(my*scaleY - mk.py) < 15) {
+        const chapter = document.getElementById('chapter-' + mk.idx);
+        if (chapter) chapter.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+    }
+  };
+
+  // Hover tooltip
+  canvas.onmousemove = function(e) {
+    const tooltip = document.getElementById('tooltip');
+    if (!canvas._chrMarkers) return;
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    let found = false;
+    for (const mk of canvas._chrMarkers) {
+      if (Math.abs(mx*scaleX - mk.px) < 12 && Math.abs(my*scaleY - mk.py) < 12) {
+        tooltip.querySelector('.tt-date').textContent = mk.ev.date;
+        tooltip.querySelector('.tt-val').textContent = mk.ev.title_zh || mk.ev.title_en;
+        tooltip.style.display = '';
+        tooltip.style.left = (e.clientX + 14) + 'px';
+        tooltip.style.top = (e.clientY - 44) + 'px';
+        canvas.style.cursor = 'pointer';
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      canvas.style.cursor = 'crosshair';
+      tooltip.style.display = 'none';
+    }
+  };
+
+  canvas.onmouseleave = function() {
+    document.getElementById('tooltip').style.display = 'none';
+  };
 }
 
 function showStoryDetail(cyc) {
