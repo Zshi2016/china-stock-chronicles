@@ -1311,8 +1311,40 @@ function drawLineChart(canvas, data, H, ch) {
     if (idx >= 0) ctx.fillText(String(year), xPos(idx), H - 3);
   });
 
+  // Event markers
+  const markers = drawEventMarkers(ctx, data, xPos, yPos);
+
   // Store for tooltip
-  canvas._chartMeta = { data, xPos, yPos, minV, maxV, pad };
+  canvas._chartMeta = { data, xPos, yPos, minV, maxV, pad, markers };
+}
+
+function drawEventMarkers(ctx, data, xPos, yPos) {
+  const markerColor = {
+    policy: '#c9a350', bubble: '#e05660', crash: '#e05660', reform: '#5a9fd4',
+    international: '#d48540', scandal: '#e05660', milestone: '#4daf91', other: '#9b7ec4'
+  };
+  const markers = [];
+  allEvents.forEach(ev => {
+    let idx = -1, minDist = Infinity;
+    data.forEach((d, i) => {
+      const dist = Math.abs((d.date || '').localeCompare(ev.date));
+      if (dist < minDist) { minDist = dist; idx = i; }
+    });
+    if (idx >= 0 && minDist < 7) {
+      const px = xPos(idx);
+      const py = yPos(data[idx].close);
+      const cat = ev.category || 'other';
+      ctx.beginPath();
+      ctx.arc(px, py, 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = markerColor[cat] || '#c9a350';
+      ctx.fill();
+      ctx.strokeStyle = '#0b0d11';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      markers.push({ event: ev, px, py, date: ev.date, title: ev.title_zh, cat });
+    }
+  });
+  return markers;
 }
 
 function drawCandlestick(canvas, data, H) {
@@ -1383,7 +1415,10 @@ function drawCandlestick(canvas, data, H) {
     if (idx >= 0) ctx.fillText(String(year), xPos(idx), H - 3);
   });
 
-  canvas._chartMeta = { data, xPos, yPos, minV, maxV, pad, isCandle: true };
+  // Event markers
+  const markers = drawEventMarkers(ctx, data, xPos, yPos);
+
+  canvas._chartMeta = { data, xPos, yPos, minV, maxV, pad, isCandle: true, markers };
 }
 
 function drawVolume(canvas, data, H) {
@@ -1422,8 +1457,29 @@ function initChartTooltip(canvas) {
 
     const rect = canvas.getBoundingClientRect();
     const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
     const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
     const scaledX = mx * scaleX;
+    const scaledY = my * scaleY;
+
+    // Check event markers first (within 12px radius)
+    if (meta.markers && meta.markers.length) {
+      for (const mk of meta.markers) {
+        const dx = Math.abs(scaledX - mk.px);
+        const dy = Math.abs(scaledY - mk.py);
+        if (dx < 12 && dy < 12) {
+          tooltip.querySelector('.tt-date').textContent = mk.date;
+          tooltip.querySelector('.tt-val').innerHTML = '<span style="color:#c9a350">&#x25CF;</span> ' + mk.title;
+          tooltip.style.display = '';
+          tooltip.style.left = (e.clientX + 14) + 'px';
+          tooltip.style.top = (e.clientY - 50) + 'px';
+          canvas.style.cursor = 'pointer';
+          return;
+        }
+      }
+    }
+    canvas.style.cursor = 'crosshair';
 
     // Find closest data point
     let closestIdx = 0, closestDist = Infinity;
@@ -1445,6 +1501,27 @@ function initChartTooltip(canvas) {
     tooltip.style.display = '';
     tooltip.style.left = (e.clientX + 14) + 'px';
     tooltip.style.top = (e.clientY - 40) + 'px';
+  });
+
+  canvas.addEventListener('click', function(e) {
+    const meta = canvas._chartMeta;
+    if (!meta || !meta.markers) return;
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const scaledX = mx * scaleX;
+    const scaledY = my * scaleY;
+
+    for (const mk of meta.markers) {
+      const dx = Math.abs(scaledX - mk.px);
+      const dy = Math.abs(scaledY - mk.py);
+      if (dx < 12 && dy < 12) {
+        showDetail(mk.event.id);
+        return;
+      }
+    }
   });
 
   canvas.addEventListener('mouseleave', function() {
